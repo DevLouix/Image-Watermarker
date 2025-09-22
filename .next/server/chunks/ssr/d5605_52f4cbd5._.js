@@ -1,0 +1,8965 @@
+module.exports = [
+"[project]/Image-Watermarker/node_modules/next/dist/server/route-modules/app-page/module.compiled.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+;
+else {
+    if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+    ;
+    else {
+        if ("TURBOPACK compile-time truthy", 1) {
+            if ("TURBOPACK compile-time truthy", 1) {
+                module.exports = __turbopack_context__.r("[externals]/next/dist/compiled/next-server/app-page-turbo.runtime.dev.js [external] (next/dist/compiled/next-server/app-page-turbo.runtime.dev.js, cjs)");
+            } else //TURBOPACK unreachable
+            ;
+        } else //TURBOPACK unreachable
+        ;
+    }
+} //# sourceMappingURL=module.compiled.js.map
+}),
+"[project]/Image-Watermarker/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+module.exports = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/next/dist/server/route-modules/app-page/module.compiled.js [app-ssr] (ecmascript)").vendored['react-ssr'].ReactJsxDevRuntime; //# sourceMappingURL=react-jsx-dev-runtime.js.map
+}),
+"[project]/Image-Watermarker/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+module.exports = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/next/dist/server/route-modules/app-page/module.compiled.js [app-ssr] (ecmascript)").vendored['react-ssr'].React; //# sourceMappingURL=react.js.map
+}),
+"[project]/Image-Watermarker/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-runtime.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+module.exports = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/next/dist/server/route-modules/app-page/module.compiled.js [app-ssr] (ecmascript)").vendored['react-ssr'].ReactJsxRuntime; //# sourceMappingURL=react-jsx-runtime.js.map
+}),
+"[project]/Image-Watermarker/node_modules/next/dist/compiled/setimmediate/setImmediate.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+
+(function() {
+    var e = {
+        189: function() {
+            (function(e, t) {
+                "use strict";
+                if (e.setImmediate) {
+                    return;
+                }
+                var n = 1;
+                var a = {};
+                var s = false;
+                var i = e.document;
+                var r;
+                function setImmediate(e) {
+                    if (typeof e !== "function") {
+                        e = new Function("" + e);
+                    }
+                    var t = new Array(arguments.length - 1);
+                    for(var s = 0; s < t.length; s++){
+                        t[s] = arguments[s + 1];
+                    }
+                    var i = {
+                        callback: e,
+                        args: t
+                    };
+                    a[n] = i;
+                    r(n);
+                    return n++;
+                }
+                function clearImmediate(e) {
+                    delete a[e];
+                }
+                function run(e) {
+                    var n = e.callback;
+                    var a = e.args;
+                    switch(a.length){
+                        case 0:
+                            n();
+                            break;
+                        case 1:
+                            n(a[0]);
+                            break;
+                        case 2:
+                            n(a[0], a[1]);
+                            break;
+                        case 3:
+                            n(a[0], a[1], a[2]);
+                            break;
+                        default:
+                            n.apply(t, a);
+                            break;
+                    }
+                }
+                function runIfPresent(e) {
+                    if (s) {
+                        setTimeout(runIfPresent, 0, e);
+                    } else {
+                        var t = a[e];
+                        if (t) {
+                            s = true;
+                            try {
+                                run(t);
+                            } finally{
+                                clearImmediate(e);
+                                s = false;
+                            }
+                        }
+                    }
+                }
+                function installNextTickImplementation() {
+                    r = function(e) {
+                        process.nextTick(function() {
+                            runIfPresent(e);
+                        });
+                    };
+                }
+                function canUsePostMessage() {
+                    if (e.postMessage && !e.importScripts) {
+                        var t = true;
+                        var n = e.onmessage;
+                        e.onmessage = function() {
+                            t = false;
+                        };
+                        e.postMessage("", "*");
+                        e.onmessage = n;
+                        return t;
+                    }
+                }
+                function installPostMessageImplementation() {
+                    var t = "setImmediate$" + Math.random() + "$";
+                    var onGlobalMessage = function(n) {
+                        if (n.source === e && typeof n.data === "string" && n.data.indexOf(t) === 0) {
+                            runIfPresent(+n.data.slice(t.length));
+                        }
+                    };
+                    if (e.addEventListener) {
+                        e.addEventListener("message", onGlobalMessage, false);
+                    } else {
+                        e.attachEvent("onmessage", onGlobalMessage);
+                    }
+                    r = function(n) {
+                        e.postMessage(t + n, "*");
+                    };
+                }
+                function installMessageChannelImplementation() {
+                    var e = new MessageChannel;
+                    e.port1.onmessage = function(e) {
+                        var t = e.data;
+                        runIfPresent(t);
+                    };
+                    r = function(t) {
+                        e.port2.postMessage(t);
+                    };
+                }
+                function installReadyStateChangeImplementation() {
+                    var e = i.documentElement;
+                    r = function(t) {
+                        var n = i.createElement("script");
+                        n.onreadystatechange = function() {
+                            runIfPresent(t);
+                            n.onreadystatechange = null;
+                            e.removeChild(n);
+                            n = null;
+                        };
+                        e.appendChild(n);
+                    };
+                }
+                function installSetTimeoutImplementation() {
+                    r = function(e) {
+                        setTimeout(runIfPresent, 0, e);
+                    };
+                }
+                var o = Object.getPrototypeOf && Object.getPrototypeOf(e);
+                o = o && o.setTimeout ? o : e;
+                if (({}).toString.call(e.process) === "[object process]") {
+                    installNextTickImplementation();
+                } else if (canUsePostMessage()) {
+                    installPostMessageImplementation();
+                } else if (e.MessageChannel) {
+                    installMessageChannelImplementation();
+                } else if (i && "onreadystatechange" in i.createElement("script")) {
+                    installReadyStateChangeImplementation();
+                } else {
+                    installSetTimeoutImplementation();
+                }
+                o.setImmediate = setImmediate;
+                o.clearImmediate = clearImmediate;
+            })(typeof self === "undefined" ? ("TURBOPACK compile-time falsy", 0) ? "TURBOPACK unreachable" : /*TURBOPACK member replacement*/ __turbopack_context__.g : self);
+        }
+    };
+    if (typeof __nccwpck_require__ !== "undefined") __nccwpck_require__.ab = ("TURBOPACK compile-time value", "/ROOT/Image-Watermarker/node_modules/next/dist/compiled/setimmediate") + "/";
+    var t = {};
+    e[189]();
+    module.exports = t;
+})();
+}),
+"[project]/Image-Watermarker/node_modules/prop-types/node_modules/react-is/cjs/react-is.development.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+/** @license React v16.13.1
+ * react-is.development.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */ if ("TURBOPACK compile-time truthy", 1) {
+    (function() {
+        'use strict';
+        // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
+        // nor polyfill, then a plain number is used for performance.
+        var hasSymbol = typeof Symbol === 'function' && Symbol.for;
+        var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for('react.element') : 0xeac7;
+        var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for('react.portal') : 0xeaca;
+        var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
+        var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
+        var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
+        var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
+        var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
+        // (unstable) APIs that have been removed. Can we remove the symbols?
+        var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
+        var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for('react.concurrent_mode') : 0xeacf;
+        var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
+        var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for('react.suspense') : 0xead1;
+        var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for('react.suspense_list') : 0xead8;
+        var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
+        var REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
+        var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for('react.block') : 0xead9;
+        var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for('react.fundamental') : 0xead5;
+        var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
+        var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
+        function isValidElementType(type) {
+            return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
+            type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
+        }
+        function typeOf(object) {
+            if (typeof object === 'object' && object !== null) {
+                var $$typeof = object.$$typeof;
+                switch($$typeof){
+                    case REACT_ELEMENT_TYPE:
+                        var type = object.type;
+                        switch(type){
+                            case REACT_ASYNC_MODE_TYPE:
+                            case REACT_CONCURRENT_MODE_TYPE:
+                            case REACT_FRAGMENT_TYPE:
+                            case REACT_PROFILER_TYPE:
+                            case REACT_STRICT_MODE_TYPE:
+                            case REACT_SUSPENSE_TYPE:
+                                return type;
+                            default:
+                                var $$typeofType = type && type.$$typeof;
+                                switch($$typeofType){
+                                    case REACT_CONTEXT_TYPE:
+                                    case REACT_FORWARD_REF_TYPE:
+                                    case REACT_LAZY_TYPE:
+                                    case REACT_MEMO_TYPE:
+                                    case REACT_PROVIDER_TYPE:
+                                        return $$typeofType;
+                                    default:
+                                        return $$typeof;
+                                }
+                        }
+                    case REACT_PORTAL_TYPE:
+                        return $$typeof;
+                }
+            }
+            return undefined;
+        } // AsyncMode is deprecated along with isAsyncMode
+        var AsyncMode = REACT_ASYNC_MODE_TYPE;
+        var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
+        var ContextConsumer = REACT_CONTEXT_TYPE;
+        var ContextProvider = REACT_PROVIDER_TYPE;
+        var Element = REACT_ELEMENT_TYPE;
+        var ForwardRef = REACT_FORWARD_REF_TYPE;
+        var Fragment = REACT_FRAGMENT_TYPE;
+        var Lazy = REACT_LAZY_TYPE;
+        var Memo = REACT_MEMO_TYPE;
+        var Portal = REACT_PORTAL_TYPE;
+        var Profiler = REACT_PROFILER_TYPE;
+        var StrictMode = REACT_STRICT_MODE_TYPE;
+        var Suspense = REACT_SUSPENSE_TYPE;
+        var hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
+        function isAsyncMode(object) {
+            {
+                if (!hasWarnedAboutDeprecatedIsAsyncMode) {
+                    hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
+                    console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
+                }
+            }
+            return isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE;
+        }
+        function isConcurrentMode(object) {
+            return typeOf(object) === REACT_CONCURRENT_MODE_TYPE;
+        }
+        function isContextConsumer(object) {
+            return typeOf(object) === REACT_CONTEXT_TYPE;
+        }
+        function isContextProvider(object) {
+            return typeOf(object) === REACT_PROVIDER_TYPE;
+        }
+        function isElement(object) {
+            return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+        }
+        function isForwardRef(object) {
+            return typeOf(object) === REACT_FORWARD_REF_TYPE;
+        }
+        function isFragment(object) {
+            return typeOf(object) === REACT_FRAGMENT_TYPE;
+        }
+        function isLazy(object) {
+            return typeOf(object) === REACT_LAZY_TYPE;
+        }
+        function isMemo(object) {
+            return typeOf(object) === REACT_MEMO_TYPE;
+        }
+        function isPortal(object) {
+            return typeOf(object) === REACT_PORTAL_TYPE;
+        }
+        function isProfiler(object) {
+            return typeOf(object) === REACT_PROFILER_TYPE;
+        }
+        function isStrictMode(object) {
+            return typeOf(object) === REACT_STRICT_MODE_TYPE;
+        }
+        function isSuspense(object) {
+            return typeOf(object) === REACT_SUSPENSE_TYPE;
+        }
+        exports.AsyncMode = AsyncMode;
+        exports.ConcurrentMode = ConcurrentMode;
+        exports.ContextConsumer = ContextConsumer;
+        exports.ContextProvider = ContextProvider;
+        exports.Element = Element;
+        exports.ForwardRef = ForwardRef;
+        exports.Fragment = Fragment;
+        exports.Lazy = Lazy;
+        exports.Memo = Memo;
+        exports.Portal = Portal;
+        exports.Profiler = Profiler;
+        exports.StrictMode = StrictMode;
+        exports.Suspense = Suspense;
+        exports.isAsyncMode = isAsyncMode;
+        exports.isConcurrentMode = isConcurrentMode;
+        exports.isContextConsumer = isContextConsumer;
+        exports.isContextProvider = isContextProvider;
+        exports.isElement = isElement;
+        exports.isForwardRef = isForwardRef;
+        exports.isFragment = isFragment;
+        exports.isLazy = isLazy;
+        exports.isMemo = isMemo;
+        exports.isPortal = isPortal;
+        exports.isProfiler = isProfiler;
+        exports.isStrictMode = isStrictMode;
+        exports.isSuspense = isSuspense;
+        exports.isValidElementType = isValidElementType;
+        exports.typeOf = typeOf;
+    })();
+}
+}),
+"[project]/Image-Watermarker/node_modules/prop-types/node_modules/react-is/index.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+;
+else {
+    module.exports = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/prop-types/node_modules/react-is/cjs/react-is.development.js [app-ssr] (ecmascript)");
+}
+}),
+"[project]/Image-Watermarker/node_modules/hoist-non-react-statics/node_modules/react-is/cjs/react-is.development.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+/** @license React v16.13.1
+ * react-is.development.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */ if ("TURBOPACK compile-time truthy", 1) {
+    (function() {
+        'use strict';
+        // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
+        // nor polyfill, then a plain number is used for performance.
+        var hasSymbol = typeof Symbol === 'function' && Symbol.for;
+        var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for('react.element') : 0xeac7;
+        var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for('react.portal') : 0xeaca;
+        var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
+        var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
+        var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
+        var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
+        var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
+        // (unstable) APIs that have been removed. Can we remove the symbols?
+        var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
+        var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for('react.concurrent_mode') : 0xeacf;
+        var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
+        var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for('react.suspense') : 0xead1;
+        var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for('react.suspense_list') : 0xead8;
+        var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
+        var REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
+        var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for('react.block') : 0xead9;
+        var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for('react.fundamental') : 0xead5;
+        var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
+        var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
+        function isValidElementType(type) {
+            return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
+            type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
+        }
+        function typeOf(object) {
+            if (typeof object === 'object' && object !== null) {
+                var $$typeof = object.$$typeof;
+                switch($$typeof){
+                    case REACT_ELEMENT_TYPE:
+                        var type = object.type;
+                        switch(type){
+                            case REACT_ASYNC_MODE_TYPE:
+                            case REACT_CONCURRENT_MODE_TYPE:
+                            case REACT_FRAGMENT_TYPE:
+                            case REACT_PROFILER_TYPE:
+                            case REACT_STRICT_MODE_TYPE:
+                            case REACT_SUSPENSE_TYPE:
+                                return type;
+                            default:
+                                var $$typeofType = type && type.$$typeof;
+                                switch($$typeofType){
+                                    case REACT_CONTEXT_TYPE:
+                                    case REACT_FORWARD_REF_TYPE:
+                                    case REACT_LAZY_TYPE:
+                                    case REACT_MEMO_TYPE:
+                                    case REACT_PROVIDER_TYPE:
+                                        return $$typeofType;
+                                    default:
+                                        return $$typeof;
+                                }
+                        }
+                    case REACT_PORTAL_TYPE:
+                        return $$typeof;
+                }
+            }
+            return undefined;
+        } // AsyncMode is deprecated along with isAsyncMode
+        var AsyncMode = REACT_ASYNC_MODE_TYPE;
+        var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
+        var ContextConsumer = REACT_CONTEXT_TYPE;
+        var ContextProvider = REACT_PROVIDER_TYPE;
+        var Element = REACT_ELEMENT_TYPE;
+        var ForwardRef = REACT_FORWARD_REF_TYPE;
+        var Fragment = REACT_FRAGMENT_TYPE;
+        var Lazy = REACT_LAZY_TYPE;
+        var Memo = REACT_MEMO_TYPE;
+        var Portal = REACT_PORTAL_TYPE;
+        var Profiler = REACT_PROFILER_TYPE;
+        var StrictMode = REACT_STRICT_MODE_TYPE;
+        var Suspense = REACT_SUSPENSE_TYPE;
+        var hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
+        function isAsyncMode(object) {
+            {
+                if (!hasWarnedAboutDeprecatedIsAsyncMode) {
+                    hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
+                    console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
+                }
+            }
+            return isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE;
+        }
+        function isConcurrentMode(object) {
+            return typeOf(object) === REACT_CONCURRENT_MODE_TYPE;
+        }
+        function isContextConsumer(object) {
+            return typeOf(object) === REACT_CONTEXT_TYPE;
+        }
+        function isContextProvider(object) {
+            return typeOf(object) === REACT_PROVIDER_TYPE;
+        }
+        function isElement(object) {
+            return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+        }
+        function isForwardRef(object) {
+            return typeOf(object) === REACT_FORWARD_REF_TYPE;
+        }
+        function isFragment(object) {
+            return typeOf(object) === REACT_FRAGMENT_TYPE;
+        }
+        function isLazy(object) {
+            return typeOf(object) === REACT_LAZY_TYPE;
+        }
+        function isMemo(object) {
+            return typeOf(object) === REACT_MEMO_TYPE;
+        }
+        function isPortal(object) {
+            return typeOf(object) === REACT_PORTAL_TYPE;
+        }
+        function isProfiler(object) {
+            return typeOf(object) === REACT_PROFILER_TYPE;
+        }
+        function isStrictMode(object) {
+            return typeOf(object) === REACT_STRICT_MODE_TYPE;
+        }
+        function isSuspense(object) {
+            return typeOf(object) === REACT_SUSPENSE_TYPE;
+        }
+        exports.AsyncMode = AsyncMode;
+        exports.ConcurrentMode = ConcurrentMode;
+        exports.ContextConsumer = ContextConsumer;
+        exports.ContextProvider = ContextProvider;
+        exports.Element = Element;
+        exports.ForwardRef = ForwardRef;
+        exports.Fragment = Fragment;
+        exports.Lazy = Lazy;
+        exports.Memo = Memo;
+        exports.Portal = Portal;
+        exports.Profiler = Profiler;
+        exports.StrictMode = StrictMode;
+        exports.Suspense = Suspense;
+        exports.isAsyncMode = isAsyncMode;
+        exports.isConcurrentMode = isConcurrentMode;
+        exports.isContextConsumer = isContextConsumer;
+        exports.isContextProvider = isContextProvider;
+        exports.isElement = isElement;
+        exports.isForwardRef = isForwardRef;
+        exports.isFragment = isFragment;
+        exports.isLazy = isLazy;
+        exports.isMemo = isMemo;
+        exports.isPortal = isPortal;
+        exports.isProfiler = isProfiler;
+        exports.isStrictMode = isStrictMode;
+        exports.isSuspense = isSuspense;
+        exports.isValidElementType = isValidElementType;
+        exports.typeOf = typeOf;
+    })();
+}
+}),
+"[project]/Image-Watermarker/node_modules/hoist-non-react-statics/node_modules/react-is/index.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+;
+else {
+    module.exports = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/hoist-non-react-statics/node_modules/react-is/cjs/react-is.development.js [app-ssr] (ecmascript)");
+}
+}),
+"[project]/Image-Watermarker/node_modules/react-is/cjs/react-is.development.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+/**
+ * @license React
+ * react-is.development.js
+ *
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */ "production" !== ("TURBOPACK compile-time value", "development") && function() {
+    function typeOf(object) {
+        if ("object" === typeof object && null !== object) {
+            var $$typeof = object.$$typeof;
+            switch($$typeof){
+                case REACT_ELEMENT_TYPE:
+                    switch(object = object.type, object){
+                        case REACT_FRAGMENT_TYPE:
+                        case REACT_PROFILER_TYPE:
+                        case REACT_STRICT_MODE_TYPE:
+                        case REACT_SUSPENSE_TYPE:
+                        case REACT_SUSPENSE_LIST_TYPE:
+                        case REACT_VIEW_TRANSITION_TYPE:
+                            return object;
+                        default:
+                            switch(object = object && object.$$typeof, object){
+                                case REACT_CONTEXT_TYPE:
+                                case REACT_FORWARD_REF_TYPE:
+                                case REACT_LAZY_TYPE:
+                                case REACT_MEMO_TYPE:
+                                    return object;
+                                case REACT_CONSUMER_TYPE:
+                                    return object;
+                                default:
+                                    return $$typeof;
+                            }
+                    }
+                case REACT_PORTAL_TYPE:
+                    return $$typeof;
+            }
+        }
+    }
+    var REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler");
+    Symbol.for("react.provider");
+    var REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy"), REACT_VIEW_TRANSITION_TYPE = Symbol.for("react.view_transition"), REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference");
+    exports.ContextConsumer = REACT_CONSUMER_TYPE;
+    exports.ContextProvider = REACT_CONTEXT_TYPE;
+    exports.Element = REACT_ELEMENT_TYPE;
+    exports.ForwardRef = REACT_FORWARD_REF_TYPE;
+    exports.Fragment = REACT_FRAGMENT_TYPE;
+    exports.Lazy = REACT_LAZY_TYPE;
+    exports.Memo = REACT_MEMO_TYPE;
+    exports.Portal = REACT_PORTAL_TYPE;
+    exports.Profiler = REACT_PROFILER_TYPE;
+    exports.StrictMode = REACT_STRICT_MODE_TYPE;
+    exports.Suspense = REACT_SUSPENSE_TYPE;
+    exports.SuspenseList = REACT_SUSPENSE_LIST_TYPE;
+    exports.isContextConsumer = function(object) {
+        return typeOf(object) === REACT_CONSUMER_TYPE;
+    };
+    exports.isContextProvider = function(object) {
+        return typeOf(object) === REACT_CONTEXT_TYPE;
+    };
+    exports.isElement = function(object) {
+        return "object" === typeof object && null !== object && object.$$typeof === REACT_ELEMENT_TYPE;
+    };
+    exports.isForwardRef = function(object) {
+        return typeOf(object) === REACT_FORWARD_REF_TYPE;
+    };
+    exports.isFragment = function(object) {
+        return typeOf(object) === REACT_FRAGMENT_TYPE;
+    };
+    exports.isLazy = function(object) {
+        return typeOf(object) === REACT_LAZY_TYPE;
+    };
+    exports.isMemo = function(object) {
+        return typeOf(object) === REACT_MEMO_TYPE;
+    };
+    exports.isPortal = function(object) {
+        return typeOf(object) === REACT_PORTAL_TYPE;
+    };
+    exports.isProfiler = function(object) {
+        return typeOf(object) === REACT_PROFILER_TYPE;
+    };
+    exports.isStrictMode = function(object) {
+        return typeOf(object) === REACT_STRICT_MODE_TYPE;
+    };
+    exports.isSuspense = function(object) {
+        return typeOf(object) === REACT_SUSPENSE_TYPE;
+    };
+    exports.isSuspenseList = function(object) {
+        return typeOf(object) === REACT_SUSPENSE_LIST_TYPE;
+    };
+    exports.isValidElementType = function(type) {
+        return "string" === typeof type || "function" === typeof type || type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || "object" === typeof type && null !== type && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_CONSUMER_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_CLIENT_REFERENCE || void 0 !== type.getModuleId) ? !0 : !1;
+    };
+    exports.typeOf = typeOf;
+}();
+}),
+"[project]/Image-Watermarker/node_modules/react-is/index.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+;
+else {
+    module.exports = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/react-is/cjs/react-is.development.js [app-ssr] (ecmascript)");
+}
+}),
+"[project]/Image-Watermarker/node_modules/object-assign/index.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/ /* eslint-disable no-unused-vars */ var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+function toObject(val) {
+    if (val === null || val === undefined) {
+        throw new TypeError('Object.assign cannot be called with null or undefined');
+    }
+    return Object(val);
+}
+function shouldUseNative() {
+    try {
+        if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+        ;
+        // Detect buggy property enumeration order in older V8 versions.
+        // https://bugs.chromium.org/p/v8/issues/detail?id=4118
+        var test1 = new String('abc'); // eslint-disable-line no-new-wrappers
+        test1[5] = 'de';
+        if (Object.getOwnPropertyNames(test1)[0] === '5') {
+            return false;
+        }
+        // https://bugs.chromium.org/p/v8/issues/detail?id=3056
+        var test2 = {};
+        for(var i = 0; i < 10; i++){
+            test2['_' + String.fromCharCode(i)] = i;
+        }
+        var order2 = Object.getOwnPropertyNames(test2).map(function(n) {
+            return test2[n];
+        });
+        if (order2.join('') !== '0123456789') {
+            return false;
+        }
+        // https://bugs.chromium.org/p/v8/issues/detail?id=3056
+        var test3 = {};
+        'abcdefghijklmnopqrst'.split('').forEach(function(letter) {
+            test3[letter] = letter;
+        });
+        if (Object.keys(Object.assign({}, test3)).join('') !== 'abcdefghijklmnopqrst') {
+            return false;
+        }
+        return true;
+    } catch (err) {
+        // We don't expect any of the above to throw, but better to be safe.
+        return false;
+    }
+}
+module.exports = shouldUseNative() ? Object.assign : function(target, source) {
+    var from;
+    var to = toObject(target);
+    var symbols;
+    for(var s = 1; s < arguments.length; s++){
+        from = Object(arguments[s]);
+        for(var key in from){
+            if (hasOwnProperty.call(from, key)) {
+                to[key] = from[key];
+            }
+        }
+        if (getOwnPropertySymbols) {
+            symbols = getOwnPropertySymbols(from);
+            for(var i = 0; i < symbols.length; i++){
+                if (propIsEnumerable.call(from, symbols[i])) {
+                    to[symbols[i]] = from[symbols[i]];
+                }
+            }
+        }
+    }
+    return to;
+};
+}),
+"[project]/Image-Watermarker/node_modules/prop-types/lib/ReactPropTypesSecret.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+module.exports = ReactPropTypesSecret;
+}),
+"[project]/Image-Watermarker/node_modules/prop-types/lib/has.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+
+module.exports = Function.call.bind(Object.prototype.hasOwnProperty);
+}),
+"[project]/Image-Watermarker/node_modules/prop-types/checkPropTypes.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */ var printWarning = function() {};
+if ("TURBOPACK compile-time truthy", 1) {
+    var ReactPropTypesSecret = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/prop-types/lib/ReactPropTypesSecret.js [app-ssr] (ecmascript)");
+    var loggedTypeFailures = {};
+    var has = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/prop-types/lib/has.js [app-ssr] (ecmascript)");
+    printWarning = function(text) {
+        var message = 'Warning: ' + text;
+        if (typeof console !== 'undefined') {
+            console.error(message);
+        }
+        try {
+            // --- Welcome to debugging React ---
+            // This error was thrown as a convenience so that you can use this stack
+            // to find the callsite that caused this warning to fire.
+            throw new Error(message);
+        } catch (x) {}
+    };
+}
+/**
+ * Assert that the values match with the type specs.
+ * Error messages are memorized and will only be shown once.
+ *
+ * @param {object} typeSpecs Map of name to a ReactPropType
+ * @param {object} values Runtime values that need to be type-checked
+ * @param {string} location e.g. "prop", "context", "child context"
+ * @param {string} componentName Name of the component for error messages.
+ * @param {?Function} getStack Returns the component stack.
+ * @private
+ */ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
+    if ("TURBOPACK compile-time truthy", 1) {
+        for(var typeSpecName in typeSpecs){
+            if (has(typeSpecs, typeSpecName)) {
+                var error;
+                // Prop type validation may throw. In case they do, we don't want to
+                // fail the render phase where it didn't fail before. So we log it.
+                // After these have been cleaned up, we'll let them throw.
+                try {
+                    // This is intentionally an invariant that gets caught. It's the same
+                    // behavior as without this statement except with a better message.
+                    if (typeof typeSpecs[typeSpecName] !== 'function') {
+                        var err = Error((componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' + 'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.' + 'This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.');
+                        err.name = 'Invariant Violation';
+                        throw err;
+                    }
+                    error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret);
+                } catch (ex) {
+                    error = ex;
+                }
+                if (error && !(error instanceof Error)) {
+                    printWarning((componentName || 'React class') + ': type specification of ' + location + ' `' + typeSpecName + '` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a ' + typeof error + '. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).');
+                }
+                if (error instanceof Error && !(error.message in loggedTypeFailures)) {
+                    // Only monitor this failure once because there tends to be a lot of the
+                    // same error.
+                    loggedTypeFailures[error.message] = true;
+                    var stack = getStack ? getStack() : '';
+                    printWarning('Failed ' + location + ' type: ' + error.message + (stack != null ? stack : ''));
+                }
+            }
+        }
+    }
+}
+/**
+ * Resets warning cache when testing.
+ *
+ * @private
+ */ checkPropTypes.resetWarningCache = function() {
+    if (("TURBOPACK compile-time value", "development") !== 'production') {
+        loggedTypeFailures = {};
+    }
+};
+module.exports = checkPropTypes;
+}),
+"[project]/Image-Watermarker/node_modules/prop-types/factoryWithTypeCheckers.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */ var ReactIs = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/prop-types/node_modules/react-is/index.js [app-ssr] (ecmascript)");
+var assign = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/object-assign/index.js [app-ssr] (ecmascript)");
+var ReactPropTypesSecret = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/prop-types/lib/ReactPropTypesSecret.js [app-ssr] (ecmascript)");
+var has = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/prop-types/lib/has.js [app-ssr] (ecmascript)");
+var checkPropTypes = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/prop-types/checkPropTypes.js [app-ssr] (ecmascript)");
+var printWarning = function() {};
+if ("TURBOPACK compile-time truthy", 1) {
+    printWarning = function(text) {
+        var message = 'Warning: ' + text;
+        if (typeof console !== 'undefined') {
+            console.error(message);
+        }
+        try {
+            // --- Welcome to debugging React ---
+            // This error was thrown as a convenience so that you can use this stack
+            // to find the callsite that caused this warning to fire.
+            throw new Error(message);
+        } catch (x) {}
+    };
+}
+function emptyFunctionThatReturnsNull() {
+    return null;
+}
+module.exports = function(isValidElement, throwOnDirectAccess) {
+    /* global Symbol */ var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
+    var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
+    /**
+   * Returns the iterator method function contained on the iterable object.
+   *
+   * Be sure to invoke the function with the iterable as context:
+   *
+   *     var iteratorFn = getIteratorFn(myIterable);
+   *     if (iteratorFn) {
+   *       var iterator = iteratorFn.call(myIterable);
+   *       ...
+   *     }
+   *
+   * @param {?object} maybeIterable
+   * @return {?function}
+   */ function getIteratorFn(maybeIterable) {
+        var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
+        if (typeof iteratorFn === 'function') {
+            return iteratorFn;
+        }
+    }
+    /**
+   * Collection of methods that allow declaration and validation of props that are
+   * supplied to React components. Example usage:
+   *
+   *   var Props = require('ReactPropTypes');
+   *   var MyArticle = React.createClass({
+   *     propTypes: {
+   *       // An optional string prop named "description".
+   *       description: Props.string,
+   *
+   *       // A required enum prop named "category".
+   *       category: Props.oneOf(['News','Photos']).isRequired,
+   *
+   *       // A prop named "dialog" that requires an instance of Dialog.
+   *       dialog: Props.instanceOf(Dialog).isRequired
+   *     },
+   *     render: function() { ... }
+   *   });
+   *
+   * A more formal specification of how these methods are used:
+   *
+   *   type := array|bool|func|object|number|string|oneOf([...])|instanceOf(...)
+   *   decl := ReactPropTypes.{type}(.isRequired)?
+   *
+   * Each and every declaration produces a function with the same signature. This
+   * allows the creation of custom validation functions. For example:
+   *
+   *  var MyLink = React.createClass({
+   *    propTypes: {
+   *      // An optional string or URI prop named "href".
+   *      href: function(props, propName, componentName) {
+   *        var propValue = props[propName];
+   *        if (propValue != null && typeof propValue !== 'string' &&
+   *            !(propValue instanceof URI)) {
+   *          return new Error(
+   *            'Expected a string or an URI for ' + propName + ' in ' +
+   *            componentName
+   *          );
+   *        }
+   *      }
+   *    },
+   *    render: function() {...}
+   *  });
+   *
+   * @internal
+   */ var ANONYMOUS = '<<anonymous>>';
+    // Important!
+    // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
+    var ReactPropTypes = {
+        array: createPrimitiveTypeChecker('array'),
+        bigint: createPrimitiveTypeChecker('bigint'),
+        bool: createPrimitiveTypeChecker('boolean'),
+        func: createPrimitiveTypeChecker('function'),
+        number: createPrimitiveTypeChecker('number'),
+        object: createPrimitiveTypeChecker('object'),
+        string: createPrimitiveTypeChecker('string'),
+        symbol: createPrimitiveTypeChecker('symbol'),
+        any: createAnyTypeChecker(),
+        arrayOf: createArrayOfTypeChecker,
+        element: createElementTypeChecker(),
+        elementType: createElementTypeTypeChecker(),
+        instanceOf: createInstanceTypeChecker,
+        node: createNodeChecker(),
+        objectOf: createObjectOfTypeChecker,
+        oneOf: createEnumTypeChecker,
+        oneOfType: createUnionTypeChecker,
+        shape: createShapeTypeChecker,
+        exact: createStrictShapeTypeChecker
+    };
+    /**
+   * inlined Object.is polyfill to avoid requiring consumers ship their own
+   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
+   */ /*eslint-disable no-self-compare*/ function is(x, y) {
+        // SameValue algorithm
+        if (x === y) {
+            // Steps 1-5, 7-10
+            // Steps 6.b-6.e: +0 != -0
+            return x !== 0 || 1 / x === 1 / y;
+        } else {
+            // Step 6.a: NaN == NaN
+            return x !== x && y !== y;
+        }
+    }
+    /*eslint-enable no-self-compare*/ /**
+   * We use an Error-like object for backward compatibility as people may call
+   * PropTypes directly and inspect their output. However, we don't use real
+   * Errors anymore. We don't inspect their stack anyway, and creating them
+   * is prohibitively expensive if they are created too often, such as what
+   * happens in oneOfType() for any type before the one that matched.
+   */ function PropTypeError(message, data) {
+        this.message = message;
+        this.data = data && typeof data === 'object' ? data : {};
+        this.stack = '';
+    }
+    // Make `instanceof Error` still work for returned errors.
+    PropTypeError.prototype = Error.prototype;
+    function createChainableTypeChecker(validate) {
+        if (("TURBOPACK compile-time value", "development") !== 'production') {
+            var manualPropTypeCallCache = {};
+            var manualPropTypeWarningCount = 0;
+        }
+        function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
+            componentName = componentName || ANONYMOUS;
+            propFullName = propFullName || propName;
+            if (secret !== ReactPropTypesSecret) {
+                if (throwOnDirectAccess) {
+                    // New behavior only for users of `prop-types` package
+                    var err = new Error('Calling PropTypes validators directly is not supported by the `prop-types` package. ' + 'Use `PropTypes.checkPropTypes()` to call them. ' + 'Read more at http://fb.me/use-check-prop-types');
+                    err.name = 'Invariant Violation';
+                    throw err;
+                } else if (("TURBOPACK compile-time value", "development") !== 'production' && typeof console !== 'undefined') {
+                    // Old behavior for people using React.PropTypes
+                    var cacheKey = componentName + ':' + propName;
+                    if (!manualPropTypeCallCache[cacheKey] && // Avoid spamming the console because they are often not actionable except for lib authors
+                    manualPropTypeWarningCount < 3) {
+                        printWarning('You are manually calling a React.PropTypes validation ' + 'function for the `' + propFullName + '` prop on `' + componentName + '`. This is deprecated ' + 'and will throw in the standalone `prop-types` package. ' + 'You may be seeing this warning due to a third-party PropTypes ' + 'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.');
+                        manualPropTypeCallCache[cacheKey] = true;
+                        manualPropTypeWarningCount++;
+                    }
+                }
+            }
+            if (props[propName] == null) {
+                if (isRequired) {
+                    if (props[propName] === null) {
+                        return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required ' + ('in `' + componentName + '`, but its value is `null`.'));
+                    }
+                    return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required in ' + ('`' + componentName + '`, but its value is `undefined`.'));
+                }
+                return null;
+            } else {
+                return validate(props, propName, componentName, location, propFullName);
+            }
+        }
+        var chainedCheckType = checkType.bind(null, false);
+        chainedCheckType.isRequired = checkType.bind(null, true);
+        return chainedCheckType;
+    }
+    function createPrimitiveTypeChecker(expectedType) {
+        function validate(props, propName, componentName, location, propFullName, secret) {
+            var propValue = props[propName];
+            var propType = getPropType(propValue);
+            if (propType !== expectedType) {
+                // `propValue` being instance of, say, date/regexp, pass the 'object'
+                // check, but we can offer a more precise error message here rather than
+                // 'of type `object`'.
+                var preciseType = getPreciseType(propValue);
+                return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + preciseType + '` supplied to `' + componentName + '`, expected ') + ('`' + expectedType + '`.'), {
+                    expectedType: expectedType
+                });
+            }
+            return null;
+        }
+        return createChainableTypeChecker(validate);
+    }
+    function createAnyTypeChecker() {
+        return createChainableTypeChecker(emptyFunctionThatReturnsNull);
+    }
+    function createArrayOfTypeChecker(typeChecker) {
+        function validate(props, propName, componentName, location, propFullName) {
+            if (typeof typeChecker !== 'function') {
+                return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside arrayOf.');
+            }
+            var propValue = props[propName];
+            if (!Array.isArray(propValue)) {
+                var propType = getPropType(propValue);
+                return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an array.'));
+            }
+            for(var i = 0; i < propValue.length; i++){
+                var error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']', ReactPropTypesSecret);
+                if (error instanceof Error) {
+                    return error;
+                }
+            }
+            return null;
+        }
+        return createChainableTypeChecker(validate);
+    }
+    function createElementTypeChecker() {
+        function validate(props, propName, componentName, location, propFullName) {
+            var propValue = props[propName];
+            if (!isValidElement(propValue)) {
+                var propType = getPropType(propValue);
+                return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement.'));
+            }
+            return null;
+        }
+        return createChainableTypeChecker(validate);
+    }
+    function createElementTypeTypeChecker() {
+        function validate(props, propName, componentName, location, propFullName) {
+            var propValue = props[propName];
+            if (!ReactIs.isValidElementType(propValue)) {
+                var propType = getPropType(propValue);
+                return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement type.'));
+            }
+            return null;
+        }
+        return createChainableTypeChecker(validate);
+    }
+    function createInstanceTypeChecker(expectedClass) {
+        function validate(props, propName, componentName, location, propFullName) {
+            if (!(props[propName] instanceof expectedClass)) {
+                var expectedClassName = expectedClass.name || ANONYMOUS;
+                var actualClassName = getClassName(props[propName]);
+                return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + actualClassName + '` supplied to `' + componentName + '`, expected ') + ('instance of `' + expectedClassName + '`.'));
+            }
+            return null;
+        }
+        return createChainableTypeChecker(validate);
+    }
+    function createEnumTypeChecker(expectedValues) {
+        if (!Array.isArray(expectedValues)) {
+            if ("TURBOPACK compile-time truthy", 1) {
+                if (arguments.length > 1) {
+                    printWarning('Invalid arguments supplied to oneOf, expected an array, got ' + arguments.length + ' arguments. ' + 'A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z]).');
+                } else {
+                    printWarning('Invalid argument supplied to oneOf, expected an array.');
+                }
+            }
+            return emptyFunctionThatReturnsNull;
+        }
+        function validate(props, propName, componentName, location, propFullName) {
+            var propValue = props[propName];
+            for(var i = 0; i < expectedValues.length; i++){
+                if (is(propValue, expectedValues[i])) {
+                    return null;
+                }
+            }
+            var valuesString = JSON.stringify(expectedValues, function replacer(key, value) {
+                var type = getPreciseType(value);
+                if (type === 'symbol') {
+                    return String(value);
+                }
+                return value;
+            });
+            return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of value `' + String(propValue) + '` ' + ('supplied to `' + componentName + '`, expected one of ' + valuesString + '.'));
+        }
+        return createChainableTypeChecker(validate);
+    }
+    function createObjectOfTypeChecker(typeChecker) {
+        function validate(props, propName, componentName, location, propFullName) {
+            if (typeof typeChecker !== 'function') {
+                return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside objectOf.');
+            }
+            var propValue = props[propName];
+            var propType = getPropType(propValue);
+            if (propType !== 'object') {
+                return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
+            }
+            for(var key in propValue){
+                if (has(propValue, key)) {
+                    var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+                    if (error instanceof Error) {
+                        return error;
+                    }
+                }
+            }
+            return null;
+        }
+        return createChainableTypeChecker(validate);
+    }
+    function createUnionTypeChecker(arrayOfTypeCheckers) {
+        if (!Array.isArray(arrayOfTypeCheckers)) {
+            ("TURBOPACK compile-time truthy", 1) ? printWarning('Invalid argument supplied to oneOfType, expected an instance of array.') : "TURBOPACK unreachable";
+            return emptyFunctionThatReturnsNull;
+        }
+        for(var i = 0; i < arrayOfTypeCheckers.length; i++){
+            var checker = arrayOfTypeCheckers[i];
+            if (typeof checker !== 'function') {
+                printWarning('Invalid argument supplied to oneOfType. Expected an array of check functions, but ' + 'received ' + getPostfixForTypeWarning(checker) + ' at index ' + i + '.');
+                return emptyFunctionThatReturnsNull;
+            }
+        }
+        function validate(props, propName, componentName, location, propFullName) {
+            var expectedTypes = [];
+            for(var i = 0; i < arrayOfTypeCheckers.length; i++){
+                var checker = arrayOfTypeCheckers[i];
+                var checkerResult = checker(props, propName, componentName, location, propFullName, ReactPropTypesSecret);
+                if (checkerResult == null) {
+                    return null;
+                }
+                if (checkerResult.data && has(checkerResult.data, 'expectedType')) {
+                    expectedTypes.push(checkerResult.data.expectedType);
+                }
+            }
+            var expectedTypesMessage = expectedTypes.length > 0 ? ', expected one of type [' + expectedTypes.join(', ') + ']' : '';
+            return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`' + expectedTypesMessage + '.'));
+        }
+        return createChainableTypeChecker(validate);
+    }
+    function createNodeChecker() {
+        function validate(props, propName, componentName, location, propFullName) {
+            if (!isNode(props[propName])) {
+                return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`, expected a ReactNode.'));
+            }
+            return null;
+        }
+        return createChainableTypeChecker(validate);
+    }
+    function invalidValidatorError(componentName, location, propFullName, key, type) {
+        return new PropTypeError((componentName || 'React class') + ': ' + location + ' type `' + propFullName + '.' + key + '` is invalid; ' + 'it must be a function, usually from the `prop-types` package, but received `' + type + '`.');
+    }
+    function createShapeTypeChecker(shapeTypes) {
+        function validate(props, propName, componentName, location, propFullName) {
+            var propValue = props[propName];
+            var propType = getPropType(propValue);
+            if (propType !== 'object') {
+                return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+            }
+            for(var key in shapeTypes){
+                var checker = shapeTypes[key];
+                if (typeof checker !== 'function') {
+                    return invalidValidatorError(componentName, location, propFullName, key, getPreciseType(checker));
+                }
+                var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+                if (error) {
+                    return error;
+                }
+            }
+            return null;
+        }
+        return createChainableTypeChecker(validate);
+    }
+    function createStrictShapeTypeChecker(shapeTypes) {
+        function validate(props, propName, componentName, location, propFullName) {
+            var propValue = props[propName];
+            var propType = getPropType(propValue);
+            if (propType !== 'object') {
+                return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+            }
+            // We need to check all keys in case some are required but missing from props.
+            var allKeys = assign({}, props[propName], shapeTypes);
+            for(var key in allKeys){
+                var checker = shapeTypes[key];
+                if (has(shapeTypes, key) && typeof checker !== 'function') {
+                    return invalidValidatorError(componentName, location, propFullName, key, getPreciseType(checker));
+                }
+                if (!checker) {
+                    return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` key `' + key + '` supplied to `' + componentName + '`.' + '\nBad object: ' + JSON.stringify(props[propName], null, '  ') + '\nValid keys: ' + JSON.stringify(Object.keys(shapeTypes), null, '  '));
+                }
+                var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+                if (error) {
+                    return error;
+                }
+            }
+            return null;
+        }
+        return createChainableTypeChecker(validate);
+    }
+    function isNode(propValue) {
+        switch(typeof propValue){
+            case 'number':
+            case 'string':
+            case 'undefined':
+                return true;
+            case 'boolean':
+                return !propValue;
+            case 'object':
+                if (Array.isArray(propValue)) {
+                    return propValue.every(isNode);
+                }
+                if (propValue === null || isValidElement(propValue)) {
+                    return true;
+                }
+                var iteratorFn = getIteratorFn(propValue);
+                if (iteratorFn) {
+                    var iterator = iteratorFn.call(propValue);
+                    var step;
+                    if (iteratorFn !== propValue.entries) {
+                        while(!(step = iterator.next()).done){
+                            if (!isNode(step.value)) {
+                                return false;
+                            }
+                        }
+                    } else {
+                        // Iterator will provide entry [k,v] tuples rather than values.
+                        while(!(step = iterator.next()).done){
+                            var entry = step.value;
+                            if (entry) {
+                                if (!isNode(entry[1])) {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    return false;
+                }
+                return true;
+            default:
+                return false;
+        }
+    }
+    function isSymbol(propType, propValue) {
+        // Native Symbol.
+        if (propType === 'symbol') {
+            return true;
+        }
+        // falsy value can't be a Symbol
+        if (!propValue) {
+            return false;
+        }
+        // 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
+        if (propValue['@@toStringTag'] === 'Symbol') {
+            return true;
+        }
+        // Fallback for non-spec compliant Symbols which are polyfilled.
+        if (typeof Symbol === 'function' && propValue instanceof Symbol) {
+            return true;
+        }
+        return false;
+    }
+    // Equivalent of `typeof` but with special handling for array and regexp.
+    function getPropType(propValue) {
+        var propType = typeof propValue;
+        if (Array.isArray(propValue)) {
+            return 'array';
+        }
+        if (propValue instanceof RegExp) {
+            // Old webkits (at least until Android 4.0) return 'function' rather than
+            // 'object' for typeof a RegExp. We'll normalize this here so that /bla/
+            // passes PropTypes.object.
+            return 'object';
+        }
+        if (isSymbol(propType, propValue)) {
+            return 'symbol';
+        }
+        return propType;
+    }
+    // This handles more types than `getPropType`. Only used for error messages.
+    // See `createPrimitiveTypeChecker`.
+    function getPreciseType(propValue) {
+        if (typeof propValue === 'undefined' || propValue === null) {
+            return '' + propValue;
+        }
+        var propType = getPropType(propValue);
+        if (propType === 'object') {
+            if (propValue instanceof Date) {
+                return 'date';
+            } else if (propValue instanceof RegExp) {
+                return 'regexp';
+            }
+        }
+        return propType;
+    }
+    // Returns a string that is postfixed to a warning about an invalid type.
+    // For example, "undefined" or "of type array"
+    function getPostfixForTypeWarning(value) {
+        var type = getPreciseType(value);
+        switch(type){
+            case 'array':
+            case 'object':
+                return 'an ' + type;
+            case 'boolean':
+            case 'date':
+            case 'regexp':
+                return 'a ' + type;
+            default:
+                return type;
+        }
+    }
+    // Returns class name of the object, if any.
+    function getClassName(propValue) {
+        if (!propValue.constructor || !propValue.constructor.name) {
+            return ANONYMOUS;
+        }
+        return propValue.constructor.name;
+    }
+    ReactPropTypes.checkPropTypes = checkPropTypes;
+    ReactPropTypes.resetWarningCache = checkPropTypes.resetWarningCache;
+    ReactPropTypes.PropTypes = ReactPropTypes;
+    return ReactPropTypes;
+};
+}),
+"[project]/Image-Watermarker/node_modules/prop-types/index.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */ if ("TURBOPACK compile-time truthy", 1) {
+    var ReactIs = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/prop-types/node_modules/react-is/index.js [app-ssr] (ecmascript)");
+    // By explicitly using `prop-types` you are opting into new development behavior.
+    // http://fb.me/prop-types-in-prod
+    var throwOnDirectAccess = true;
+    module.exports = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/prop-types/factoryWithTypeCheckers.js [app-ssr] (ecmascript)")(ReactIs.isElement, throwOnDirectAccess);
+} else //TURBOPACK unreachable
+;
+}),
+"[project]/Image-Watermarker/node_modules/clsx/dist/clsx.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "clsx",
+    ()=>clsx,
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+function r(e) {
+    var t, f, n = "";
+    if ("string" == typeof e || "number" == typeof e) n += e;
+    else if ("object" == typeof e) if (Array.isArray(e)) {
+        var o = e.length;
+        for(t = 0; t < o; t++)e[t] && (f = r(e[t])) && (n && (n += " "), n += f);
+    } else for(f in e)e[f] && (n && (n += " "), n += f);
+    return n;
+}
+function clsx() {
+    for(var e, t, f = 0, n = "", o = arguments.length; f < o; f++)(e = arguments[f]) && (t = r(e)) && (n && (n += " "), n += t);
+    return n;
+}
+const __TURBOPACK__default__export__ = clsx;
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/resolveProps/resolveProps.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>resolveProps
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$clsx$2f$dist$2f$clsx$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/clsx/dist/clsx.mjs [app-ssr] (ecmascript)");
+;
+function resolveProps(defaultProps, props, mergeClassNameAndStyle = false) {
+    const output = {
+        ...props
+    };
+    for(const key in defaultProps){
+        if (Object.prototype.hasOwnProperty.call(defaultProps, key)) {
+            const propName = key;
+            if (propName === 'components' || propName === 'slots') {
+                output[propName] = {
+                    ...defaultProps[propName],
+                    ...output[propName]
+                };
+            } else if (propName === 'componentsProps' || propName === 'slotProps') {
+                const defaultSlotProps = defaultProps[propName];
+                const slotProps = props[propName];
+                if (!slotProps) {
+                    output[propName] = defaultSlotProps || {};
+                } else if (!defaultSlotProps) {
+                    output[propName] = slotProps;
+                } else {
+                    output[propName] = {
+                        ...slotProps
+                    };
+                    for(const slotKey in defaultSlotProps){
+                        if (Object.prototype.hasOwnProperty.call(defaultSlotProps, slotKey)) {
+                            const slotPropName = slotKey;
+                            output[propName][slotPropName] = resolveProps(defaultSlotProps[slotPropName], slotProps[slotPropName], mergeClassNameAndStyle);
+                        }
+                    }
+                }
+            } else if (propName === 'className' && mergeClassNameAndStyle && props.className) {
+                output.className = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$clsx$2f$dist$2f$clsx$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(defaultProps?.className, props?.className);
+            } else if (propName === 'style' && mergeClassNameAndStyle && props.style) {
+                output.style = {
+                    ...defaultProps?.style,
+                    ...props?.style
+                };
+            } else if (output[propName] === undefined) {
+                output[propName] = defaultProps[propName];
+            }
+        }
+    }
+    return output;
+}
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/composeClasses/composeClasses.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+/* eslint no-restricted-syntax: 0, prefer-template: 0, guard-for-in: 0
+   ---
+   These rules are preventing the performance optimizations below.
+ */ /**
+ * Compose classes from multiple sources.
+ *
+ * @example
+ * ```tsx
+ * const slots = {
+ *  root: ['root', 'primary'],
+ *  label: ['label'],
+ * };
+ *
+ * const getUtilityClass = (slot) => `MuiButton-${slot}`;
+ *
+ * const classes = {
+ *   root: 'my-root-class',
+ * };
+ *
+ * const output = composeClasses(slots, getUtilityClass, classes);
+ * // {
+ * //   root: 'MuiButton-root MuiButton-primary my-root-class',
+ * //   label: 'MuiButton-label',
+ * // }
+ * ```
+ *
+ * @param slots a list of classes for each possible slot
+ * @param getUtilityClass a function to resolve the class based on the slot name
+ * @param classes the input classes from props
+ * @returns the resolved classes for all slots
+ */ __turbopack_context__.s([
+    "default",
+    ()=>composeClasses
+]);
+function composeClasses(slots, getUtilityClass, classes = undefined) {
+    const output = {};
+    for(const slotName in slots){
+        const slot = slots[slotName];
+        let buffer = '';
+        let start = true;
+        for(let i = 0; i < slot.length; i += 1){
+            const value = slot[i];
+            if (value) {
+                buffer += (start === true ? '' : ' ') + getUtilityClass(value);
+                start = false;
+                if (classes && classes[value]) {
+                    buffer += ' ' + classes[value];
+                }
+            }
+        }
+        output[slotName] = buffer;
+    }
+    return output;
+}
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/useId/useId.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>useId
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+'use client';
+;
+let globalId = 0;
+// TODO React 17: Remove `useGlobalId` once React 17 support is removed
+function useGlobalId(idOverride) {
+    const [defaultId, setDefaultId] = __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__.useState(idOverride);
+    const id = idOverride || defaultId;
+    __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__.useEffect(()=>{
+        if (defaultId == null) {
+            // Fallback to this default id when possible.
+            // Use the incrementing value for client-side rendering only.
+            // We can't use it server-side.
+            // If you want to use random values please consider the Birthday Problem: https://en.wikipedia.org/wiki/Birthday_problem
+            globalId += 1;
+            setDefaultId(`mui-${globalId}`);
+        }
+    }, [
+        defaultId
+    ]);
+    return id;
+}
+// See https://github.com/mui/material-ui/issues/41190#issuecomment-2040873379 for why
+const safeReact = {
+    ...__TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__
+};
+const maybeReactUseId = safeReact.useId;
+function useId(idOverride) {
+    // React.useId() is only available from React 17.0.0.
+    if (maybeReactUseId !== undefined) {
+        const reactId = maybeReactUseId();
+        return idOverride ?? reactId;
+    }
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
+    // eslint-disable-next-line react-hooks/rules-of-hooks -- `React.useId` is invariant at runtime.
+    return useGlobalId(idOverride);
+}
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/deepmerge/deepmerge.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>deepmerge,
+    "isPlainObject",
+    ()=>isPlainObject
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$react$2d$is$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/react-is/index.js [app-ssr] (ecmascript)");
+;
+;
+function isPlainObject(item) {
+    if (typeof item !== 'object' || item === null) {
+        return false;
+    }
+    const prototype = Object.getPrototypeOf(item);
+    return (prototype === null || prototype === Object.prototype || Object.getPrototypeOf(prototype) === null) && !(Symbol.toStringTag in item) && !(Symbol.iterator in item);
+}
+function deepClone(source) {
+    if (/*#__PURE__*/ __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isValidElement"](source) || (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$react$2d$is$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isValidElementType"])(source) || !isPlainObject(source)) {
+        return source;
+    }
+    const output = {};
+    Object.keys(source).forEach((key)=>{
+        output[key] = deepClone(source[key]);
+    });
+    return output;
+}
+function deepmerge(target, source, options = {
+    clone: true
+}) {
+    const output = options.clone ? {
+        ...target
+    } : target;
+    if (isPlainObject(target) && isPlainObject(source)) {
+        Object.keys(source).forEach((key)=>{
+            if (/*#__PURE__*/ __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isValidElement"](source[key]) || (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$react$2d$is$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isValidElementType"])(source[key])) {
+                output[key] = source[key];
+            } else if (isPlainObject(source[key]) && // Avoid prototype pollution
+            Object.prototype.hasOwnProperty.call(target, key) && isPlainObject(target[key])) {
+                // Since `output` is a clone of `target` and we have narrowed `target` in this block we can cast to the same type.
+                output[key] = deepmerge(target[key], source[key], options);
+            } else if (options.clone) {
+                output[key] = isPlainObject(source[key]) ? deepClone(source[key]) : source[key];
+            } else {
+                output[key] = source[key];
+            }
+        });
+    }
+    return output;
+}
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/capitalize/capitalize.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>capitalize
+]);
+;
+function capitalize(string) {
+    if (typeof string !== 'string') {
+        throw new Error(("TURBOPACK compile-time truthy", 1) ? 'MUI: `capitalize(string)` expects a string argument.' : "TURBOPACK unreachable");
+    }
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/getDisplayName/getDisplayName.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>getDisplayName
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$react$2d$is$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/react-is/index.js [app-ssr] (ecmascript)");
+;
+function getFunctionComponentName(Component, fallback = '') {
+    return Component.displayName || Component.name || fallback;
+}
+function getWrappedName(outerType, innerType, wrapperName) {
+    const functionName = getFunctionComponentName(innerType);
+    return outerType.displayName || (functionName !== '' ? `${wrapperName}(${functionName})` : wrapperName);
+}
+function getDisplayName(Component) {
+    if (Component == null) {
+        return undefined;
+    }
+    if (typeof Component === 'string') {
+        return Component;
+    }
+    if (typeof Component === 'function') {
+        return getFunctionComponentName(Component, 'Component');
+    }
+    // TypeScript can't have components as objects but they exist in the form of `memo` or `Suspense`
+    if (typeof Component === 'object') {
+        switch(Component.$$typeof){
+            case __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$react$2d$is$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ForwardRef"]:
+                return getWrappedName(Component, Component.render, 'ForwardRef');
+            case __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$react$2d$is$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Memo"]:
+                return getWrappedName(Component, Component.type, 'memo');
+            default:
+                return undefined;
+        }
+    }
+    return undefined;
+}
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/clamp/clamp.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+function clamp(val, min = Number.MIN_SAFE_INTEGER, max = Number.MAX_SAFE_INTEGER) {
+    return Math.max(min, Math.min(val, max));
+}
+const __TURBOPACK__default__export__ = clamp;
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/ClassNameGenerator/ClassNameGenerator.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+const defaultGenerator = (componentName)=>componentName;
+const createClassNameGenerator = ()=>{
+    let generate = defaultGenerator;
+    return {
+        configure (generator) {
+            generate = generator;
+        },
+        generate (componentName) {
+            return generate(componentName);
+        },
+        reset () {
+            generate = defaultGenerator;
+        }
+    };
+};
+const ClassNameGenerator = createClassNameGenerator();
+const __TURBOPACK__default__export__ = ClassNameGenerator;
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/generateUtilityClass/generateUtilityClass.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>generateUtilityClass,
+    "globalStateClasses",
+    ()=>globalStateClasses,
+    "isGlobalState",
+    ()=>isGlobalState
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$mui$2f$utils$2f$esm$2f$ClassNameGenerator$2f$ClassNameGenerator$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@mui/utils/esm/ClassNameGenerator/ClassNameGenerator.js [app-ssr] (ecmascript)");
+;
+const globalStateClasses = {
+    active: 'active',
+    checked: 'checked',
+    completed: 'completed',
+    disabled: 'disabled',
+    error: 'error',
+    expanded: 'expanded',
+    focused: 'focused',
+    focusVisible: 'focusVisible',
+    open: 'open',
+    readOnly: 'readOnly',
+    required: 'required',
+    selected: 'selected'
+};
+function generateUtilityClass(componentName, slot, globalStatePrefix = 'Mui') {
+    const globalStateClass = globalStateClasses[slot];
+    return globalStateClass ? `${globalStatePrefix}-${globalStateClass}` : `${__TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$mui$2f$utils$2f$esm$2f$ClassNameGenerator$2f$ClassNameGenerator$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].generate(componentName)}-${slot}`;
+}
+function isGlobalState(slot) {
+    return globalStateClasses[slot] !== undefined;
+}
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/refType/refType.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$prop$2d$types$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/prop-types/index.js [app-ssr] (ecmascript)");
+;
+const refType = __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$prop$2d$types$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].oneOfType([
+    __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$prop$2d$types$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].func,
+    __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$prop$2d$types$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].object
+]);
+const __TURBOPACK__default__export__ = refType;
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/chainPropTypes/chainPropTypes.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>chainPropTypes
+]);
+function chainPropTypes(propType1, propType2) {
+    if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+    ;
+    return function validate(...args) {
+        return propType1(...args) || propType2(...args);
+    };
+}
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/elementTypeAcceptingRef/elementTypeAcceptingRef.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$prop$2d$types$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/prop-types/index.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$mui$2f$utils$2f$esm$2f$chainPropTypes$2f$chainPropTypes$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@mui/utils/esm/chainPropTypes/chainPropTypes.js [app-ssr] (ecmascript)");
+;
+;
+function isClassComponent(elementType) {
+    // elementType.prototype?.isReactComponent
+    const { prototype = {} } = elementType;
+    return Boolean(prototype.isReactComponent);
+}
+function elementTypeAcceptingRef(props, propName, componentName, location, propFullName) {
+    const propValue = props[propName];
+    const safePropName = propFullName || propName;
+    if ("TURBOPACK compile-time truthy", 1) {
+        return null;
+    }
+    //TURBOPACK unreachable
+    ;
+    let warningHint;
+}
+const __TURBOPACK__default__export__ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$mui$2f$utils$2f$esm$2f$chainPropTypes$2f$chainPropTypes$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(__TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$prop$2d$types$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].elementType, elementTypeAcceptingRef);
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/isFocusVisible/isFocusVisible.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+/**
+ * Returns a boolean indicating if the event's target has :focus-visible
+ */ __turbopack_context__.s([
+    "default",
+    ()=>isFocusVisible
+]);
+function isFocusVisible(element) {
+    try {
+        return element.matches(':focus-visible');
+    } catch (error) {
+        // Do not warn on jsdom tests, otherwise all tests that rely on focus have to be skipped
+        // Tests that rely on `:focus-visible` will still have to be skipped in jsdom
+        if (("TURBOPACK compile-time value", "development") !== 'production' && !/jsdom/.test(window.navigator.userAgent)) {
+            console.warn([
+                'MUI: The `:focus-visible` pseudo class is not supported in this browser.',
+                'Some components rely on this feature to work properly.'
+            ].join('\n'));
+        }
+    }
+    return false;
+}
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/useForkRef/useForkRef.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>useForkRef
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+'use client';
+;
+function useForkRef(...refs) {
+    const cleanupRef = __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"](undefined);
+    const refEffect = __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"]((instance)=>{
+        const cleanups = refs.map((ref)=>{
+            if (ref == null) {
+                return null;
+            }
+            if (typeof ref === 'function') {
+                const refCallback = ref;
+                const refCleanup = refCallback(instance);
+                return typeof refCleanup === 'function' ? refCleanup : ()=>{
+                    refCallback(null);
+                };
+            }
+            ref.current = instance;
+            return ()=>{
+                ref.current = null;
+            };
+        });
+        return ()=>{
+            cleanups.forEach((refCleanup)=>refCleanup?.());
+        };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, refs);
+    return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"](()=>{
+        if (refs.every((ref)=>ref == null)) {
+            return null;
+        }
+        return (value)=>{
+            if (cleanupRef.current) {
+                cleanupRef.current();
+                cleanupRef.current = undefined;
+            }
+            if (value != null) {
+                cleanupRef.current = refEffect(value);
+            }
+        };
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- intentionally ignoring that the dependency array must be an array literal
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, refs);
+}
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/useEnhancedEffect/useEnhancedEffect.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+'use client';
+;
+/**
+ * A version of `React.useLayoutEffect` that does not show a warning when server-side rendering.
+ * This is useful for effects that are only needed for client-side rendering but not for SSR.
+ *
+ * Before you use this hook, make sure to read https://gist.github.com/gaearon/e7d97cdf38a2907924ea12e4ebdf3c85
+ * and confirm it doesn't apply to your use-case.
+ */ const useEnhancedEffect = ("TURBOPACK compile-time falsy", 0) ? "TURBOPACK unreachable" : __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"];
+const __TURBOPACK__default__export__ = useEnhancedEffect;
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/useEventCallback/useEventCallback.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$mui$2f$utils$2f$esm$2f$useEnhancedEffect$2f$useEnhancedEffect$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@mui/utils/esm/useEnhancedEffect/useEnhancedEffect.js [app-ssr] (ecmascript)");
+'use client';
+;
+;
+/**
+ * Inspired by https://github.com/facebook/react/issues/14099#issuecomment-440013892
+ * See RFC in https://github.com/reactjs/rfcs/pull/220
+ */ function useEventCallback(fn) {
+    const ref = __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"](fn);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$mui$2f$utils$2f$esm$2f$useEnhancedEffect$2f$useEnhancedEffect$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(()=>{
+        ref.current = fn;
+    });
+    return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"]((...args)=>// @ts-expect-error hide `this`
+        (0, ref.current)(...args)).current;
+}
+const __TURBOPACK__default__export__ = useEventCallback;
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/useLazyRef/useLazyRef.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>useLazyRef
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+'use client';
+;
+const UNINITIALIZED = {};
+function useLazyRef(init, initArg) {
+    const ref = __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"](UNINITIALIZED);
+    if (ref.current === UNINITIALIZED) {
+        ref.current = init(initArg);
+    }
+    return ref;
+}
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/useOnMount/useOnMount.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>useOnMount
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+'use client';
+;
+const EMPTY = [];
+function useOnMount(fn) {
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- no need to put `fn` in the dependency array
+    /* eslint-disable react-hooks/exhaustive-deps */ __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"](fn, EMPTY);
+/* eslint-enable react-hooks/exhaustive-deps */ }
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/useTimeout/useTimeout.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "Timeout",
+    ()=>Timeout,
+    "default",
+    ()=>useTimeout
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$mui$2f$utils$2f$esm$2f$useLazyRef$2f$useLazyRef$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@mui/utils/esm/useLazyRef/useLazyRef.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$mui$2f$utils$2f$esm$2f$useOnMount$2f$useOnMount$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@mui/utils/esm/useOnMount/useOnMount.js [app-ssr] (ecmascript)");
+'use client';
+;
+;
+class Timeout {
+    static create() {
+        return new Timeout();
+    }
+    currentId = null;
+    /**
+   * Executes `fn` after `delay`, clearing any previously scheduled call.
+   */ start(delay, fn) {
+        this.clear();
+        this.currentId = setTimeout(()=>{
+            this.currentId = null;
+            fn();
+        }, delay);
+    }
+    clear = ()=>{
+        if (this.currentId !== null) {
+            clearTimeout(this.currentId);
+            this.currentId = null;
+        }
+    };
+    disposeEffect = ()=>{
+        return this.clear;
+    };
+}
+function useTimeout() {
+    const timeout = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$mui$2f$utils$2f$esm$2f$useLazyRef$2f$useLazyRef$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(Timeout.create).current;
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$mui$2f$utils$2f$esm$2f$useOnMount$2f$useOnMount$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(timeout.disposeEffect);
+    return timeout;
+}
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/generateUtilityClasses/generateUtilityClasses.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>generateUtilityClasses
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$mui$2f$utils$2f$esm$2f$generateUtilityClass$2f$generateUtilityClass$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@mui/utils/esm/generateUtilityClass/generateUtilityClass.js [app-ssr] (ecmascript)");
+;
+function generateUtilityClasses(componentName, slots, globalStatePrefix = 'Mui') {
+    const result = {};
+    slots.forEach((slot)=>{
+        result[slot] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$mui$2f$utils$2f$esm$2f$generateUtilityClass$2f$generateUtilityClass$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(componentName, slot, globalStatePrefix);
+    });
+    return result;
+}
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/isMuiElement/isMuiElement.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>isMuiElement
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+;
+function isMuiElement(element, muiNames) {
+    return /*#__PURE__*/ __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isValidElement"](element) && muiNames.indexOf(// For server components `muiName` is available in element.type._payload.value.muiName
+    // relevant info - https://github.com/facebook/react/blob/2807d781a08db8e9873687fccc25c0f12b4fb3d4/packages/react/src/ReactLazy.js#L45
+    // eslint-disable-next-line no-underscore-dangle
+    element.type.muiName ?? element.type?._payload?.value?.muiName) !== -1;
+}
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/requirePropFactory/requirePropFactory.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>requirePropFactory
+]);
+function requirePropFactory(componentNameInError, Component) {
+    if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+    ;
+    // eslint-disable-next-line react/forbid-foreign-prop-types
+    const prevPropTypes = Component ? {
+        ...Component.propTypes
+    } : null;
+    const requireProp = (requiredProp)=>(props, propName, componentName, location, propFullName, ...args)=>{
+            const propFullNameSafe = propFullName || propName;
+            const defaultTypeChecker = prevPropTypes?.[propFullNameSafe];
+            if (defaultTypeChecker) {
+                const typeCheckerResult = defaultTypeChecker(props, propName, componentName, location, propFullName, ...args);
+                if (typeCheckerResult) {
+                    return typeCheckerResult;
+                }
+            }
+            if (typeof props[propName] !== 'undefined' && !props[requiredProp]) {
+                return new Error(`The prop \`${propFullNameSafe}\` of ` + `\`${componentNameInError}\` can only be used together with the \`${requiredProp}\` prop.`);
+            }
+            return null;
+        };
+    return requireProp;
+}
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/ClassNameGenerator/ClassNameGenerator.js [app-ssr] (ecmascript) <export default as unstable_ClassNameGenerator>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "unstable_ClassNameGenerator",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$mui$2f$utils$2f$esm$2f$ClassNameGenerator$2f$ClassNameGenerator$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"]
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$mui$2f$utils$2f$esm$2f$ClassNameGenerator$2f$ClassNameGenerator$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@mui/utils/esm/ClassNameGenerator/ClassNameGenerator.js [app-ssr] (ecmascript)");
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/integerPropType/integerPropType.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__,
+    "getTypeByValue",
+    ()=>getTypeByValue
+]);
+function getTypeByValue(value) {
+    const valueType = typeof value;
+    switch(valueType){
+        case 'number':
+            if (Number.isNaN(value)) {
+                return 'NaN';
+            }
+            if (!Number.isFinite(value)) {
+                return 'Infinity';
+            }
+            if (value !== Math.floor(value)) {
+                return 'float';
+            }
+            return 'number';
+        case 'object':
+            if (value === null) {
+                return 'null';
+            }
+            return value.constructor.name;
+        default:
+            return valueType;
+    }
+}
+function requiredInteger(props, propName, componentName, location) {
+    const propValue = props[propName];
+    if (propValue == null || !Number.isInteger(propValue)) {
+        const propType = getTypeByValue(propValue);
+        return new RangeError(`Invalid ${location} \`${propName}\` of type \`${propType}\` supplied to \`${componentName}\`, expected \`integer\`.`);
+    }
+    return null;
+}
+function validator(props, propName, componentName, location) {
+    const propValue = props[propName];
+    if (propValue === undefined) {
+        return null;
+    }
+    return requiredInteger(props, propName, componentName, location);
+}
+function validatorNoop() {
+    return null;
+}
+validator.isRequired = requiredInteger;
+validatorNoop.isRequired = validatorNoop;
+const integerPropType = ("TURBOPACK compile-time falsy", 0) ? "TURBOPACK unreachable" : validator;
+const __TURBOPACK__default__export__ = integerPropType;
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/isHostComponent/isHostComponent.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+/**
+ * Determines if a given element is a DOM element name (i.e. not a React component).
+ */ __turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+function isHostComponent(element) {
+    return typeof element === 'string';
+}
+const __TURBOPACK__default__export__ = isHostComponent;
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/debounce/debounce.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+// Corresponds to 10 frames at 60 Hz.
+// A few bytes payload overhead when lodash/debounce is ~3 kB and debounce ~300 B.
+__turbopack_context__.s([
+    "default",
+    ()=>debounce
+]);
+function debounce(func, wait = 166) {
+    let timeout;
+    function debounced(...args) {
+        const later = ()=>{
+            // @ts-ignore
+            func.apply(this, args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    }
+    debounced.clear = ()=>{
+        clearTimeout(timeout);
+    };
+    return debounced;
+}
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/ownerDocument/ownerDocument.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>ownerDocument
+]);
+function ownerDocument(node) {
+    return node && node.ownerDocument || document;
+}
+}),
+"[project]/Image-Watermarker/node_modules/@mui/utils/esm/ownerWindow/ownerWindow.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>ownerWindow
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$mui$2f$utils$2f$esm$2f$ownerDocument$2f$ownerDocument$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@mui/utils/esm/ownerDocument/ownerDocument.js [app-ssr] (ecmascript)");
+;
+function ownerWindow(node) {
+    const doc = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$mui$2f$utils$2f$esm$2f$ownerDocument$2f$ownerDocument$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(node);
+    return doc.defaultView || window;
+}
+}),
+"[project]/Image-Watermarker/node_modules/@babel/runtime/helpers/esm/extends.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>_extends
+]);
+function _extends() {
+    return _extends = ("TURBOPACK compile-time truthy", 1) ? Object.assign.bind() : "TURBOPACK unreachable", _extends.apply(null, arguments);
+}
+;
+}),
+"[project]/Image-Watermarker/node_modules/@babel/runtime/helpers/extends.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+
+function _extends() {
+    return module.exports = _extends = ("TURBOPACK compile-time truthy", 1) ? Object.assign.bind() : "TURBOPACK unreachable", module.exports.__esModule = true, module.exports["default"] = module.exports, _extends.apply(null, arguments);
+}
+module.exports = _extends, module.exports.__esModule = true, module.exports["default"] = module.exports;
+}),
+"[project]/Image-Watermarker/node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>_objectWithoutPropertiesLoose
+]);
+function _objectWithoutPropertiesLoose(r, e) {
+    if (null == r) return {};
+    var t = {};
+    for(var n in r)if (({}).hasOwnProperty.call(r, n)) {
+        if (-1 !== e.indexOf(n)) continue;
+        t[n] = r[n];
+    }
+    return t;
+}
+;
+}),
+"[project]/Image-Watermarker/node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>_assertThisInitialized
+]);
+function _assertThisInitialized(e) {
+    if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    return e;
+}
+;
+}),
+"[project]/Image-Watermarker/node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>_setPrototypeOf
+]);
+function _setPrototypeOf(t, e) {
+    return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function(t, e) {
+        return t.__proto__ = e, t;
+    }, _setPrototypeOf(t, e);
+}
+;
+}),
+"[project]/Image-Watermarker/node_modules/@babel/runtime/helpers/esm/inheritsLoose.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>_inheritsLoose
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$babel$2f$runtime$2f$helpers$2f$esm$2f$setPrototypeOf$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js [app-ssr] (ecmascript)");
+;
+function _inheritsLoose(t, o) {
+    t.prototype = Object.create(o.prototype), t.prototype.constructor = t, (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$babel$2f$runtime$2f$helpers$2f$esm$2f$setPrototypeOf$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(t, o);
+}
+;
+}),
+"[project]/Image-Watermarker/node_modules/@emotion/sheet/dist/emotion-sheet.development.esm.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "StyleSheet",
+    ()=>StyleSheet
+]);
+var isDevelopment = true;
+/*
+
+Based off glamor's StyleSheet, thanks Sunil ❤️
+
+high performance StyleSheet for css-in-js systems
+
+- uses multiple style tags behind the scenes for millions of rules
+- uses `insertRule` for appending in production for *much* faster performance
+
+// usage
+
+import { StyleSheet } from '@emotion/sheet'
+
+let styleSheet = new StyleSheet({ key: '', container: document.head })
+
+styleSheet.insert('#box { border: 1px solid red; }')
+- appends a css rule into the stylesheet
+
+styleSheet.flush()
+- empties the stylesheet of all its contents
+
+*/ function sheetForTag(tag) {
+    if (tag.sheet) {
+        return tag.sheet;
+    } // this weirdness brought to you by firefox
+    /* istanbul ignore next */ for(var i = 0; i < document.styleSheets.length; i++){
+        if (document.styleSheets[i].ownerNode === tag) {
+            return document.styleSheets[i];
+        }
+    } // this function should always return with a value
+    // TS can't understand it though so we make it stop complaining here
+    return undefined;
+}
+function createStyleElement(options) {
+    var tag = document.createElement('style');
+    tag.setAttribute('data-emotion', options.key);
+    if (options.nonce !== undefined) {
+        tag.setAttribute('nonce', options.nonce);
+    }
+    tag.appendChild(document.createTextNode(''));
+    tag.setAttribute('data-s', '');
+    return tag;
+}
+var StyleSheet = /*#__PURE__*/ function() {
+    // Using Node instead of HTMLElement since container may be a ShadowRoot
+    function StyleSheet(options) {
+        var _this = this;
+        this._insertTag = function(tag) {
+            var before;
+            if (_this.tags.length === 0) {
+                if (_this.insertionPoint) {
+                    before = _this.insertionPoint.nextSibling;
+                } else if (_this.prepend) {
+                    before = _this.container.firstChild;
+                } else {
+                    before = _this.before;
+                }
+            } else {
+                before = _this.tags[_this.tags.length - 1].nextSibling;
+            }
+            _this.container.insertBefore(tag, before);
+            _this.tags.push(tag);
+        };
+        this.isSpeedy = options.speedy === undefined ? !isDevelopment : options.speedy;
+        this.tags = [];
+        this.ctr = 0;
+        this.nonce = options.nonce; // key is the value of the data-emotion attribute, it's used to identify different sheets
+        this.key = options.key;
+        this.container = options.container;
+        this.prepend = options.prepend;
+        this.insertionPoint = options.insertionPoint;
+        this.before = null;
+    }
+    var _proto = StyleSheet.prototype;
+    _proto.hydrate = function hydrate(nodes) {
+        nodes.forEach(this._insertTag);
+    };
+    _proto.insert = function insert(rule) {
+        // the max length is how many rules we have per style tag, it's 65000 in speedy mode
+        // it's 1 in dev because we insert source maps that map a single rule to a location
+        // and you can only have one source map per style tag
+        if (this.ctr % (this.isSpeedy ? 65000 : 1) === 0) {
+            this._insertTag(createStyleElement(this));
+        }
+        var tag = this.tags[this.tags.length - 1];
+        {
+            var isImportRule = rule.charCodeAt(0) === 64 && rule.charCodeAt(1) === 105;
+            if (isImportRule && this._alreadyInsertedOrderInsensitiveRule) {
+                // this would only cause problem in speedy mode
+                // but we don't want enabling speedy to affect the observable behavior
+                // so we report this error at all times
+                console.error("You're attempting to insert the following rule:\n" + rule + '\n\n`@import` rules must be before all other types of rules in a stylesheet but other rules have already been inserted. Please ensure that `@import` rules are before all other rules.');
+            }
+            this._alreadyInsertedOrderInsensitiveRule = this._alreadyInsertedOrderInsensitiveRule || !isImportRule;
+        }
+        if (this.isSpeedy) {
+            var sheet = sheetForTag(tag);
+            try {
+                // this is the ultrafast version, works across browsers
+                // the big drawback is that the css won't be editable in devtools
+                sheet.insertRule(rule, sheet.cssRules.length);
+            } catch (e) {
+                if (!/:(-moz-placeholder|-moz-focus-inner|-moz-focusring|-ms-input-placeholder|-moz-read-write|-moz-read-only|-ms-clear|-ms-expand|-ms-reveal){/.test(rule)) {
+                    console.error("There was a problem inserting the following rule: \"" + rule + "\"", e);
+                }
+            }
+        } else {
+            tag.appendChild(document.createTextNode(rule));
+        }
+        this.ctr++;
+    };
+    _proto.flush = function flush() {
+        this.tags.forEach(function(tag) {
+            var _tag$parentNode;
+            return (_tag$parentNode = tag.parentNode) == null ? void 0 : _tag$parentNode.removeChild(tag);
+        });
+        this.tags = [];
+        this.ctr = 0;
+        {
+            this._alreadyInsertedOrderInsensitiveRule = false;
+        }
+    };
+    return StyleSheet;
+}();
+;
+}),
+"[project]/Image-Watermarker/node_modules/stylis/src/Utility.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+/**
+ * @param {number}
+ * @return {number}
+ */ __turbopack_context__.s([
+    "abs",
+    ()=>abs,
+    "append",
+    ()=>append,
+    "assign",
+    ()=>assign,
+    "charat",
+    ()=>charat,
+    "combine",
+    ()=>combine,
+    "from",
+    ()=>from,
+    "hash",
+    ()=>hash,
+    "indexof",
+    ()=>indexof,
+    "match",
+    ()=>match,
+    "replace",
+    ()=>replace,
+    "sizeof",
+    ()=>sizeof,
+    "strlen",
+    ()=>strlen,
+    "substr",
+    ()=>substr,
+    "trim",
+    ()=>trim
+]);
+var abs = Math.abs;
+var from = String.fromCharCode;
+var assign = Object.assign;
+function hash(value, length) {
+    return charat(value, 0) ^ 45 ? (((length << 2 ^ charat(value, 0)) << 2 ^ charat(value, 1)) << 2 ^ charat(value, 2)) << 2 ^ charat(value, 3) : 0;
+}
+function trim(value) {
+    return value.trim();
+}
+function match(value, pattern) {
+    return (value = pattern.exec(value)) ? value[0] : value;
+}
+function replace(value, pattern, replacement) {
+    return value.replace(pattern, replacement);
+}
+function indexof(value, search) {
+    return value.indexOf(search);
+}
+function charat(value, index) {
+    return value.charCodeAt(index) | 0;
+}
+function substr(value, begin, end) {
+    return value.slice(begin, end);
+}
+function strlen(value) {
+    return value.length;
+}
+function sizeof(value) {
+    return value.length;
+}
+function append(value, array) {
+    return array.push(value), value;
+}
+function combine(array, callback) {
+    return array.map(callback).join('');
+}
+}),
+"[project]/Image-Watermarker/node_modules/stylis/src/Tokenizer.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "alloc",
+    ()=>alloc,
+    "caret",
+    ()=>caret,
+    "char",
+    ()=>char,
+    "character",
+    ()=>character,
+    "characters",
+    ()=>characters,
+    "column",
+    ()=>column,
+    "commenter",
+    ()=>commenter,
+    "copy",
+    ()=>copy,
+    "dealloc",
+    ()=>dealloc,
+    "delimit",
+    ()=>delimit,
+    "delimiter",
+    ()=>delimiter,
+    "escaping",
+    ()=>escaping,
+    "identifier",
+    ()=>identifier,
+    "length",
+    ()=>length,
+    "line",
+    ()=>line,
+    "next",
+    ()=>next,
+    "node",
+    ()=>node,
+    "peek",
+    ()=>peek,
+    "position",
+    ()=>position,
+    "prev",
+    ()=>prev,
+    "slice",
+    ()=>slice,
+    "token",
+    ()=>token,
+    "tokenize",
+    ()=>tokenize,
+    "tokenizer",
+    ()=>tokenizer,
+    "whitespace",
+    ()=>whitespace
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/stylis/src/Utility.js [app-ssr] (ecmascript)");
+;
+var line = 1;
+var column = 1;
+var length = 0;
+var position = 0;
+var character = 0;
+var characters = '';
+function node(value, root, parent, type, props, children, length) {
+    return {
+        value: value,
+        root: root,
+        parent: parent,
+        type: type,
+        props: props,
+        children: children,
+        line: line,
+        column: column,
+        length: length,
+        return: ''
+    };
+}
+function copy(root, props) {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["assign"])(node('', null, null, '', null, null, 0), root, {
+        length: -root.length
+    }, props);
+}
+function char() {
+    return character;
+}
+function prev() {
+    character = position > 0 ? (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["charat"])(characters, --position) : 0;
+    if (column--, character === 10) column = 1, line--;
+    return character;
+}
+function next() {
+    character = position < length ? (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["charat"])(characters, position++) : 0;
+    if (column++, character === 10) column = 1, line++;
+    return character;
+}
+function peek() {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["charat"])(characters, position);
+}
+function caret() {
+    return position;
+}
+function slice(begin, end) {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["substr"])(characters, begin, end);
+}
+function token(type) {
+    switch(type){
+        // \0 \t \n \r \s whitespace token
+        case 0:
+        case 9:
+        case 10:
+        case 13:
+        case 32:
+            return 5;
+        // ! + , / > @ ~ isolate token
+        case 33:
+        case 43:
+        case 44:
+        case 47:
+        case 62:
+        case 64:
+        case 126:
+        // ; { } breakpoint token
+        case 59:
+        case 123:
+        case 125:
+            return 4;
+        // : accompanied token
+        case 58:
+            return 3;
+        // " ' ( [ opening delimit token
+        case 34:
+        case 39:
+        case 40:
+        case 91:
+            return 2;
+        // ) ] closing delimit token
+        case 41:
+        case 93:
+            return 1;
+    }
+    return 0;
+}
+function alloc(value) {
+    return line = column = 1, length = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["strlen"])(characters = value), position = 0, [];
+}
+function dealloc(value) {
+    return characters = '', value;
+}
+function delimit(type) {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["trim"])(slice(position - 1, delimiter(type === 91 ? type + 2 : type === 40 ? type + 1 : type)));
+}
+function tokenize(value) {
+    return dealloc(tokenizer(alloc(value)));
+}
+function whitespace(type) {
+    while(character = peek())if (character < 33) next();
+    else break;
+    return token(type) > 2 || token(character) > 3 ? '' : ' ';
+}
+function tokenizer(children) {
+    while(next())switch(token(character)){
+        case 0:
+            (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["append"])(identifier(position - 1), children);
+            break;
+        case 2:
+            (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["append"])(delimit(character), children);
+            break;
+        default:
+            (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["append"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["from"])(character), children);
+    }
+    return children;
+}
+function escaping(index, count) {
+    while(--count && next())// not 0-9 A-F a-f
+    if (character < 48 || character > 102 || character > 57 && character < 65 || character > 70 && character < 97) break;
+    return slice(index, caret() + (count < 6 && peek() == 32 && next() == 32));
+}
+function delimiter(type) {
+    while(next())switch(character){
+        // ] ) " '
+        case type:
+            return position;
+        // " '
+        case 34:
+        case 39:
+            if (type !== 34 && type !== 39) delimiter(character);
+            break;
+        // (
+        case 40:
+            if (type === 41) delimiter(type);
+            break;
+        // \
+        case 92:
+            next();
+            break;
+    }
+    return position;
+}
+function commenter(type, index) {
+    while(next())// //
+    if (type + character === 47 + 10) break;
+    else if (type + character === 42 + 42 && peek() === 47) break;
+    return '/*' + slice(index, position - 1) + '*' + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["from"])(type === 47 ? type : next());
+}
+function identifier(index) {
+    while(!token(peek()))next();
+    return slice(index, position);
+}
+}),
+"[project]/Image-Watermarker/node_modules/stylis/src/Enum.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "CHARSET",
+    ()=>CHARSET,
+    "COMMENT",
+    ()=>COMMENT,
+    "COUNTER_STYLE",
+    ()=>COUNTER_STYLE,
+    "DECLARATION",
+    ()=>DECLARATION,
+    "DOCUMENT",
+    ()=>DOCUMENT,
+    "FONT_FACE",
+    ()=>FONT_FACE,
+    "FONT_FEATURE_VALUES",
+    ()=>FONT_FEATURE_VALUES,
+    "IMPORT",
+    ()=>IMPORT,
+    "KEYFRAMES",
+    ()=>KEYFRAMES,
+    "LAYER",
+    ()=>LAYER,
+    "MEDIA",
+    ()=>MEDIA,
+    "MOZ",
+    ()=>MOZ,
+    "MS",
+    ()=>MS,
+    "NAMESPACE",
+    ()=>NAMESPACE,
+    "PAGE",
+    ()=>PAGE,
+    "RULESET",
+    ()=>RULESET,
+    "SUPPORTS",
+    ()=>SUPPORTS,
+    "VIEWPORT",
+    ()=>VIEWPORT,
+    "WEBKIT",
+    ()=>WEBKIT
+]);
+var MS = '-ms-';
+var MOZ = '-moz-';
+var WEBKIT = '-webkit-';
+var COMMENT = 'comm';
+var RULESET = 'rule';
+var DECLARATION = 'decl';
+var PAGE = '@page';
+var MEDIA = '@media';
+var IMPORT = '@import';
+var CHARSET = '@charset';
+var VIEWPORT = '@viewport';
+var SUPPORTS = '@supports';
+var DOCUMENT = '@document';
+var NAMESPACE = '@namespace';
+var KEYFRAMES = '@keyframes';
+var FONT_FACE = '@font-face';
+var COUNTER_STYLE = '@counter-style';
+var FONT_FEATURE_VALUES = '@font-feature-values';
+var LAYER = '@layer';
+}),
+"[project]/Image-Watermarker/node_modules/stylis/src/Serializer.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "serialize",
+    ()=>serialize,
+    "stringify",
+    ()=>stringify
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/stylis/src/Enum.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/stylis/src/Utility.js [app-ssr] (ecmascript)");
+;
+;
+function serialize(children, callback) {
+    var output = '';
+    var length = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["sizeof"])(children);
+    for(var i = 0; i < length; i++)output += callback(children[i], i, children, callback) || '';
+    return output;
+}
+function stringify(element, index, children, callback) {
+    switch(element.type){
+        case __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["LAYER"]:
+            if (element.children.length) break;
+        case __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["IMPORT"]:
+        case __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DECLARATION"]:
+            return element.return = element.return || element.value;
+        case __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["COMMENT"]:
+            return '';
+        case __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["KEYFRAMES"]:
+            return element.return = element.value + '{' + serialize(element.children, callback) + '}';
+        case __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["RULESET"]:
+            element.value = element.props.join(',');
+    }
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["strlen"])(children = serialize(element.children, callback)) ? element.return = element.value + '{' + children + '}' : '';
+}
+}),
+"[project]/Image-Watermarker/node_modules/stylis/src/Prefixer.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "prefix",
+    ()=>prefix
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/stylis/src/Enum.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/stylis/src/Utility.js [app-ssr] (ecmascript)");
+;
+;
+function prefix(value, length, children) {
+    switch((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["hash"])(value, length)){
+        // color-adjust
+        case 5103:
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + 'print-' + value + value;
+        // animation, animation-(delay|direction|duration|fill-mode|iteration-count|name|play-state|timing-function)
+        case 5737:
+        case 4201:
+        case 3177:
+        case 3433:
+        case 1641:
+        case 4457:
+        case 2921:
+        // text-decoration, filter, clip-path, backface-visibility, column, box-decoration-break
+        case 5572:
+        case 6356:
+        case 5844:
+        case 3191:
+        case 6645:
+        case 3005:
+        // mask, mask-image, mask-(mode|clip|size), mask-(repeat|origin), mask-position, mask-composite,
+        case 6391:
+        case 5879:
+        case 5623:
+        case 6135:
+        case 4599:
+        case 4855:
+        // background-clip, columns, column-(count|fill|gap|rule|rule-color|rule-style|rule-width|span|width)
+        case 4215:
+        case 6389:
+        case 5109:
+        case 5365:
+        case 5621:
+        case 3829:
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + value;
+        // tab-size
+        case 4789:
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MOZ"] + value + value;
+        // appearance, user-select, transform, hyphens, text-size-adjust
+        case 5349:
+        case 4246:
+        case 4810:
+        case 6968:
+        case 2756:
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MOZ"] + value + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + value + value;
+        // writing-mode
+        case 5936:
+            switch((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["charat"])(value, length + 11)){
+                // vertical-l(r)
+                case 114:
+                    return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /[svh]\w+-[tblr]{2}/, 'tb') + value;
+                // vertical-r(l)
+                case 108:
+                    return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /[svh]\w+-[tblr]{2}/, 'tb-rl') + value;
+                // horizontal(-)tb
+                case 45:
+                    return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /[svh]\w+-[tblr]{2}/, 'lr') + value;
+            }
+        // flex, flex-direction, scroll-snap-type, writing-mode
+        case 6828:
+        case 4268:
+        case 2903:
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + value + value;
+        // order
+        case 6165:
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + 'flex-' + value + value;
+        // align-items
+        case 5187:
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /(\w+).+(:[^]+)/, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + 'box-$1$2' + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + 'flex-$1$2') + value;
+        // align-self
+        case 5443:
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + 'flex-item-' + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /flex-|-self/g, '') + (!(0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["match"])(value, /flex-|baseline/) ? __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + 'grid-row-' + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /flex-|-self/g, '') : '') + value;
+        // align-content
+        case 4675:
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + 'flex-line-pack' + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /align-content|flex-|-self/g, '') + value;
+        // flex-shrink
+        case 5548:
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, 'shrink', 'negative') + value;
+        // flex-basis
+        case 5292:
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, 'basis', 'preferred-size') + value;
+        // flex-grow
+        case 6060:
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + 'box-' + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, '-grow', '') + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, 'grow', 'positive') + value;
+        // transition
+        case 4554:
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /([^-])(transform)/g, '$1' + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + '$2') + value;
+        // cursor
+        case 6187:
+            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /(zoom-|grab)/, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + '$1'), /(image-set)/, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + '$1'), value, '') + value;
+        // background, background-image
+        case 5495:
+        case 3959:
+            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /(image-set\([^]*)/, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + '$1' + '$`$1');
+        // justify-content
+        case 4968:
+            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /(.+:)(flex-)?(.*)/, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + 'box-pack:$3' + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + 'flex-pack:$3'), /s.+-b[^;]+/, 'justify') + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + value;
+        // justify-self
+        case 4200:
+            if (!(0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["match"])(value, /flex-|baseline/)) return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + 'grid-column-align' + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["substr"])(value, length) + value;
+            break;
+        // grid-template-(columns|rows)
+        case 2592:
+        case 3360:
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, 'template-', '') + value;
+        // grid-(row|column)-start
+        case 4384:
+        case 3616:
+            if (children && children.some(function(element, index) {
+                return length = index, (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["match"])(element.props, /grid-\w+-end/);
+            })) {
+                return ~(0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["indexof"])(value + (children = children[length].value), 'span') ? value : __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, '-start', '') + value + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + 'grid-row-span:' + (~(0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["indexof"])(children, 'span') ? (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["match"])(children, /\d+/) : +(0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["match"])(children, /\d+/) - +(0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["match"])(value, /\d+/)) + ';';
+            }
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, '-start', '') + value;
+        // grid-(row|column)-end
+        case 4896:
+        case 4128:
+            return children && children.some(function(element) {
+                return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["match"])(element.props, /grid-\w+-start/);
+            }) ? value : __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, '-end', '-span'), 'span ', '') + value;
+        // (margin|padding)-inline-(start|end)
+        case 4095:
+        case 3583:
+        case 4068:
+        case 2532:
+            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /(.+)-inline(.+)/, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + '$1$2') + value;
+        // (min|max)?(width|height|inline-size|block-size)
+        case 8116:
+        case 7059:
+        case 5753:
+        case 5535:
+        case 5445:
+        case 5701:
+        case 4933:
+        case 4677:
+        case 5533:
+        case 5789:
+        case 5021:
+        case 4765:
+            // stretch, max-content, min-content, fill-available
+            if ((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["strlen"])(value) - 1 - length > 6) switch((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["charat"])(value, length + 1)){
+                // (m)ax-content, (m)in-content
+                case 109:
+                    // -
+                    if ((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["charat"])(value, length + 4) !== 45) break;
+                // (f)ill-available, (f)it-content
+                case 102:
+                    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /(.+:)(.+)-([^]+)/, '$1' + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + '$2-$3' + '$1' + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MOZ"] + ((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["charat"])(value, length + 3) == 108 ? '$3' : '$2-$3')) + value;
+                // (s)tretch
+                case 115:
+                    return ~(0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["indexof"])(value, 'stretch') ? prefix((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, 'stretch', 'fill-available'), length, children) + value : value;
+            }
+            break;
+        // grid-(column|row)
+        case 5152:
+        case 5920:
+            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /(.+?):(\d+)(\s*\/\s*(span)?\s*(\d+))?(.*)/, function(_, a, b, c, d, e, f) {
+                return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + a + ':' + b + f + (c ? __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + a + '-span:' + (d ? e : +e - +b) + f : '') + value;
+            });
+        // position: sticky
+        case 4949:
+            // stick(y)?
+            if ((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["charat"])(value, length + 6) === 121) return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, ':', ':' + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"]) + value;
+            break;
+        // display: (flex|inline-flex|grid|inline-grid)
+        case 6444:
+            switch((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["charat"])(value, (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["charat"])(value, 14) === 45 ? 18 : 11)){
+                // (inline-)?fle(x)
+                case 120:
+                    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /(.+:)([^;\s!]+)(;|(\s+)?!.+)?/, '$1' + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + ((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["charat"])(value, 14) === 45 ? 'inline-' : '') + 'box$3' + '$1' + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + '$2$3' + '$1' + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + '$2box$3') + value;
+                // (inline-)?gri(d)
+                case 100:
+                    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, ':', ':' + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"]) + value;
+            }
+            break;
+        // scroll-margin, scroll-margin-(top|right|bottom|left)
+        case 5719:
+        case 2647:
+        case 2135:
+        case 3927:
+        case 2391:
+            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, 'scroll-', 'scroll-snap-') + value;
+    }
+    return value;
+}
+}),
+"[project]/Image-Watermarker/node_modules/stylis/src/Middleware.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "middleware",
+    ()=>middleware,
+    "namespace",
+    ()=>namespace,
+    "prefixer",
+    ()=>prefixer,
+    "rulesheet",
+    ()=>rulesheet
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/stylis/src/Enum.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/stylis/src/Utility.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/stylis/src/Tokenizer.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Serializer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/stylis/src/Serializer.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Prefixer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/stylis/src/Prefixer.js [app-ssr] (ecmascript)");
+;
+;
+;
+;
+;
+function middleware(collection) {
+    var length = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["sizeof"])(collection);
+    return function(element, index, children, callback) {
+        var output = '';
+        for(var i = 0; i < length; i++)output += collection[i](element, index, children, callback) || '';
+        return output;
+    };
+}
+function rulesheet(callback) {
+    return function(element) {
+        if (!element.root) {
+            if (element = element.return) callback(element);
+        }
+    };
+}
+function prefixer(element, index, children, callback) {
+    if (element.length > -1) {
+        if (!element.return) switch(element.type){
+            case __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DECLARATION"]:
+                element.return = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Prefixer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["prefix"])(element.value, element.length, children);
+                return;
+            case __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["KEYFRAMES"]:
+                return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Serializer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["serialize"])([
+                    (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["copy"])(element, {
+                        value: (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(element.value, '@', '@' + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"])
+                    })
+                ], callback);
+            case __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["RULESET"]:
+                if (element.length) return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["combine"])(element.props, function(value) {
+                    switch((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["match"])(value, /(::plac\w+|:read-\w+)/)){
+                        // :read-(only|write)
+                        case ':read-only':
+                        case ':read-write':
+                            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Serializer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["serialize"])([
+                                (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["copy"])(element, {
+                                    props: [
+                                        (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /:(read-\w+)/, ':' + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MOZ"] + '$1')
+                                    ]
+                                })
+                            ], callback);
+                        // :placeholder
+                        case '::placeholder':
+                            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Serializer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["serialize"])([
+                                (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["copy"])(element, {
+                                    props: [
+                                        (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /:(plac\w+)/, ':' + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + 'input-$1')
+                                    ]
+                                }),
+                                (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["copy"])(element, {
+                                    props: [
+                                        (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /:(plac\w+)/, ':' + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MOZ"] + '$1')
+                                    ]
+                                }),
+                                (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["copy"])(element, {
+                                    props: [
+                                        (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /:(plac\w+)/, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + 'input-$1')
+                                    ]
+                                })
+                            ], callback);
+                    }
+                    return '';
+                });
+        }
+    }
+}
+function namespace(element) {
+    switch(element.type){
+        case __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["RULESET"]:
+            element.props = element.props.map(function(value) {
+                return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["combine"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["tokenize"])(value), function(value, index, children) {
+                    switch((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["charat"])(value, 0)){
+                        // \f
+                        case 12:
+                            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["substr"])(value, 1, (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["strlen"])(value));
+                        // \0 ( + > ~
+                        case 0:
+                        case 40:
+                        case 43:
+                        case 62:
+                        case 126:
+                            return value;
+                        // :
+                        case 58:
+                            if (children[++index] === 'global') children[index] = '', children[++index] = '\f' + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["substr"])(children[index], index = 1, -1);
+                        // \s
+                        case 32:
+                            return index === 1 ? '' : value;
+                        default:
+                            switch(index){
+                                case 0:
+                                    element = value;
+                                    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["sizeof"])(children) > 1 ? '' : value;
+                                case index = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["sizeof"])(children) - 1:
+                                case 2:
+                                    return index === 2 ? value + element + element : value + element;
+                                default:
+                                    return value;
+                            }
+                    }
+                });
+            });
+    }
+}
+}),
+"[project]/Image-Watermarker/node_modules/stylis/src/Parser.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "comment",
+    ()=>comment,
+    "compile",
+    ()=>compile,
+    "declaration",
+    ()=>declaration,
+    "parse",
+    ()=>parse,
+    "ruleset",
+    ()=>ruleset
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/stylis/src/Enum.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/stylis/src/Utility.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/stylis/src/Tokenizer.js [app-ssr] (ecmascript)");
+;
+;
+;
+function compile(value) {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["dealloc"])(parse('', null, null, null, [
+        ''
+    ], value = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["alloc"])(value), 0, [
+        0
+    ], value));
+}
+function parse(value, root, parent, rule, rules, rulesets, pseudo, points, declarations) {
+    var index = 0;
+    var offset = 0;
+    var length = pseudo;
+    var atrule = 0;
+    var property = 0;
+    var previous = 0;
+    var variable = 1;
+    var scanning = 1;
+    var ampersand = 1;
+    var character = 0;
+    var type = '';
+    var props = rules;
+    var children = rulesets;
+    var reference = rule;
+    var characters = type;
+    while(scanning)switch(previous = character, character = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["next"])()){
+        // (
+        case 40:
+            if (previous != 108 && (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["charat"])(characters, length - 1) == 58) {
+                if ((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["indexof"])(characters += (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["delimit"])(character), '&', '&\f'), '&\f') != -1) ampersand = -1;
+                break;
+            }
+        // " ' [
+        case 34:
+        case 39:
+        case 91:
+            characters += (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["delimit"])(character);
+            break;
+        // \t \n \r \s
+        case 9:
+        case 10:
+        case 13:
+        case 32:
+            characters += (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["whitespace"])(previous);
+            break;
+        // \
+        case 92:
+            characters += (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["escaping"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["caret"])() - 1, 7);
+            continue;
+        // /
+        case 47:
+            switch((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["peek"])()){
+                case 42:
+                case 47:
+                    (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["append"])(comment((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["commenter"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["next"])(), (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["caret"])()), root, parent), declarations);
+                    break;
+                default:
+                    characters += '/';
+            }
+            break;
+        // {
+        case 123 * variable:
+            points[index++] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["strlen"])(characters) * ampersand;
+        // } ; \0
+        case 125 * variable:
+        case 59:
+        case 0:
+            switch(character){
+                // \0 }
+                case 0:
+                case 125:
+                    scanning = 0;
+                // ;
+                case 59 + offset:
+                    if (ampersand == -1) characters = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(characters, /\f/g, '');
+                    if (property > 0 && (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["strlen"])(characters) - length) (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["append"])(property > 32 ? declaration(characters + ';', rule, parent, length - 1) : declaration((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(characters, ' ', '') + ';', rule, parent, length - 2), declarations);
+                    break;
+                // @ ;
+                case 59:
+                    characters += ';';
+                // { rule/at-rule
+                default:
+                    (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["append"])(reference = ruleset(characters, root, parent, index, offset, rules, points, type, props = [], children = [], length), rulesets);
+                    if (character === 123) if (offset === 0) parse(characters, root, reference, reference, props, rulesets, length, points, children);
+                    else switch(atrule === 99 && (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["charat"])(characters, 3) === 110 ? 100 : atrule){
+                        // d l m s
+                        case 100:
+                        case 108:
+                        case 109:
+                        case 115:
+                            parse(value, reference, reference, rule && (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["append"])(ruleset(value, reference, reference, 0, 0, rules, points, type, rules, props = [], length), children), rules, children, length, points, rule ? props : children);
+                            break;
+                        default:
+                            parse(characters, reference, reference, reference, [
+                                ''
+                            ], children, 0, points, children);
+                    }
+            }
+            index = offset = property = 0, variable = ampersand = 1, type = characters = '', length = pseudo;
+            break;
+        // :
+        case 58:
+            length = 1 + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["strlen"])(characters), property = previous;
+        default:
+            if (variable < 1) {
+                if (character == 123) --variable;
+                else if (character == 125 && variable++ == 0 && (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["prev"])() == 125) continue;
+            }
+            switch(characters += (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["from"])(character), character * variable){
+                // &
+                case 38:
+                    ampersand = offset > 0 ? 1 : (characters += '\f', -1);
+                    break;
+                // ,
+                case 44:
+                    points[index++] = ((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["strlen"])(characters) - 1) * ampersand, ampersand = 1;
+                    break;
+                // @
+                case 64:
+                    // -
+                    if ((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["peek"])() === 45) characters += (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["delimit"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["next"])());
+                    atrule = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["peek"])(), offset = length = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["strlen"])(type = characters += (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["identifier"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["caret"])())), character++;
+                    break;
+                // -
+                case 45:
+                    if (previous === 45 && (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["strlen"])(characters) == 2) variable = 0;
+            }
+    }
+    return rulesets;
+}
+function ruleset(value, root, parent, index, offset, rules, points, type, props, children, length) {
+    var post = offset - 1;
+    var rule = offset === 0 ? rules : [
+        ''
+    ];
+    var size = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["sizeof"])(rule);
+    for(var i = 0, j = 0, k = 0; i < index; ++i)for(var x = 0, y = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["substr"])(value, post + 1, post = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["abs"])(j = points[i])), z = value; x < size; ++x)if (z = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["trim"])(j > 0 ? rule[x] + ' ' + y : (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(y, /&\f/g, rule[x]))) props[k++] = z;
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["node"])(value, root, parent, offset === 0 ? __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["RULESET"] : type, props, children, length);
+}
+function comment(value, root, parent) {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["node"])(value, root, parent, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["COMMENT"], (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["from"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["char"])()), (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["substr"])(value, 2, -2), 0);
+}
+function declaration(value, root, parent, length) {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["node"])(value, root, parent, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DECLARATION"], (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["substr"])(value, 0, length), (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["substr"])(value, length + 1, -1), length);
+}
+}),
+"[project]/Image-Watermarker/node_modules/@emotion/weak-memoize/dist/emotion-weak-memoize.esm.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>weakMemoize
+]);
+var weakMemoize = function weakMemoize(func) {
+    var cache = new WeakMap();
+    return function(arg) {
+        if (cache.has(arg)) {
+            // Use non-null assertion because we just checked that the cache `has` it
+            // This allows us to remove `undefined` from the return value
+            return cache.get(arg);
+        }
+        var ret = func(arg);
+        cache.set(arg, ret);
+        return ret;
+    };
+};
+;
+}),
+"[project]/Image-Watermarker/node_modules/@emotion/memoize/dist/emotion-memoize.esm.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>memoize
+]);
+function memoize(fn) {
+    var cache = Object.create(null);
+    return function(arg) {
+        if (cache[arg] === undefined) cache[arg] = fn(arg);
+        return cache[arg];
+    };
+}
+;
+}),
+"[project]/Image-Watermarker/node_modules/@emotion/cache/dist/emotion-cache.development.esm.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>createCache
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$sheet$2f$dist$2f$emotion$2d$sheet$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/sheet/dist/emotion-sheet.development.esm.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/stylis/src/Tokenizer.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/stylis/src/Utility.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/stylis/src/Enum.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Serializer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/stylis/src/Serializer.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Middleware$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/stylis/src/Middleware.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Parser$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/stylis/src/Parser.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$weak$2d$memoize$2f$dist$2f$emotion$2d$weak$2d$memoize$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/weak-memoize/dist/emotion-weak-memoize.esm.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$memoize$2f$dist$2f$emotion$2d$memoize$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/memoize/dist/emotion-memoize.esm.js [app-ssr] (ecmascript)");
+;
+;
+;
+;
+var isBrowser = typeof document !== 'undefined';
+var identifierWithPointTracking = function identifierWithPointTracking(begin, points, index) {
+    var previous = 0;
+    var character = 0;
+    while(true){
+        previous = character;
+        character = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["peek"])(); // &\f
+        if (previous === 38 && character === 12) {
+            points[index] = 1;
+        }
+        if ((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["token"])(character)) {
+            break;
+        }
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["next"])();
+    }
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["slice"])(begin, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["position"]);
+};
+var toRules = function toRules(parsed, points) {
+    // pretend we've started with a comma
+    var index = -1;
+    var character = 44;
+    do {
+        switch((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["token"])(character)){
+            case 0:
+                // &\f
+                if (character === 38 && (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["peek"])() === 12) {
+                    // this is not 100% correct, we don't account for literal sequences here - like for example quoted strings
+                    // stylis inserts \f after & to know when & where it should replace this sequence with the context selector
+                    // and when it should just concatenate the outer and inner selectors
+                    // it's very unlikely for this sequence to actually appear in a different context, so we just leverage this fact here
+                    points[index] = 1;
+                }
+                parsed[index] += identifierWithPointTracking(__TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["position"] - 1, points, index);
+                break;
+            case 2:
+                parsed[index] += (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["delimit"])(character);
+                break;
+            case 4:
+                // comma
+                if (character === 44) {
+                    // colon
+                    parsed[++index] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["peek"])() === 58 ? '&\f' : '';
+                    points[index] = parsed[index].length;
+                    break;
+                }
+            // fallthrough
+            default:
+                parsed[index] += (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["from"])(character);
+        }
+    }while (character = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["next"])())
+    return parsed;
+};
+var getRules = function getRules(value, points) {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["dealloc"])(toRules((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["alloc"])(value), points));
+}; // WeakSet would be more appropriate, but only WeakMap is supported in IE11
+var fixedElements = /* #__PURE__ */ new WeakMap();
+var compat = function compat(element) {
+    if (element.type !== 'rule' || !element.parent || // positive .length indicates that this rule contains pseudo
+    // negative .length indicates that this rule has been already prefixed
+    element.length < 1) {
+        return;
+    }
+    var value = element.value;
+    var parent = element.parent;
+    var isImplicitRule = element.column === parent.column && element.line === parent.line;
+    while(parent.type !== 'rule'){
+        parent = parent.parent;
+        if (!parent) return;
+    } // short-circuit for the simplest case
+    if (element.props.length === 1 && value.charCodeAt(0) !== 58 && !fixedElements.get(parent)) {
+        return;
+    } // if this is an implicitly inserted rule (the one eagerly inserted at the each new nested level)
+    // then the props has already been manipulated beforehand as they that array is shared between it and its "rule parent"
+    if (isImplicitRule) {
+        return;
+    }
+    fixedElements.set(element, true);
+    var points = [];
+    var rules = getRules(value, points);
+    var parentRules = parent.props;
+    for(var i = 0, k = 0; i < rules.length; i++){
+        for(var j = 0; j < parentRules.length; j++, k++){
+            element.props[k] = points[i] ? rules[i].replace(/&\f/g, parentRules[j]) : parentRules[j] + " " + rules[i];
+        }
+    }
+};
+var removeLabel = function removeLabel(element) {
+    if (element.type === 'decl') {
+        var value = element.value;
+        if (value.charCodeAt(0) === 108 && // charcode for b
+        value.charCodeAt(2) === 98) {
+            // this ignores label
+            element["return"] = '';
+            element.value = '';
+        }
+    }
+};
+var ignoreFlag = 'emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason';
+var isIgnoringComment = function isIgnoringComment(element) {
+    return element.type === 'comm' && element.children.indexOf(ignoreFlag) > -1;
+};
+var createUnsafeSelectorsAlarm = function createUnsafeSelectorsAlarm(cache) {
+    return function(element, index, children) {
+        if (element.type !== 'rule' || cache.compat) return;
+        var unsafePseudoClasses = element.value.match(/(:first|:nth|:nth-last)-child/g);
+        if (unsafePseudoClasses) {
+            var isNested = !!element.parent; // in nested rules comments become children of the "auto-inserted" rule and that's always the `element.parent`
+            //
+            // considering this input:
+            // .a {
+            //   .b /* comm */ {}
+            //   color: hotpink;
+            // }
+            // we get output corresponding to this:
+            // .a {
+            //   & {
+            //     /* comm */
+            //     color: hotpink;
+            //   }
+            //   .b {}
+            // }
+            var commentContainer = isNested ? element.parent.children : children;
+            for(var i = commentContainer.length - 1; i >= 0; i--){
+                var node = commentContainer[i];
+                if (node.line < element.line) {
+                    break;
+                } // it is quite weird but comments are *usually* put at `column: element.column - 1`
+                // so we seek *from the end* for the node that is earlier than the rule's `element` and check that
+                // this will also match inputs like this:
+                // .a {
+                //   /* comm */
+                //   .b {}
+                // }
+                //
+                // but that is fine
+                //
+                // it would be the easiest to change the placement of the comment to be the first child of the rule:
+                // .a {
+                //   .b { /* comm */ }
+                // }
+                // with such inputs we wouldn't have to search for the comment at all
+                // TODO: consider changing this comment placement in the next major version
+                if (node.column < element.column) {
+                    if (isIgnoringComment(node)) {
+                        return;
+                    }
+                    break;
+                }
+            }
+            unsafePseudoClasses.forEach(function(unsafePseudoClass) {
+                console.error("The pseudo class \"" + unsafePseudoClass + "\" is potentially unsafe when doing server-side rendering. Try changing it to \"" + unsafePseudoClass.split('-child')[0] + "-of-type\".");
+            });
+        }
+    };
+};
+var isImportRule = function isImportRule(element) {
+    return element.type.charCodeAt(1) === 105 && element.type.charCodeAt(0) === 64;
+};
+var isPrependedWithRegularRules = function isPrependedWithRegularRules(index, children) {
+    for(var i = index - 1; i >= 0; i--){
+        if (!isImportRule(children[i])) {
+            return true;
+        }
+    }
+    return false;
+}; // use this to remove incorrect elements from further processing
+// so they don't get handed to the `sheet` (or anything else)
+// as that could potentially lead to additional logs which in turn could be overhelming to the user
+var nullifyElement = function nullifyElement(element) {
+    element.type = '';
+    element.value = '';
+    element["return"] = '';
+    element.children = '';
+    element.props = '';
+};
+var incorrectImportAlarm = function incorrectImportAlarm(element, index, children) {
+    if (!isImportRule(element)) {
+        return;
+    }
+    if (element.parent) {
+        console.error("`@import` rules can't be nested inside other rules. Please move it to the top level and put it before regular rules. Keep in mind that they can only be used within global styles.");
+        nullifyElement(element);
+    } else if (isPrependedWithRegularRules(index, children)) {
+        console.error("`@import` rules can't be after other rules. Please put your `@import` rules before your other rules.");
+        nullifyElement(element);
+    }
+};
+/* eslint-disable no-fallthrough */ function prefix(value, length) {
+    switch((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["hash"])(value, length)){
+        // color-adjust
+        case 5103:
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + 'print-' + value + value;
+        // animation, animation-(delay|direction|duration|fill-mode|iteration-count|name|play-state|timing-function)
+        case 5737:
+        case 4201:
+        case 3177:
+        case 3433:
+        case 1641:
+        case 4457:
+        case 2921:
+        case 5572:
+        case 6356:
+        case 5844:
+        case 3191:
+        case 6645:
+        case 3005:
+        case 6391:
+        case 5879:
+        case 5623:
+        case 6135:
+        case 4599:
+        case 4855:
+        case 4215:
+        case 6389:
+        case 5109:
+        case 5365:
+        case 5621:
+        case 3829:
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + value;
+        // appearance, user-select, transform, hyphens, text-size-adjust
+        case 5349:
+        case 4246:
+        case 4810:
+        case 6968:
+        case 2756:
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MOZ"] + value + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + value + value;
+        // flex, flex-direction
+        case 6828:
+        case 4268:
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + value + value;
+        // order
+        case 6165:
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + 'flex-' + value + value;
+        // align-items
+        case 5187:
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /(\w+).+(:[^]+)/, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + 'box-$1$2' + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + 'flex-$1$2') + value;
+        // align-self
+        case 5443:
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + 'flex-item-' + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /flex-|-self/, '') + value;
+        // align-content
+        case 4675:
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + 'flex-line-pack' + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /align-content|flex-|-self/, '') + value;
+        // flex-shrink
+        case 5548:
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, 'shrink', 'negative') + value;
+        // flex-basis
+        case 5292:
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, 'basis', 'preferred-size') + value;
+        // flex-grow
+        case 6060:
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + 'box-' + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, '-grow', '') + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, 'grow', 'positive') + value;
+        // transition
+        case 4554:
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /([^-])(transform)/g, '$1' + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + '$2') + value;
+        // cursor
+        case 6187:
+            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /(zoom-|grab)/, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + '$1'), /(image-set)/, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + '$1'), value, '') + value;
+        // background, background-image
+        case 5495:
+        case 3959:
+            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /(image-set\([^]*)/, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + '$1' + '$`$1');
+        // justify-content
+        case 4968:
+            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /(.+:)(flex-)?(.*)/, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + 'box-pack:$3' + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + 'flex-pack:$3'), /s.+-b[^;]+/, 'justify') + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + value;
+        // (margin|padding)-inline-(start|end)
+        case 4095:
+        case 3583:
+        case 4068:
+        case 2532:
+            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /(.+)-inline(.+)/, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + '$1$2') + value;
+        // (min|max)?(width|height|inline-size|block-size)
+        case 8116:
+        case 7059:
+        case 5753:
+        case 5535:
+        case 5445:
+        case 5701:
+        case 4933:
+        case 4677:
+        case 5533:
+        case 5789:
+        case 5021:
+        case 4765:
+            // stretch, max-content, min-content, fill-available
+            if ((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["strlen"])(value) - 1 - length > 6) switch((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["charat"])(value, length + 1)){
+                // (m)ax-content, (m)in-content
+                case 109:
+                    // -
+                    if ((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["charat"])(value, length + 4) !== 45) break;
+                // (f)ill-available, (f)it-content
+                case 102:
+                    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /(.+:)(.+)-([^]+)/, '$1' + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + '$2-$3' + '$1' + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MOZ"] + ((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["charat"])(value, length + 3) == 108 ? '$3' : '$2-$3')) + value;
+                // (s)tretch
+                case 115:
+                    return ~(0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["indexof"])(value, 'stretch') ? prefix((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, 'stretch', 'fill-available'), length) + value : value;
+            }
+            break;
+        // position: sticky
+        case 4949:
+            // (s)ticky?
+            if ((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["charat"])(value, length + 1) !== 115) break;
+        // display: (flex|inline-flex)
+        case 6444:
+            switch((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["charat"])(value, (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["strlen"])(value) - 3 - (~(0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["indexof"])(value, '!important') && 10))){
+                // stic(k)y
+                case 107:
+                    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, ':', ':' + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"]) + value;
+                // (inline-)?fl(e)x
+                case 101:
+                    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /(.+:)([^;!]+)(;|!.+)?/, '$1' + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + ((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["charat"])(value, 14) === 45 ? 'inline-' : '') + 'box$3' + '$1' + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + '$2$3' + '$1' + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + '$2box$3') + value;
+            }
+            break;
+        // writing-mode
+        case 5936:
+            switch((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["charat"])(value, length + 11)){
+                // vertical-l(r)
+                case 114:
+                    return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /[svh]\w+-[tblr]{2}/, 'tb') + value;
+                // vertical-r(l)
+                case 108:
+                    return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /[svh]\w+-[tblr]{2}/, 'tb-rl') + value;
+                // horizontal(-)tb
+                case 45:
+                    return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /[svh]\w+-[tblr]{2}/, 'lr') + value;
+            }
+            return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + value + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + value + value;
+    }
+    return value;
+}
+var prefixer = function prefixer(element, index, children, callback) {
+    if (element.length > -1) {
+        if (!element["return"]) switch(element.type){
+            case __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DECLARATION"]:
+                element["return"] = prefix(element.value, element.length);
+                break;
+            case __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["KEYFRAMES"]:
+                return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Serializer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["serialize"])([
+                    (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["copy"])(element, {
+                        value: (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(element.value, '@', '@' + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"])
+                    })
+                ], callback);
+            case __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["RULESET"]:
+                if (element.length) return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["combine"])(element.props, function(value) {
+                    switch((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["match"])(value, /(::plac\w+|:read-\w+)/)){
+                        // :read-(only|write)
+                        case ':read-only':
+                        case ':read-write':
+                            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Serializer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["serialize"])([
+                                (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["copy"])(element, {
+                                    props: [
+                                        (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /:(read-\w+)/, ':' + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MOZ"] + '$1')
+                                    ]
+                                })
+                            ], callback);
+                        // :placeholder
+                        case '::placeholder':
+                            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Serializer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["serialize"])([
+                                (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["copy"])(element, {
+                                    props: [
+                                        (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /:(plac\w+)/, ':' + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEBKIT"] + 'input-$1')
+                                    ]
+                                }),
+                                (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["copy"])(element, {
+                                    props: [
+                                        (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /:(plac\w+)/, ':' + __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MOZ"] + '$1')
+                                    ]
+                                }),
+                                (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Tokenizer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["copy"])(element, {
+                                    props: [
+                                        (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Utility$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["replace"])(value, /:(plac\w+)/, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MS"] + 'input-$1')
+                                    ]
+                                })
+                            ], callback);
+                    }
+                    return '';
+                });
+        }
+    }
+};
+var getServerStylisCache = isBrowser ? undefined : (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$weak$2d$memoize$2f$dist$2f$emotion$2d$weak$2d$memoize$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(function() {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$memoize$2f$dist$2f$emotion$2d$memoize$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(function() {
+        return {};
+    });
+});
+var defaultStylisPlugins = [
+    prefixer
+];
+var getSourceMap;
+{
+    var sourceMapPattern = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//g;
+    getSourceMap = function getSourceMap(styles) {
+        var matches = styles.match(sourceMapPattern);
+        if (!matches) return;
+        return matches[matches.length - 1];
+    };
+}var createCache = function createCache(options) {
+    var key = options.key;
+    if (!key) {
+        throw new Error("You have to configure `key` for your cache. Please make sure it's unique (and not equal to 'css') as it's used for linking styles to your cache.\n" + "If multiple caches share the same key they might \"fight\" for each other's style elements.");
+    }
+    if (isBrowser && key === 'css') {
+        var ssrStyles = document.querySelectorAll("style[data-emotion]:not([data-s])"); // get SSRed styles out of the way of React's hydration
+        // document.head is a safe place to move them to(though note document.head is not necessarily the last place they will be)
+        // note this very very intentionally targets all style elements regardless of the key to ensure
+        // that creating a cache works inside of render of a React component
+        Array.prototype.forEach.call(ssrStyles, function(node) {
+            // we want to only move elements which have a space in the data-emotion attribute value
+            // because that indicates that it is an Emotion 11 server-side rendered style elements
+            // while we will already ignore Emotion 11 client-side inserted styles because of the :not([data-s]) part in the selector
+            // Emotion 10 client-side inserted styles did not have data-s (but importantly did not have a space in their data-emotion attributes)
+            // so checking for the space ensures that loading Emotion 11 after Emotion 10 has inserted some styles
+            // will not result in the Emotion 10 styles being destroyed
+            var dataEmotionAttribute = node.getAttribute('data-emotion');
+            if (dataEmotionAttribute.indexOf(' ') === -1) {
+                return;
+            }
+            document.head.appendChild(node);
+            node.setAttribute('data-s', '');
+        });
+    }
+    var stylisPlugins = options.stylisPlugins || defaultStylisPlugins;
+    {
+        if (/[^a-z-]/.test(key)) {
+            throw new Error("Emotion key must only contain lower case alphabetical characters and - but \"" + key + "\" was passed");
+        }
+    }
+    var inserted = {};
+    var container;
+    var nodesToHydrate = [];
+    if (isBrowser) {
+        container = options.container || document.head;
+        Array.prototype.forEach.call(// means that the style elements we're looking at are only Emotion 11 server-rendered style elements
+        document.querySelectorAll("style[data-emotion^=\"" + key + " \"]"), function(node) {
+            var attrib = node.getAttribute("data-emotion").split(' ');
+            for(var i = 1; i < attrib.length; i++){
+                inserted[attrib[i]] = true;
+            }
+            nodesToHydrate.push(node);
+        });
+    }
+    var _insert;
+    var omnipresentPlugins = [
+        compat,
+        removeLabel
+    ];
+    {
+        omnipresentPlugins.push(createUnsafeSelectorsAlarm({
+            get compat () {
+                return cache.compat;
+            }
+        }), incorrectImportAlarm);
+    }
+    if (!getServerStylisCache) {
+        var currentSheet;
+        var finalizingPlugins = [
+            __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Serializer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["stringify"],
+            function(element) {
+                if (!element.root) {
+                    if (element["return"]) {
+                        currentSheet.insert(element["return"]);
+                    } else if (element.value && element.type !== __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Enum$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["COMMENT"]) {
+                        // insert empty rule in non-production environments
+                        // so @emotion/jest can grab `key` from the (JS)DOM for caches without any rules inserted yet
+                        currentSheet.insert(element.value + "{}");
+                    }
+                }
+            }
+        ];
+        var serializer = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Middleware$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["middleware"])(omnipresentPlugins.concat(stylisPlugins, finalizingPlugins));
+        var stylis = function stylis(styles) {
+            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Serializer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["serialize"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Parser$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["compile"])(styles), serializer);
+        };
+        _insert = function insert(selector, serialized, sheet, shouldCache) {
+            currentSheet = sheet;
+            if (getSourceMap) {
+                var sourceMap = getSourceMap(serialized.styles);
+                if (sourceMap) {
+                    currentSheet = {
+                        insert: function insert(rule) {
+                            sheet.insert(rule + sourceMap);
+                        }
+                    };
+                }
+            }
+            stylis(selector ? selector + "{" + serialized.styles + "}" : serialized.styles);
+            if (shouldCache) {
+                cache.inserted[serialized.name] = true;
+            }
+        };
+    } else {
+        var _finalizingPlugins = [
+            __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Serializer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["stringify"]
+        ];
+        var _serializer = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Middleware$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["middleware"])(omnipresentPlugins.concat(stylisPlugins, _finalizingPlugins));
+        var _stylis = function _stylis(styles) {
+            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Serializer$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["serialize"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$stylis$2f$src$2f$Parser$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["compile"])(styles), _serializer);
+        };
+        var serverStylisCache = getServerStylisCache(stylisPlugins)(key);
+        var getRules = function getRules(selector, serialized) {
+            var name = serialized.name;
+            if (serverStylisCache[name] === undefined) {
+                serverStylisCache[name] = _stylis(selector ? selector + "{" + serialized.styles + "}" : serialized.styles);
+            }
+            return serverStylisCache[name];
+        };
+        _insert = function _insert(selector, serialized, sheet, shouldCache) {
+            var name = serialized.name;
+            var rules = getRules(selector, serialized);
+            if (cache.compat === undefined) {
+                // in regular mode, we don't set the styles on the inserted cache
+                // since we don't need to and that would be wasting memory
+                // we return them so that they are rendered in a style tag
+                if (shouldCache) {
+                    cache.inserted[name] = true;
+                }
+                if (getSourceMap) {
+                    var sourceMap = getSourceMap(serialized.styles);
+                    if (sourceMap) {
+                        return rules + sourceMap;
+                    }
+                }
+                return rules;
+            } else {
+                // in compat mode, we put the styles on the inserted cache so
+                // that emotion-server can pull out the styles
+                // except when we don't want to cache it which was in Global but now
+                // is nowhere but we don't want to do a major right now
+                // and just in case we're going to leave the case here
+                // it's also not affecting client side bundle size
+                // so it's really not a big deal
+                if (shouldCache) {
+                    cache.inserted[name] = rules;
+                } else {
+                    return rules;
+                }
+            }
+        };
+    }
+    var cache = {
+        key: key,
+        sheet: new __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$sheet$2f$dist$2f$emotion$2d$sheet$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["StyleSheet"]({
+            key: key,
+            container: container,
+            nonce: options.nonce,
+            speedy: options.speedy,
+            prepend: options.prepend,
+            insertionPoint: options.insertionPoint
+        }),
+        nonce: options.nonce,
+        inserted: inserted,
+        registered: {},
+        insert: _insert
+    };
+    cache.sheet.hydrate(nodesToHydrate);
+    return cache;
+};
+;
+}),
+"[project]/Image-Watermarker/node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+var reactIs = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/hoist-non-react-statics/node_modules/react-is/index.js [app-ssr] (ecmascript)");
+/**
+ * Copyright 2015, Yahoo! Inc.
+ * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
+ */ var REACT_STATICS = {
+    childContextTypes: true,
+    contextType: true,
+    contextTypes: true,
+    defaultProps: true,
+    displayName: true,
+    getDefaultProps: true,
+    getDerivedStateFromError: true,
+    getDerivedStateFromProps: true,
+    mixins: true,
+    propTypes: true,
+    type: true
+};
+var KNOWN_STATICS = {
+    name: true,
+    length: true,
+    prototype: true,
+    caller: true,
+    callee: true,
+    arguments: true,
+    arity: true
+};
+var FORWARD_REF_STATICS = {
+    '$$typeof': true,
+    render: true,
+    defaultProps: true,
+    displayName: true,
+    propTypes: true
+};
+var MEMO_STATICS = {
+    '$$typeof': true,
+    compare: true,
+    defaultProps: true,
+    displayName: true,
+    propTypes: true,
+    type: true
+};
+var TYPE_STATICS = {};
+TYPE_STATICS[reactIs.ForwardRef] = FORWARD_REF_STATICS;
+TYPE_STATICS[reactIs.Memo] = MEMO_STATICS;
+function getStatics(component) {
+    // React v16.11 and below
+    if (reactIs.isMemo(component)) {
+        return MEMO_STATICS;
+    } // React v16.12 and above
+    return TYPE_STATICS[component['$$typeof']] || REACT_STATICS;
+}
+var defineProperty = Object.defineProperty;
+var getOwnPropertyNames = Object.getOwnPropertyNames;
+var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+var getPrototypeOf = Object.getPrototypeOf;
+var objectPrototype = Object.prototype;
+function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
+    if (typeof sourceComponent !== 'string') {
+        // don't hoist over string (html) components
+        if (objectPrototype) {
+            var inheritedComponent = getPrototypeOf(sourceComponent);
+            if (inheritedComponent && inheritedComponent !== objectPrototype) {
+                hoistNonReactStatics(targetComponent, inheritedComponent, blacklist);
+            }
+        }
+        var keys = getOwnPropertyNames(sourceComponent);
+        if (getOwnPropertySymbols) {
+            keys = keys.concat(getOwnPropertySymbols(sourceComponent));
+        }
+        var targetStatics = getStatics(targetComponent);
+        var sourceStatics = getStatics(sourceComponent);
+        for(var i = 0; i < keys.length; ++i){
+            var key = keys[i];
+            if (!KNOWN_STATICS[key] && !(blacklist && blacklist[key]) && !(sourceStatics && sourceStatics[key]) && !(targetStatics && targetStatics[key])) {
+                var descriptor = getOwnPropertyDescriptor(sourceComponent, key);
+                try {
+                    // Avoid failures from read-only properties
+                    defineProperty(targetComponent, key, descriptor);
+                } catch (e) {}
+            }
+        }
+    }
+    return targetComponent;
+}
+module.exports = hoistNonReactStatics;
+}),
+"[project]/Image-Watermarker/node_modules/@emotion/react/_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.esm.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>hoistNonReactStatics
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$hoist$2d$non$2d$react$2d$statics$2f$dist$2f$hoist$2d$non$2d$react$2d$statics$2e$cjs$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js [app-ssr] (ecmascript)");
+;
+// this file isolates this package that is not tree-shakeable
+// and if this module doesn't actually contain any logic of its own
+// then Rollup just use 'hoist-non-react-statics' directly in other chunks
+var hoistNonReactStatics = function(targetComponent, sourceComponent) {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$hoist$2d$non$2d$react$2d$statics$2f$dist$2f$hoist$2d$non$2d$react$2d$statics$2e$cjs$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(targetComponent, sourceComponent);
+};
+;
+}),
+"[project]/Image-Watermarker/node_modules/@emotion/react/dist/emotion-element-782f682d.development.esm.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "C",
+    ()=>CacheProvider,
+    "E",
+    ()=>Emotion$1,
+    "T",
+    ()=>ThemeContext,
+    "_",
+    ()=>__unsafe_useEmotionCache,
+    "a",
+    ()=>ThemeProvider,
+    "b",
+    ()=>withTheme,
+    "c",
+    ()=>createEmotionProps,
+    "h",
+    ()=>hasOwn,
+    "i",
+    ()=>isBrowser,
+    "u",
+    ()=>useTheme,
+    "w",
+    ()=>withEmotionCache
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$cache$2f$dist$2f$emotion$2d$cache$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/cache/dist/emotion-cache.development.esm.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$babel$2f$runtime$2f$helpers$2f$esm$2f$extends$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@babel/runtime/helpers/esm/extends.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$weak$2d$memoize$2f$dist$2f$emotion$2d$weak$2d$memoize$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/weak-memoize/dist/emotion-weak-memoize.esm.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$react$2f$_isolated$2d$hnrs$2f$dist$2f$emotion$2d$react$2d$_isolated$2d$hnrs$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/react/_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.esm.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$utils$2f$dist$2f$emotion$2d$utils$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/utils/dist/emotion-utils.esm.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$serialize$2f$dist$2f$emotion$2d$serialize$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/serialize/dist/emotion-serialize.development.esm.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$use$2d$insertion$2d$effect$2d$with$2d$fallbacks$2f$dist$2f$emotion$2d$use$2d$insertion$2d$effect$2d$with$2d$fallbacks$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/use-insertion-effect-with-fallbacks/dist/emotion-use-insertion-effect-with-fallbacks.esm.js [app-ssr] (ecmascript)");
+;
+;
+;
+;
+;
+;
+;
+;
+;
+var isBrowser = typeof document !== 'undefined';
+var EmotionCacheContext = /* #__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createContext"](// because this module is primarily intended for the browser and node
+// but it's also required in react native and similar environments sometimes
+// and we could have a special build just for that
+// but this is much easier and the native packages
+// might use a different theme context in the future anyway
+typeof HTMLElement !== 'undefined' ? /* #__PURE__ */ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$cache$2f$dist$2f$emotion$2d$cache$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])({
+    key: 'css'
+}) : null);
+{
+    EmotionCacheContext.displayName = 'EmotionCacheContext';
+}var CacheProvider = EmotionCacheContext.Provider;
+var __unsafe_useEmotionCache = function useEmotionCache() {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useContext"])(EmotionCacheContext);
+};
+var withEmotionCache = function withEmotionCache(func) {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["forwardRef"])(function(props, ref) {
+        // the cache will never be null in the browser
+        var cache = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useContext"])(EmotionCacheContext);
+        return func(props, cache, ref);
+    });
+};
+if (!isBrowser) {
+    withEmotionCache = function withEmotionCache(func) {
+        return function(props) {
+            var cache = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useContext"])(EmotionCacheContext);
+            if (cache === null) {
+                // yes, we're potentially creating this on every render
+                // it doesn't actually matter though since it's only on the server
+                // so there will only every be a single render
+                // that could change in the future because of suspense and etc. but for now,
+                // this works and i don't want to optimise for a future thing that we aren't sure about
+                cache = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$cache$2f$dist$2f$emotion$2d$cache$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])({
+                    key: 'css'
+                });
+                return /*#__PURE__*/ __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createElement"](EmotionCacheContext.Provider, {
+                    value: cache
+                }, func(props, cache));
+            } else {
+                return func(props, cache);
+            }
+        };
+    };
+}
+var ThemeContext = /* #__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createContext"]({});
+{
+    ThemeContext.displayName = 'EmotionThemeContext';
+}var useTheme = function useTheme() {
+    return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useContext"](ThemeContext);
+};
+var getTheme = function getTheme(outerTheme, theme) {
+    if (typeof theme === 'function') {
+        var mergedTheme = theme(outerTheme);
+        if (mergedTheme == null || typeof mergedTheme !== 'object' || Array.isArray(mergedTheme)) {
+            throw new Error('[ThemeProvider] Please return an object from your theme function, i.e. theme={() => ({})}!');
+        }
+        return mergedTheme;
+    }
+    if (theme == null || typeof theme !== 'object' || Array.isArray(theme)) {
+        throw new Error('[ThemeProvider] Please make your theme prop a plain object');
+    }
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$babel$2f$runtime$2f$helpers$2f$esm$2f$extends$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])({}, outerTheme, theme);
+};
+var createCacheWithTheme = /* #__PURE__ */ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$weak$2d$memoize$2f$dist$2f$emotion$2d$weak$2d$memoize$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(function(outerTheme) {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$weak$2d$memoize$2f$dist$2f$emotion$2d$weak$2d$memoize$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(function(theme) {
+        return getTheme(outerTheme, theme);
+    });
+});
+var ThemeProvider = function ThemeProvider(props) {
+    var theme = __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useContext"](ThemeContext);
+    if (props.theme !== theme) {
+        theme = createCacheWithTheme(theme)(props.theme);
+    }
+    return /*#__PURE__*/ __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createElement"](ThemeContext.Provider, {
+        value: theme
+    }, props.children);
+};
+function withTheme(Component) {
+    var componentName = Component.displayName || Component.name || 'Component';
+    var WithTheme = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["forwardRef"](function render(props, ref) {
+        var theme = __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useContext"](ThemeContext);
+        return /*#__PURE__*/ __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createElement"](Component, (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$babel$2f$runtime$2f$helpers$2f$esm$2f$extends$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])({
+            theme: theme,
+            ref: ref
+        }, props));
+    });
+    WithTheme.displayName = "WithTheme(" + componentName + ")";
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$react$2f$_isolated$2d$hnrs$2f$dist$2f$emotion$2d$react$2d$_isolated$2d$hnrs$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(WithTheme, Component);
+}
+var hasOwn = {}.hasOwnProperty;
+var getLastPart = function getLastPart(functionName) {
+    // The match may be something like 'Object.createEmotionProps' or
+    // 'Loader.prototype.render'
+    var parts = functionName.split('.');
+    return parts[parts.length - 1];
+};
+var getFunctionNameFromStackTraceLine = function getFunctionNameFromStackTraceLine(line) {
+    // V8
+    var match = /^\s+at\s+([A-Za-z0-9$.]+)\s/.exec(line);
+    if (match) return getLastPart(match[1]); // Safari / Firefox
+    match = /^([A-Za-z0-9$.]+)@/.exec(line);
+    if (match) return getLastPart(match[1]);
+    return undefined;
+};
+var internalReactFunctionNames = /* #__PURE__ */ new Set([
+    'renderWithHooks',
+    'processChild',
+    'finishClassComponent',
+    'renderToString'
+]); // These identifiers come from error stacks, so they have to be valid JS
+// identifiers, thus we only need to replace what is a valid character for JS,
+// but not for CSS.
+var sanitizeIdentifier = function sanitizeIdentifier(identifier) {
+    return identifier.replace(/\$/g, '-');
+};
+var getLabelFromStackTrace = function getLabelFromStackTrace(stackTrace) {
+    if (!stackTrace) return undefined;
+    var lines = stackTrace.split('\n');
+    for(var i = 0; i < lines.length; i++){
+        var functionName = getFunctionNameFromStackTraceLine(lines[i]); // The first line of V8 stack traces is just "Error"
+        if (!functionName) continue; // If we reach one of these, we have gone too far and should quit
+        if (internalReactFunctionNames.has(functionName)) break; // The component name is the first function in the stack that starts with an
+        // uppercase letter
+        if (/^[A-Z]/.test(functionName)) return sanitizeIdentifier(functionName);
+    }
+    return undefined;
+};
+var typePropName = '__EMOTION_TYPE_PLEASE_DO_NOT_USE__';
+var labelPropName = '__EMOTION_LABEL_PLEASE_DO_NOT_USE__';
+var createEmotionProps = function createEmotionProps(type, props) {
+    if (typeof props.css === 'string' && // check if there is a css declaration
+    props.css.indexOf(':') !== -1) {
+        throw new Error("Strings are not allowed as css prop values, please wrap it in a css template literal from '@emotion/react' like this: css`" + props.css + "`");
+    }
+    var newProps = {};
+    for(var _key in props){
+        if (hasOwn.call(props, _key)) {
+            newProps[_key] = props[_key];
+        }
+    }
+    newProps[typePropName] = type; // Runtime labeling is an opt-in feature because:
+    // - It causes hydration warnings when using Safari and SSR
+    // - It can degrade performance if there are a huge number of elements
+    //
+    // Even if the flag is set, we still don't compute the label if it has already
+    // been determined by the Babel plugin.
+    if (typeof globalThis !== 'undefined' && !!globalThis.EMOTION_RUNTIME_AUTO_LABEL && !!props.css && (typeof props.css !== 'object' || !('name' in props.css) || typeof props.css.name !== 'string' || props.css.name.indexOf('-') === -1)) {
+        var label = getLabelFromStackTrace(new Error().stack);
+        if (label) newProps[labelPropName] = label;
+    }
+    return newProps;
+};
+var Insertion = function Insertion(_ref) {
+    var cache = _ref.cache, serialized = _ref.serialized, isStringTag = _ref.isStringTag;
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$utils$2f$dist$2f$emotion$2d$utils$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["registerStyles"])(cache, serialized, isStringTag);
+    var rules = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$use$2d$insertion$2d$effect$2d$with$2d$fallbacks$2f$dist$2f$emotion$2d$use$2d$insertion$2d$effect$2d$with$2d$fallbacks$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useInsertionEffectAlwaysWithSyncFallback"])(function() {
+        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$utils$2f$dist$2f$emotion$2d$utils$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["insertStyles"])(cache, serialized, isStringTag);
+    });
+    if (!isBrowser && rules !== undefined) {
+        var _ref2;
+        var serializedNames = serialized.name;
+        var next = serialized.next;
+        while(next !== undefined){
+            serializedNames += ' ' + next.name;
+            next = next.next;
+        }
+        return /*#__PURE__*/ __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createElement"]("style", (_ref2 = {}, _ref2["data-emotion"] = cache.key + " " + serializedNames, _ref2.dangerouslySetInnerHTML = {
+            __html: rules
+        }, _ref2.nonce = cache.sheet.nonce, _ref2));
+    }
+    return null;
+};
+var Emotion = /* #__PURE__ */ withEmotionCache(function(props, cache, ref) {
+    var cssProp = props.css; // so that using `css` from `emotion` and passing the result to the css prop works
+    // not passing the registered cache to serializeStyles because it would
+    // make certain babel optimisations not possible
+    if (typeof cssProp === 'string' && cache.registered[cssProp] !== undefined) {
+        cssProp = cache.registered[cssProp];
+    }
+    var WrappedComponent = props[typePropName];
+    var registeredStyles = [
+        cssProp
+    ];
+    var className = '';
+    if (typeof props.className === 'string') {
+        className = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$utils$2f$dist$2f$emotion$2d$utils$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getRegisteredStyles"])(cache.registered, registeredStyles, props.className);
+    } else if (props.className != null) {
+        className = props.className + " ";
+    }
+    var serialized = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$serialize$2f$dist$2f$emotion$2d$serialize$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["serializeStyles"])(registeredStyles, undefined, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useContext"](ThemeContext));
+    if (serialized.name.indexOf('-') === -1) {
+        var labelFromStack = props[labelPropName];
+        if (labelFromStack) {
+            serialized = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$serialize$2f$dist$2f$emotion$2d$serialize$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["serializeStyles"])([
+                serialized,
+                'label:' + labelFromStack + ';'
+            ]);
+        }
+    }
+    className += cache.key + "-" + serialized.name;
+    var newProps = {};
+    for(var _key2 in props){
+        if (hasOwn.call(props, _key2) && _key2 !== 'css' && _key2 !== typePropName && _key2 !== labelPropName) {
+            newProps[_key2] = props[_key2];
+        }
+    }
+    newProps.className = className;
+    if (ref) {
+        newProps.ref = ref;
+    }
+    return /*#__PURE__*/ __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createElement"](__TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], null, /*#__PURE__*/ __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createElement"](Insertion, {
+        cache: cache,
+        serialized: serialized,
+        isStringTag: typeof WrappedComponent === 'string'
+    }), /*#__PURE__*/ __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createElement"](WrappedComponent, newProps));
+});
+{
+    Emotion.displayName = 'EmotionCssPropInternal';
+}var Emotion$1 = Emotion;
+;
+}),
+"[project]/Image-Watermarker/node_modules/@emotion/react/dist/emotion-element-782f682d.development.esm.js [app-ssr] (ecmascript) <export w as withEmotionCache>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "withEmotionCache",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$react$2f$dist$2f$emotion$2d$element$2d$782f682d$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["w"]
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$react$2f$dist$2f$emotion$2d$element$2d$782f682d$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/react/dist/emotion-element-782f682d.development.esm.js [app-ssr] (ecmascript)");
+}),
+"[project]/Image-Watermarker/node_modules/@emotion/react/dist/emotion-element-782f682d.development.esm.js [app-ssr] (ecmascript) <export T as ThemeContext>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "ThemeContext",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$react$2f$dist$2f$emotion$2d$element$2d$782f682d$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["T"]
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$react$2f$dist$2f$emotion$2d$element$2d$782f682d$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/react/dist/emotion-element-782f682d.development.esm.js [app-ssr] (ecmascript)");
+}),
+"[project]/Image-Watermarker/node_modules/@emotion/react/dist/emotion-react.development.esm.js [app-ssr] (ecmascript) <locals>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "ClassNames",
+    ()=>ClassNames,
+    "Global",
+    ()=>Global,
+    "createElement",
+    ()=>jsx,
+    "css",
+    ()=>css,
+    "jsx",
+    ()=>jsx,
+    "keyframes",
+    ()=>keyframes
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$react$2f$dist$2f$emotion$2d$element$2d$782f682d$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/react/dist/emotion-element-782f682d.development.esm.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$utils$2f$dist$2f$emotion$2d$utils$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/utils/dist/emotion-utils.esm.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$use$2d$insertion$2d$effect$2d$with$2d$fallbacks$2f$dist$2f$emotion$2d$use$2d$insertion$2d$effect$2d$with$2d$fallbacks$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/use-insertion-effect-with-fallbacks/dist/emotion-use-insertion-effect-with-fallbacks.esm.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$serialize$2f$dist$2f$emotion$2d$serialize$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/serialize/dist/emotion-serialize.development.esm.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$cache$2f$dist$2f$emotion$2d$cache$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/cache/dist/emotion-cache.development.esm.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$babel$2f$runtime$2f$helpers$2f$extends$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@babel/runtime/helpers/extends.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$weak$2d$memoize$2f$dist$2f$emotion$2d$weak$2d$memoize$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/weak-memoize/dist/emotion-weak-memoize.esm.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$hoist$2d$non$2d$react$2d$statics$2f$dist$2f$hoist$2d$non$2d$react$2d$statics$2e$cjs$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js [app-ssr] (ecmascript)");
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+var isDevelopment = true;
+var pkg = {
+    name: "@emotion/react",
+    version: "11.14.0",
+    main: "dist/emotion-react.cjs.js",
+    module: "dist/emotion-react.esm.js",
+    types: "dist/emotion-react.cjs.d.ts",
+    exports: {
+        ".": {
+            types: {
+                "import": "./dist/emotion-react.cjs.mjs",
+                "default": "./dist/emotion-react.cjs.js"
+            },
+            development: {
+                "edge-light": {
+                    module: "./dist/emotion-react.development.edge-light.esm.js",
+                    "import": "./dist/emotion-react.development.edge-light.cjs.mjs",
+                    "default": "./dist/emotion-react.development.edge-light.cjs.js"
+                },
+                worker: {
+                    module: "./dist/emotion-react.development.edge-light.esm.js",
+                    "import": "./dist/emotion-react.development.edge-light.cjs.mjs",
+                    "default": "./dist/emotion-react.development.edge-light.cjs.js"
+                },
+                workerd: {
+                    module: "./dist/emotion-react.development.edge-light.esm.js",
+                    "import": "./dist/emotion-react.development.edge-light.cjs.mjs",
+                    "default": "./dist/emotion-react.development.edge-light.cjs.js"
+                },
+                browser: {
+                    module: "./dist/emotion-react.browser.development.esm.js",
+                    "import": "./dist/emotion-react.browser.development.cjs.mjs",
+                    "default": "./dist/emotion-react.browser.development.cjs.js"
+                },
+                module: "./dist/emotion-react.development.esm.js",
+                "import": "./dist/emotion-react.development.cjs.mjs",
+                "default": "./dist/emotion-react.development.cjs.js"
+            },
+            "edge-light": {
+                module: "./dist/emotion-react.edge-light.esm.js",
+                "import": "./dist/emotion-react.edge-light.cjs.mjs",
+                "default": "./dist/emotion-react.edge-light.cjs.js"
+            },
+            worker: {
+                module: "./dist/emotion-react.edge-light.esm.js",
+                "import": "./dist/emotion-react.edge-light.cjs.mjs",
+                "default": "./dist/emotion-react.edge-light.cjs.js"
+            },
+            workerd: {
+                module: "./dist/emotion-react.edge-light.esm.js",
+                "import": "./dist/emotion-react.edge-light.cjs.mjs",
+                "default": "./dist/emotion-react.edge-light.cjs.js"
+            },
+            browser: {
+                module: "./dist/emotion-react.browser.esm.js",
+                "import": "./dist/emotion-react.browser.cjs.mjs",
+                "default": "./dist/emotion-react.browser.cjs.js"
+            },
+            module: "./dist/emotion-react.esm.js",
+            "import": "./dist/emotion-react.cjs.mjs",
+            "default": "./dist/emotion-react.cjs.js"
+        },
+        "./jsx-runtime": {
+            types: {
+                "import": "./jsx-runtime/dist/emotion-react-jsx-runtime.cjs.mjs",
+                "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.cjs.js"
+            },
+            development: {
+                "edge-light": {
+                    module: "./jsx-runtime/dist/emotion-react-jsx-runtime.development.edge-light.esm.js",
+                    "import": "./jsx-runtime/dist/emotion-react-jsx-runtime.development.edge-light.cjs.mjs",
+                    "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.development.edge-light.cjs.js"
+                },
+                worker: {
+                    module: "./jsx-runtime/dist/emotion-react-jsx-runtime.development.edge-light.esm.js",
+                    "import": "./jsx-runtime/dist/emotion-react-jsx-runtime.development.edge-light.cjs.mjs",
+                    "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.development.edge-light.cjs.js"
+                },
+                workerd: {
+                    module: "./jsx-runtime/dist/emotion-react-jsx-runtime.development.edge-light.esm.js",
+                    "import": "./jsx-runtime/dist/emotion-react-jsx-runtime.development.edge-light.cjs.mjs",
+                    "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.development.edge-light.cjs.js"
+                },
+                browser: {
+                    module: "./jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js",
+                    "import": "./jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.cjs.mjs",
+                    "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.cjs.js"
+                },
+                module: "./jsx-runtime/dist/emotion-react-jsx-runtime.development.esm.js",
+                "import": "./jsx-runtime/dist/emotion-react-jsx-runtime.development.cjs.mjs",
+                "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.development.cjs.js"
+            },
+            "edge-light": {
+                module: "./jsx-runtime/dist/emotion-react-jsx-runtime.edge-light.esm.js",
+                "import": "./jsx-runtime/dist/emotion-react-jsx-runtime.edge-light.cjs.mjs",
+                "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.edge-light.cjs.js"
+            },
+            worker: {
+                module: "./jsx-runtime/dist/emotion-react-jsx-runtime.edge-light.esm.js",
+                "import": "./jsx-runtime/dist/emotion-react-jsx-runtime.edge-light.cjs.mjs",
+                "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.edge-light.cjs.js"
+            },
+            workerd: {
+                module: "./jsx-runtime/dist/emotion-react-jsx-runtime.edge-light.esm.js",
+                "import": "./jsx-runtime/dist/emotion-react-jsx-runtime.edge-light.cjs.mjs",
+                "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.edge-light.cjs.js"
+            },
+            browser: {
+                module: "./jsx-runtime/dist/emotion-react-jsx-runtime.browser.esm.js",
+                "import": "./jsx-runtime/dist/emotion-react-jsx-runtime.browser.cjs.mjs",
+                "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.browser.cjs.js"
+            },
+            module: "./jsx-runtime/dist/emotion-react-jsx-runtime.esm.js",
+            "import": "./jsx-runtime/dist/emotion-react-jsx-runtime.cjs.mjs",
+            "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.cjs.js"
+        },
+        "./_isolated-hnrs": {
+            types: {
+                "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.mjs",
+                "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.js"
+            },
+            development: {
+                "edge-light": {
+                    module: "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.edge-light.esm.js",
+                    "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.edge-light.cjs.mjs",
+                    "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.edge-light.cjs.js"
+                },
+                worker: {
+                    module: "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.edge-light.esm.js",
+                    "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.edge-light.cjs.mjs",
+                    "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.edge-light.cjs.js"
+                },
+                workerd: {
+                    module: "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.edge-light.esm.js",
+                    "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.edge-light.cjs.mjs",
+                    "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.edge-light.cjs.js"
+                },
+                browser: {
+                    module: "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.development.esm.js",
+                    "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.development.cjs.mjs",
+                    "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.development.cjs.js"
+                },
+                module: "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.esm.js",
+                "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.cjs.mjs",
+                "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.cjs.js"
+            },
+            "edge-light": {
+                module: "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.edge-light.esm.js",
+                "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.edge-light.cjs.mjs",
+                "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.edge-light.cjs.js"
+            },
+            worker: {
+                module: "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.edge-light.esm.js",
+                "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.edge-light.cjs.mjs",
+                "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.edge-light.cjs.js"
+            },
+            workerd: {
+                module: "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.edge-light.esm.js",
+                "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.edge-light.cjs.mjs",
+                "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.edge-light.cjs.js"
+            },
+            browser: {
+                module: "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.esm.js",
+                "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.cjs.mjs",
+                "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.cjs.js"
+            },
+            module: "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.esm.js",
+            "import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.mjs",
+            "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.js"
+        },
+        "./jsx-dev-runtime": {
+            types: {
+                "import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.mjs",
+                "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.js"
+            },
+            development: {
+                "edge-light": {
+                    module: "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.edge-light.esm.js",
+                    "import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.edge-light.cjs.mjs",
+                    "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.edge-light.cjs.js"
+                },
+                worker: {
+                    module: "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.edge-light.esm.js",
+                    "import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.edge-light.cjs.mjs",
+                    "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.edge-light.cjs.js"
+                },
+                workerd: {
+                    module: "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.edge-light.esm.js",
+                    "import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.edge-light.cjs.mjs",
+                    "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.edge-light.cjs.js"
+                },
+                browser: {
+                    module: "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.development.esm.js",
+                    "import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.development.cjs.mjs",
+                    "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.development.cjs.js"
+                },
+                module: "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.esm.js",
+                "import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.cjs.mjs",
+                "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.cjs.js"
+            },
+            "edge-light": {
+                module: "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.edge-light.esm.js",
+                "import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.edge-light.cjs.mjs",
+                "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.edge-light.cjs.js"
+            },
+            worker: {
+                module: "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.edge-light.esm.js",
+                "import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.edge-light.cjs.mjs",
+                "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.edge-light.cjs.js"
+            },
+            workerd: {
+                module: "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.edge-light.esm.js",
+                "import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.edge-light.cjs.mjs",
+                "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.edge-light.cjs.js"
+            },
+            browser: {
+                module: "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.esm.js",
+                "import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.cjs.mjs",
+                "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.cjs.js"
+            },
+            module: "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.esm.js",
+            "import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.mjs",
+            "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.js"
+        },
+        "./package.json": "./package.json",
+        "./types/css-prop": "./types/css-prop.d.ts",
+        "./macro": {
+            types: {
+                "import": "./macro.d.mts",
+                "default": "./macro.d.ts"
+            },
+            "default": "./macro.js"
+        }
+    },
+    imports: {
+        "#is-development": {
+            development: "./src/conditions/true.ts",
+            "default": "./src/conditions/false.ts"
+        },
+        "#is-browser": {
+            "edge-light": "./src/conditions/false.ts",
+            workerd: "./src/conditions/false.ts",
+            worker: "./src/conditions/false.ts",
+            browser: "./src/conditions/true.ts",
+            "default": "./src/conditions/is-browser.ts"
+        }
+    },
+    files: [
+        "src",
+        "dist",
+        "jsx-runtime",
+        "jsx-dev-runtime",
+        "_isolated-hnrs",
+        "types/css-prop.d.ts",
+        "macro.*"
+    ],
+    sideEffects: false,
+    author: "Emotion Contributors",
+    license: "MIT",
+    scripts: {
+        "test:typescript": "dtslint types"
+    },
+    dependencies: {
+        "@babel/runtime": "^7.18.3",
+        "@emotion/babel-plugin": "^11.13.5",
+        "@emotion/cache": "^11.14.0",
+        "@emotion/serialize": "^1.3.3",
+        "@emotion/use-insertion-effect-with-fallbacks": "^1.2.0",
+        "@emotion/utils": "^1.4.2",
+        "@emotion/weak-memoize": "^0.4.0",
+        "hoist-non-react-statics": "^3.3.1"
+    },
+    peerDependencies: {
+        react: ">=16.8.0"
+    },
+    peerDependenciesMeta: {
+        "@types/react": {
+            optional: true
+        }
+    },
+    devDependencies: {
+        "@definitelytyped/dtslint": "0.0.112",
+        "@emotion/css": "11.13.5",
+        "@emotion/css-prettifier": "1.2.0",
+        "@emotion/server": "11.11.0",
+        "@emotion/styled": "11.14.0",
+        "@types/hoist-non-react-statics": "^3.3.5",
+        "html-tag-names": "^1.1.2",
+        react: "16.14.0",
+        "svg-tag-names": "^1.1.1",
+        typescript: "^5.4.5"
+    },
+    repository: "https://github.com/emotion-js/emotion/tree/main/packages/react",
+    publishConfig: {
+        access: "public"
+    },
+    "umd:main": "dist/emotion-react.umd.min.js",
+    preconstruct: {
+        entrypoints: [
+            "./index.ts",
+            "./jsx-runtime.ts",
+            "./jsx-dev-runtime.ts",
+            "./_isolated-hnrs.ts"
+        ],
+        umdName: "emotionReact",
+        exports: {
+            extra: {
+                "./types/css-prop": "./types/css-prop.d.ts",
+                "./macro": {
+                    types: {
+                        "import": "./macro.d.mts",
+                        "default": "./macro.d.ts"
+                    },
+                    "default": "./macro.js"
+                }
+            }
+        }
+    }
+};
+var jsx = function jsx(type, props) {
+    // eslint-disable-next-line prefer-rest-params
+    var args = arguments;
+    if (props == null || !__TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$react$2f$dist$2f$emotion$2d$element$2d$782f682d$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["h"].call(props, 'css')) {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createElement"].apply(undefined, args);
+    }
+    var argsLength = args.length;
+    var createElementArgArray = new Array(argsLength);
+    createElementArgArray[0] = __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$react$2f$dist$2f$emotion$2d$element$2d$782f682d$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["E"];
+    createElementArgArray[1] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$react$2f$dist$2f$emotion$2d$element$2d$782f682d$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["c"])(type, props);
+    for(var i = 2; i < argsLength; i++){
+        createElementArgArray[i] = args[i];
+    }
+    return __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createElement"].apply(null, createElementArgArray);
+};
+(function(_jsx) {
+    var JSX;
+    (function(_JSX) {})(JSX || (JSX = _jsx.JSX || (_jsx.JSX = {})));
+})(jsx || (jsx = {}));
+var warnedAboutCssPropForGlobal = false; // maintain place over rerenders.
+// initial render from browser, insertBefore context.sheet.tags[0] or if a style hasn't been inserted there yet, appendChild
+// initial client-side render from SSR, use place of hydrating tag
+var Global = /* #__PURE__ */ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$react$2f$dist$2f$emotion$2d$element$2d$782f682d$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["w"])(function(props, cache) {
+    if (!warnedAboutCssPropForGlobal && (// probably using the custom createElement which
+    // means it will be turned into a className prop
+    // I don't really want to add it to the type since it shouldn't be used
+    'className' in props && props.className || 'css' in props && props.css)) {
+        console.error("It looks like you're using the css prop on Global, did you mean to use the styles prop instead?");
+        warnedAboutCssPropForGlobal = true;
+    }
+    var styles = props.styles;
+    var serialized = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$serialize$2f$dist$2f$emotion$2d$serialize$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["serializeStyles"])([
+        styles
+    ], undefined, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useContext"](__TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$react$2f$dist$2f$emotion$2d$element$2d$782f682d$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["T"]));
+    if (!__TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$react$2f$dist$2f$emotion$2d$element$2d$782f682d$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["i"]) {
+        var _ref;
+        var serializedNames = serialized.name;
+        var serializedStyles = serialized.styles;
+        var next = serialized.next;
+        while(next !== undefined){
+            serializedNames += ' ' + next.name;
+            serializedStyles += next.styles;
+            next = next.next;
+        }
+        var shouldCache = cache.compat === true;
+        var rules = cache.insert("", {
+            name: serializedNames,
+            styles: serializedStyles
+        }, cache.sheet, shouldCache);
+        if (shouldCache) {
+            return null;
+        }
+        return /*#__PURE__*/ __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createElement"]("style", (_ref = {}, _ref["data-emotion"] = cache.key + "-global " + serializedNames, _ref.dangerouslySetInnerHTML = {
+            __html: rules
+        }, _ref.nonce = cache.sheet.nonce, _ref));
+    } // yes, i know these hooks are used conditionally
+    // but it is based on a constant that will never change at runtime
+    // it's effectively like having two implementations and switching them out
+    // so it's not actually breaking anything
+    var sheetRef = __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"]();
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$use$2d$insertion$2d$effect$2d$with$2d$fallbacks$2f$dist$2f$emotion$2d$use$2d$insertion$2d$effect$2d$with$2d$fallbacks$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useInsertionEffectWithLayoutFallback"])(function() {
+        var key = cache.key + "-global"; // use case of https://github.com/emotion-js/emotion/issues/2675
+        var sheet = new cache.sheet.constructor({
+            key: key,
+            nonce: cache.sheet.nonce,
+            container: cache.sheet.container,
+            speedy: cache.sheet.isSpeedy
+        });
+        var rehydrating = false;
+        var node = document.querySelector("style[data-emotion=\"" + key + " " + serialized.name + "\"]");
+        if (cache.sheet.tags.length) {
+            sheet.before = cache.sheet.tags[0];
+        }
+        if (node !== null) {
+            rehydrating = true; // clear the hash so this node won't be recognizable as rehydratable by other <Global/>s
+            node.setAttribute('data-emotion', key);
+            sheet.hydrate([
+                node
+            ]);
+        }
+        sheetRef.current = [
+            sheet,
+            rehydrating
+        ];
+        return function() {
+            sheet.flush();
+        };
+    }, [
+        cache
+    ]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$use$2d$insertion$2d$effect$2d$with$2d$fallbacks$2f$dist$2f$emotion$2d$use$2d$insertion$2d$effect$2d$with$2d$fallbacks$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useInsertionEffectWithLayoutFallback"])(function() {
+        var sheetRefCurrent = sheetRef.current;
+        var sheet = sheetRefCurrent[0], rehydrating = sheetRefCurrent[1];
+        if (rehydrating) {
+            sheetRefCurrent[1] = false;
+            return;
+        }
+        if (serialized.next !== undefined) {
+            // insert keyframes
+            (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$utils$2f$dist$2f$emotion$2d$utils$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["insertStyles"])(cache, serialized.next, true);
+        }
+        if (sheet.tags.length) {
+            // if this doesn't exist then it will be null so the style element will be appended
+            var element = sheet.tags[sheet.tags.length - 1].nextElementSibling;
+            sheet.before = element;
+            sheet.flush();
+        }
+        cache.insert("", serialized, sheet, false);
+    }, [
+        cache,
+        serialized.name
+    ]);
+    return null;
+});
+{
+    Global.displayName = 'EmotionGlobal';
+}function css() {
+    for(var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++){
+        args[_key] = arguments[_key];
+    }
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$serialize$2f$dist$2f$emotion$2d$serialize$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["serializeStyles"])(args);
+}
+function keyframes() {
+    var insertable = css.apply(void 0, arguments);
+    var name = "animation-" + insertable.name;
+    return {
+        name: name,
+        styles: "@keyframes " + name + "{" + insertable.styles + "}",
+        anim: 1,
+        toString: function toString() {
+            return "_EMO_" + this.name + "_" + this.styles + "_EMO_";
+        }
+    };
+}
+var classnames = function classnames(args) {
+    var len = args.length;
+    var i = 0;
+    var cls = '';
+    for(; i < len; i++){
+        var arg = args[i];
+        if (arg == null) continue;
+        var toAdd = void 0;
+        switch(typeof arg){
+            case 'boolean':
+                break;
+            case 'object':
+                {
+                    if (Array.isArray(arg)) {
+                        toAdd = classnames(arg);
+                    } else {
+                        if (arg.styles !== undefined && arg.name !== undefined) {
+                            console.error('You have passed styles created with `css` from `@emotion/react` package to the `cx`.\n' + '`cx` is meant to compose class names (strings) so you should convert those styles to a class name by passing them to the `css` received from <ClassNames/> component.');
+                        }
+                        toAdd = '';
+                        for(var k in arg){
+                            if (arg[k] && k) {
+                                toAdd && (toAdd += ' ');
+                                toAdd += k;
+                            }
+                        }
+                    }
+                    break;
+                }
+            default:
+                {
+                    toAdd = arg;
+                }
+        }
+        if (toAdd) {
+            cls && (cls += ' ');
+            cls += toAdd;
+        }
+    }
+    return cls;
+};
+function merge(registered, css, className) {
+    var registeredStyles = [];
+    var rawClassName = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$utils$2f$dist$2f$emotion$2d$utils$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getRegisteredStyles"])(registered, registeredStyles, className);
+    if (registeredStyles.length < 2) {
+        return className;
+    }
+    return rawClassName + css(registeredStyles);
+}
+var Insertion = function Insertion(_ref) {
+    var cache = _ref.cache, serializedArr = _ref.serializedArr;
+    var rules = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$use$2d$insertion$2d$effect$2d$with$2d$fallbacks$2f$dist$2f$emotion$2d$use$2d$insertion$2d$effect$2d$with$2d$fallbacks$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useInsertionEffectAlwaysWithSyncFallback"])(function() {
+        var rules = '';
+        for(var i = 0; i < serializedArr.length; i++){
+            var res = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$utils$2f$dist$2f$emotion$2d$utils$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["insertStyles"])(cache, serializedArr[i], false);
+            if (!__TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$react$2f$dist$2f$emotion$2d$element$2d$782f682d$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["i"] && res !== undefined) {
+                rules += res;
+            }
+        }
+        if (!__TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$react$2f$dist$2f$emotion$2d$element$2d$782f682d$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["i"]) {
+            return rules;
+        }
+    });
+    if (!__TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$react$2f$dist$2f$emotion$2d$element$2d$782f682d$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["i"] && rules.length !== 0) {
+        var _ref2;
+        return /*#__PURE__*/ __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createElement"]("style", (_ref2 = {}, _ref2["data-emotion"] = cache.key + " " + serializedArr.map(function(serialized) {
+            return serialized.name;
+        }).join(' '), _ref2.dangerouslySetInnerHTML = {
+            __html: rules
+        }, _ref2.nonce = cache.sheet.nonce, _ref2));
+    }
+    return null;
+};
+var ClassNames = /* #__PURE__ */ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$react$2f$dist$2f$emotion$2d$element$2d$782f682d$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["w"])(function(props, cache) {
+    var hasRendered = false;
+    var serializedArr = [];
+    var css = function css() {
+        if (hasRendered && isDevelopment) {
+            throw new Error('css can only be used during render');
+        }
+        for(var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++){
+            args[_key] = arguments[_key];
+        }
+        var serialized = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$serialize$2f$dist$2f$emotion$2d$serialize$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["serializeStyles"])(args, cache.registered);
+        serializedArr.push(serialized); // registration has to happen here as the result of this might get consumed by `cx`
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$utils$2f$dist$2f$emotion$2d$utils$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["registerStyles"])(cache, serialized, false);
+        return cache.key + "-" + serialized.name;
+    };
+    var cx = function cx() {
+        if (hasRendered && isDevelopment) {
+            throw new Error('cx can only be used during render');
+        }
+        for(var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++){
+            args[_key2] = arguments[_key2];
+        }
+        return merge(cache.registered, css, classnames(args));
+    };
+    var content = {
+        css: css,
+        cx: cx,
+        theme: __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useContext"](__TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$react$2f$dist$2f$emotion$2d$element$2d$782f682d$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["T"])
+    };
+    var ele = props.children(content);
+    hasRendered = true;
+    return /*#__PURE__*/ __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createElement"](__TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], null, /*#__PURE__*/ __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createElement"](Insertion, {
+        cache: cache,
+        serializedArr: serializedArr
+    }), ele);
+});
+{
+    ClassNames.displayName = 'EmotionClassNames';
+}{
+    var isBrowser = typeof document !== 'undefined'; // #1727, #2905 for some reason Jest and Vitest evaluate modules twice if some consuming module gets mocked
+    var isTestEnv = typeof jest !== 'undefined' || typeof vi !== 'undefined';
+    if (isBrowser && !isTestEnv) {
+        // globalThis has wide browser support - https://caniuse.com/?search=globalThis, Node.js 12 and later
+        var globalContext = typeof globalThis !== 'undefined' ? globalThis // eslint-disable-line no-undef
+         : isBrowser ? window : /*TURBOPACK member replacement*/ __turbopack_context__.g;
+        var globalKey = "__EMOTION_REACT_" + pkg.version.split('.')[0] + "__";
+        if (globalContext[globalKey]) {
+            console.warn('You are loading @emotion/react when it is already loaded. Running ' + 'multiple instances may cause problems. This can happen if multiple ' + 'versions are used, or if multiple builds of the same version are ' + 'used.');
+        }
+        globalContext[globalKey] = true;
+    }
+};
+}),
+"[project]/Image-Watermarker/node_modules/@emotion/utils/dist/emotion-utils.esm.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "getRegisteredStyles",
+    ()=>getRegisteredStyles,
+    "insertStyles",
+    ()=>insertStyles,
+    "registerStyles",
+    ()=>registerStyles
+]);
+var isBrowser = typeof document !== 'undefined';
+function getRegisteredStyles(registered, registeredStyles, classNames) {
+    var rawClassName = '';
+    classNames.split(' ').forEach(function(className) {
+        if (registered[className] !== undefined) {
+            registeredStyles.push(registered[className] + ";");
+        } else if (className) {
+            rawClassName += className + " ";
+        }
+    });
+    return rawClassName;
+}
+var registerStyles = function registerStyles(cache, serialized, isStringTag) {
+    var className = cache.key + "-" + serialized.name;
+    if (// class name could be used further down
+    // the tree but if it's a string tag, we know it won't
+    // so we don't have to add it to registered cache.
+    // this improves memory usage since we can avoid storing the whole style string
+    (isStringTag === false || // we need to always store it if we're in compat mode and
+    // in node since emotion-server relies on whether a style is in
+    // the registered cache to know whether a style is global or not
+    // also, note that this check will be dead code eliminated in the browser
+    isBrowser === false && cache.compat !== undefined) && cache.registered[className] === undefined) {
+        cache.registered[className] = serialized.styles;
+    }
+};
+var insertStyles = function insertStyles(cache, serialized, isStringTag) {
+    registerStyles(cache, serialized, isStringTag);
+    var className = cache.key + "-" + serialized.name;
+    if (cache.inserted[serialized.name] === undefined) {
+        var stylesForSSR = '';
+        var current = serialized;
+        do {
+            var maybeStyles = cache.insert(serialized === current ? "." + className : '', current, cache.sheet, true);
+            if (!isBrowser && maybeStyles !== undefined) {
+                stylesForSSR += maybeStyles;
+            }
+            current = current.next;
+        }while (current !== undefined)
+        if (!isBrowser && stylesForSSR.length !== 0) {
+            return stylesForSSR;
+        }
+    }
+};
+;
+}),
+"[project]/Image-Watermarker/node_modules/@emotion/hash/dist/emotion-hash.esm.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+/* eslint-disable */ // Inspired by https://github.com/garycourt/murmurhash-js
+// Ported from https://github.com/aappleby/smhasher/blob/61a0530f28277f2e850bfc39600ce61d02b518de/src/MurmurHash2.cpp#L37-L86
+__turbopack_context__.s([
+    "default",
+    ()=>murmur2
+]);
+function murmur2(str) {
+    // 'm' and 'r' are mixing constants generated offline.
+    // They're not really 'magic', they just happen to work well.
+    // const m = 0x5bd1e995;
+    // const r = 24;
+    // Initialize the hash
+    var h = 0; // Mix 4 bytes at a time into the hash
+    var k, i = 0, len = str.length;
+    for(; len >= 4; ++i, len -= 4){
+        k = str.charCodeAt(i) & 0xff | (str.charCodeAt(++i) & 0xff) << 8 | (str.charCodeAt(++i) & 0xff) << 16 | (str.charCodeAt(++i) & 0xff) << 24;
+        k = /* Math.imul(k, m): */ (k & 0xffff) * 0x5bd1e995 + ((k >>> 16) * 0xe995 << 16);
+        k ^= /* k >>> r: */ k >>> 24;
+        h = /* Math.imul(k, m): */ (k & 0xffff) * 0x5bd1e995 + ((k >>> 16) * 0xe995 << 16) ^ /* Math.imul(h, m): */ (h & 0xffff) * 0x5bd1e995 + ((h >>> 16) * 0xe995 << 16);
+    } // Handle the last few bytes of the input array
+    switch(len){
+        case 3:
+            h ^= (str.charCodeAt(i + 2) & 0xff) << 16;
+        case 2:
+            h ^= (str.charCodeAt(i + 1) & 0xff) << 8;
+        case 1:
+            h ^= str.charCodeAt(i) & 0xff;
+            h = /* Math.imul(h, m): */ (h & 0xffff) * 0x5bd1e995 + ((h >>> 16) * 0xe995 << 16);
+    } // Do a few final mixes of the hash to ensure the last few
+    // bytes are well-incorporated.
+    h ^= h >>> 13;
+    h = /* Math.imul(h, m): */ (h & 0xffff) * 0x5bd1e995 + ((h >>> 16) * 0xe995 << 16);
+    return ((h ^ h >>> 15) >>> 0).toString(36);
+}
+;
+}),
+"[project]/Image-Watermarker/node_modules/@emotion/unitless/dist/emotion-unitless.esm.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>unitlessKeys
+]);
+var unitlessKeys = {
+    animationIterationCount: 1,
+    aspectRatio: 1,
+    borderImageOutset: 1,
+    borderImageSlice: 1,
+    borderImageWidth: 1,
+    boxFlex: 1,
+    boxFlexGroup: 1,
+    boxOrdinalGroup: 1,
+    columnCount: 1,
+    columns: 1,
+    flex: 1,
+    flexGrow: 1,
+    flexPositive: 1,
+    flexShrink: 1,
+    flexNegative: 1,
+    flexOrder: 1,
+    gridRow: 1,
+    gridRowEnd: 1,
+    gridRowSpan: 1,
+    gridRowStart: 1,
+    gridColumn: 1,
+    gridColumnEnd: 1,
+    gridColumnSpan: 1,
+    gridColumnStart: 1,
+    msGridRow: 1,
+    msGridRowSpan: 1,
+    msGridColumn: 1,
+    msGridColumnSpan: 1,
+    fontWeight: 1,
+    lineHeight: 1,
+    opacity: 1,
+    order: 1,
+    orphans: 1,
+    scale: 1,
+    tabSize: 1,
+    widows: 1,
+    zIndex: 1,
+    zoom: 1,
+    WebkitLineClamp: 1,
+    // SVG-related properties
+    fillOpacity: 1,
+    floodOpacity: 1,
+    stopOpacity: 1,
+    strokeDasharray: 1,
+    strokeDashoffset: 1,
+    strokeMiterlimit: 1,
+    strokeOpacity: 1,
+    strokeWidth: 1
+};
+;
+}),
+"[project]/Image-Watermarker/node_modules/@emotion/serialize/dist/emotion-serialize.development.esm.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "serializeStyles",
+    ()=>serializeStyles
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$hash$2f$dist$2f$emotion$2d$hash$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/hash/dist/emotion-hash.esm.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$unitless$2f$dist$2f$emotion$2d$unitless$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/unitless/dist/emotion-unitless.esm.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$memoize$2f$dist$2f$emotion$2d$memoize$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/memoize/dist/emotion-memoize.esm.js [app-ssr] (ecmascript)");
+;
+;
+;
+var isDevelopment = true;
+var ILLEGAL_ESCAPE_SEQUENCE_ERROR = "You have illegal escape sequence in your template literal, most likely inside content's property value.\nBecause you write your CSS inside a JavaScript string you actually have to do double escaping, so for example \"content: '\\00d7';\" should become \"content: '\\\\00d7';\".\nYou can read more about this here:\nhttps://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#ES2018_revision_of_illegal_escape_sequences";
+var UNDEFINED_AS_OBJECT_KEY_ERROR = "You have passed in falsy value as style object's key (can happen when in example you pass unexported component as computed key).";
+var hyphenateRegex = /[A-Z]|^ms/g;
+var animationRegex = /_EMO_([^_]+?)_([^]*?)_EMO_/g;
+var isCustomProperty = function isCustomProperty(property) {
+    return property.charCodeAt(1) === 45;
+};
+var isProcessableValue = function isProcessableValue(value) {
+    return value != null && typeof value !== 'boolean';
+};
+var processStyleName = /* #__PURE__ */ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$memoize$2f$dist$2f$emotion$2d$memoize$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(function(styleName) {
+    return isCustomProperty(styleName) ? styleName : styleName.replace(hyphenateRegex, '-$&').toLowerCase();
+});
+var processStyleValue = function processStyleValue(key, value) {
+    switch(key){
+        case 'animation':
+        case 'animationName':
+            {
+                if (typeof value === 'string') {
+                    return value.replace(animationRegex, function(match, p1, p2) {
+                        cursor = {
+                            name: p1,
+                            styles: p2,
+                            next: cursor
+                        };
+                        return p1;
+                    });
+                }
+            }
+    }
+    if (__TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$unitless$2f$dist$2f$emotion$2d$unitless$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"][key] !== 1 && !isCustomProperty(key) && typeof value === 'number' && value !== 0) {
+        return value + 'px';
+    }
+    return value;
+};
+{
+    var contentValuePattern = /(var|attr|counters?|url|element|(((repeating-)?(linear|radial))|conic)-gradient)\(|(no-)?(open|close)-quote/;
+    var contentValues = [
+        'normal',
+        'none',
+        'initial',
+        'inherit',
+        'unset'
+    ];
+    var oldProcessStyleValue = processStyleValue;
+    var msPattern = /^-ms-/;
+    var hyphenPattern = /-(.)/g;
+    var hyphenatedCache = {};
+    processStyleValue = function processStyleValue(key, value) {
+        if (key === 'content') {
+            if (typeof value !== 'string' || contentValues.indexOf(value) === -1 && !contentValuePattern.test(value) && (value.charAt(0) !== value.charAt(value.length - 1) || value.charAt(0) !== '"' && value.charAt(0) !== "'")) {
+                throw new Error("You seem to be using a value for 'content' without quotes, try replacing it with `content: '\"" + value + "\"'`");
+            }
+        }
+        var processed = oldProcessStyleValue(key, value);
+        if (processed !== '' && !isCustomProperty(key) && key.indexOf('-') !== -1 && hyphenatedCache[key] === undefined) {
+            hyphenatedCache[key] = true;
+            console.error("Using kebab-case for css properties in objects is not supported. Did you mean " + key.replace(msPattern, 'ms-').replace(hyphenPattern, function(str, _char) {
+                return _char.toUpperCase();
+            }) + "?");
+        }
+        return processed;
+    };
+}var noComponentSelectorMessage = 'Component selectors can only be used in conjunction with ' + '@emotion/babel-plugin, the swc Emotion plugin, or another Emotion-aware ' + 'compiler transform.';
+function handleInterpolation(mergedProps, registered, interpolation) {
+    if (interpolation == null) {
+        return '';
+    }
+    var componentSelector = interpolation;
+    if (componentSelector.__emotion_styles !== undefined) {
+        if (String(componentSelector) === 'NO_COMPONENT_SELECTOR') {
+            throw new Error(noComponentSelectorMessage);
+        }
+        return componentSelector;
+    }
+    switch(typeof interpolation){
+        case 'boolean':
+            {
+                return '';
+            }
+        case 'object':
+            {
+                var keyframes = interpolation;
+                if (keyframes.anim === 1) {
+                    cursor = {
+                        name: keyframes.name,
+                        styles: keyframes.styles,
+                        next: cursor
+                    };
+                    return keyframes.name;
+                }
+                var serializedStyles = interpolation;
+                if (serializedStyles.styles !== undefined) {
+                    var next = serializedStyles.next;
+                    if (next !== undefined) {
+                        // not the most efficient thing ever but this is a pretty rare case
+                        // and there will be very few iterations of this generally
+                        while(next !== undefined){
+                            cursor = {
+                                name: next.name,
+                                styles: next.styles,
+                                next: cursor
+                            };
+                            next = next.next;
+                        }
+                    }
+                    var styles = serializedStyles.styles + ";";
+                    return styles;
+                }
+                return createStringFromObject(mergedProps, registered, interpolation);
+            }
+        case 'function':
+            {
+                if (mergedProps !== undefined) {
+                    var previousCursor = cursor;
+                    var result = interpolation(mergedProps);
+                    cursor = previousCursor;
+                    return handleInterpolation(mergedProps, registered, result);
+                } else {
+                    console.error('Functions that are interpolated in css calls will be stringified.\n' + 'If you want to have a css call based on props, create a function that returns a css call like this\n' + 'let dynamicStyle = (props) => css`color: ${props.color}`\n' + 'It can be called directly with props or interpolated in a styled call like this\n' + "let SomeComponent = styled('div')`${dynamicStyle}`");
+                }
+                break;
+            }
+        case 'string':
+            {
+                var matched = [];
+                var replaced = interpolation.replace(animationRegex, function(_match, _p1, p2) {
+                    var fakeVarName = "animation" + matched.length;
+                    matched.push("const " + fakeVarName + " = keyframes`" + p2.replace(/^@keyframes animation-\w+/, '') + "`");
+                    return "${" + fakeVarName + "}";
+                });
+                if (matched.length) {
+                    console.error("`keyframes` output got interpolated into plain string, please wrap it with `css`.\n\nInstead of doing this:\n\n" + [].concat(matched, [
+                        "`" + replaced + "`"
+                    ]).join('\n') + "\n\nYou should wrap it with `css` like this:\n\ncss`" + replaced + "`");
+                }
+            }
+            break;
+    } // finalize string values (regular strings and functions interpolated into css calls)
+    var asString = interpolation;
+    if (registered == null) {
+        return asString;
+    }
+    var cached = registered[asString];
+    return cached !== undefined ? cached : asString;
+}
+function createStringFromObject(mergedProps, registered, obj) {
+    var string = '';
+    if (Array.isArray(obj)) {
+        for(var i = 0; i < obj.length; i++){
+            string += handleInterpolation(mergedProps, registered, obj[i]) + ";";
+        }
+    } else {
+        for(var key in obj){
+            var value = obj[key];
+            if (typeof value !== 'object') {
+                var asString = value;
+                if (registered != null && registered[asString] !== undefined) {
+                    string += key + "{" + registered[asString] + "}";
+                } else if (isProcessableValue(asString)) {
+                    string += processStyleName(key) + ":" + processStyleValue(key, asString) + ";";
+                }
+            } else {
+                if (key === 'NO_COMPONENT_SELECTOR' && isDevelopment) {
+                    throw new Error(noComponentSelectorMessage);
+                }
+                if (Array.isArray(value) && typeof value[0] === 'string' && (registered == null || registered[value[0]] === undefined)) {
+                    for(var _i = 0; _i < value.length; _i++){
+                        if (isProcessableValue(value[_i])) {
+                            string += processStyleName(key) + ":" + processStyleValue(key, value[_i]) + ";";
+                        }
+                    }
+                } else {
+                    var interpolated = handleInterpolation(mergedProps, registered, value);
+                    switch(key){
+                        case 'animation':
+                        case 'animationName':
+                            {
+                                string += processStyleName(key) + ":" + interpolated + ";";
+                                break;
+                            }
+                        default:
+                            {
+                                if (key === 'undefined') {
+                                    console.error(UNDEFINED_AS_OBJECT_KEY_ERROR);
+                                }
+                                string += key + "{" + interpolated + "}";
+                            }
+                    }
+                }
+            }
+        }
+    }
+    return string;
+}
+var labelPattern = /label:\s*([^\s;{]+)\s*(;|$)/g; // this is the cursor for keyframes
+// keyframes are stored on the SerializedStyles object as a linked list
+var cursor;
+function serializeStyles(args, registered, mergedProps) {
+    if (args.length === 1 && typeof args[0] === 'object' && args[0] !== null && args[0].styles !== undefined) {
+        return args[0];
+    }
+    var stringMode = true;
+    var styles = '';
+    cursor = undefined;
+    var strings = args[0];
+    if (strings == null || strings.raw === undefined) {
+        stringMode = false;
+        styles += handleInterpolation(mergedProps, registered, strings);
+    } else {
+        var asTemplateStringsArr = strings;
+        if (asTemplateStringsArr[0] === undefined) {
+            console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR);
+        }
+        styles += asTemplateStringsArr[0];
+    } // we start at 1 since we've already handled the first arg
+    for(var i = 1; i < args.length; i++){
+        styles += handleInterpolation(mergedProps, registered, args[i]);
+        if (stringMode) {
+            var templateStringsArr = strings;
+            if (templateStringsArr[i] === undefined) {
+                console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR);
+            }
+            styles += templateStringsArr[i];
+        }
+    } // using a global regex with .exec is stateful so lastIndex has to be reset each time
+    labelPattern.lastIndex = 0;
+    var identifierName = '';
+    var match; // https://esbench.com/bench/5b809c2cf2949800a0f61fb5
+    while((match = labelPattern.exec(styles)) !== null){
+        identifierName += '-' + match[1];
+    }
+    var name = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$hash$2f$dist$2f$emotion$2d$hash$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(styles) + identifierName;
+    {
+        var devStyles = {
+            name: name,
+            styles: styles,
+            next: cursor,
+            toString: function toString() {
+                return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop).";
+            }
+        };
+        return devStyles;
+    }
+}
+;
+}),
+"[project]/Image-Watermarker/node_modules/@emotion/use-insertion-effect-with-fallbacks/dist/emotion-use-insertion-effect-with-fallbacks.esm.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "useInsertionEffectAlwaysWithSyncFallback",
+    ()=>useInsertionEffectAlwaysWithSyncFallback,
+    "useInsertionEffectWithLayoutFallback",
+    ()=>useInsertionEffectWithLayoutFallback
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+;
+var isBrowser = typeof document !== 'undefined';
+var syncFallback = function syncFallback(create) {
+    return create();
+};
+var useInsertionEffect = __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__['useInsertion' + 'Effect'] ? __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__['useInsertion' + 'Effect'] : false;
+var useInsertionEffectAlwaysWithSyncFallback = !isBrowser ? syncFallback : useInsertionEffect || syncFallback;
+var useInsertionEffectWithLayoutFallback = useInsertionEffect || __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__.useLayoutEffect;
+;
+}),
+"[project]/Image-Watermarker/node_modules/@emotion/is-prop-valid/dist/emotion-is-prop-valid.esm.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>isPropValid
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$memoize$2f$dist$2f$emotion$2d$memoize$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/memoize/dist/emotion-memoize.esm.js [app-ssr] (ecmascript)");
+;
+// eslint-disable-next-line no-undef
+var reactPropsRegex = /^((children|dangerouslySetInnerHTML|key|ref|autoFocus|defaultValue|defaultChecked|innerHTML|suppressContentEditableWarning|suppressHydrationWarning|valueLink|abbr|accept|acceptCharset|accessKey|action|allow|allowUserMedia|allowPaymentRequest|allowFullScreen|allowTransparency|alt|async|autoComplete|autoPlay|capture|cellPadding|cellSpacing|challenge|charSet|checked|cite|classID|className|cols|colSpan|content|contentEditable|contextMenu|controls|controlsList|coords|crossOrigin|data|dateTime|decoding|default|defer|dir|disabled|disablePictureInPicture|disableRemotePlayback|download|draggable|encType|enterKeyHint|fetchpriority|fetchPriority|form|formAction|formEncType|formMethod|formNoValidate|formTarget|frameBorder|headers|height|hidden|high|href|hrefLang|htmlFor|httpEquiv|id|inputMode|integrity|is|keyParams|keyType|kind|label|lang|list|loading|loop|low|marginHeight|marginWidth|max|maxLength|media|mediaGroup|method|min|minLength|multiple|muted|name|nonce|noValidate|open|optimum|pattern|placeholder|playsInline|popover|popoverTarget|popoverTargetAction|poster|preload|profile|radioGroup|readOnly|referrerPolicy|rel|required|reversed|role|rows|rowSpan|sandbox|scope|scoped|scrolling|seamless|selected|shape|size|sizes|slot|span|spellCheck|src|srcDoc|srcLang|srcSet|start|step|style|summary|tabIndex|target|title|translate|type|useMap|value|width|wmode|wrap|about|datatype|inlist|prefix|property|resource|typeof|vocab|autoCapitalize|autoCorrect|autoSave|color|incremental|fallback|inert|itemProp|itemScope|itemType|itemID|itemRef|on|option|results|security|unselectable|accentHeight|accumulate|additive|alignmentBaseline|allowReorder|alphabetic|amplitude|arabicForm|ascent|attributeName|attributeType|autoReverse|azimuth|baseFrequency|baselineShift|baseProfile|bbox|begin|bias|by|calcMode|capHeight|clip|clipPathUnits|clipPath|clipRule|colorInterpolation|colorInterpolationFilters|colorProfile|colorRendering|contentScriptType|contentStyleType|cursor|cx|cy|d|decelerate|descent|diffuseConstant|direction|display|divisor|dominantBaseline|dur|dx|dy|edgeMode|elevation|enableBackground|end|exponent|externalResourcesRequired|fill|fillOpacity|fillRule|filter|filterRes|filterUnits|floodColor|floodOpacity|focusable|fontFamily|fontSize|fontSizeAdjust|fontStretch|fontStyle|fontVariant|fontWeight|format|from|fr|fx|fy|g1|g2|glyphName|glyphOrientationHorizontal|glyphOrientationVertical|glyphRef|gradientTransform|gradientUnits|hanging|horizAdvX|horizOriginX|ideographic|imageRendering|in|in2|intercept|k|k1|k2|k3|k4|kernelMatrix|kernelUnitLength|kerning|keyPoints|keySplines|keyTimes|lengthAdjust|letterSpacing|lightingColor|limitingConeAngle|local|markerEnd|markerMid|markerStart|markerHeight|markerUnits|markerWidth|mask|maskContentUnits|maskUnits|mathematical|mode|numOctaves|offset|opacity|operator|order|orient|orientation|origin|overflow|overlinePosition|overlineThickness|panose1|paintOrder|pathLength|patternContentUnits|patternTransform|patternUnits|pointerEvents|points|pointsAtX|pointsAtY|pointsAtZ|preserveAlpha|preserveAspectRatio|primitiveUnits|r|radius|refX|refY|renderingIntent|repeatCount|repeatDur|requiredExtensions|requiredFeatures|restart|result|rotate|rx|ry|scale|seed|shapeRendering|slope|spacing|specularConstant|specularExponent|speed|spreadMethod|startOffset|stdDeviation|stemh|stemv|stitchTiles|stopColor|stopOpacity|strikethroughPosition|strikethroughThickness|string|stroke|strokeDasharray|strokeDashoffset|strokeLinecap|strokeLinejoin|strokeMiterlimit|strokeOpacity|strokeWidth|surfaceScale|systemLanguage|tableValues|targetX|targetY|textAnchor|textDecoration|textRendering|textLength|to|transform|u1|u2|underlinePosition|underlineThickness|unicode|unicodeBidi|unicodeRange|unitsPerEm|vAlphabetic|vHanging|vIdeographic|vMathematical|values|vectorEffect|version|vertAdvY|vertOriginX|vertOriginY|viewBox|viewTarget|visibility|widths|wordSpacing|writingMode|x|xHeight|x1|x2|xChannelSelector|xlinkActuate|xlinkArcrole|xlinkHref|xlinkRole|xlinkShow|xlinkTitle|xlinkType|xmlBase|xmlns|xmlnsXlink|xmlLang|xmlSpace|y|y1|y2|yChannelSelector|z|zoomAndPan|for|class|autofocus)|(([Dd][Aa][Tt][Aa]|[Aa][Rr][Ii][Aa]|x)-.*))$/; // https://esbench.com/bench/5bfee68a4cd7e6009ef61d23
+var isPropValid = /* #__PURE__ */ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$memoize$2f$dist$2f$emotion$2d$memoize$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(function(prop) {
+    return reactPropsRegex.test(prop) || prop.charCodeAt(0) === 111 && prop.charCodeAt(1) === 110 && prop.charCodeAt(2) < 91;
+});
+;
+}),
+"[project]/Image-Watermarker/node_modules/@emotion/styled/base/dist/emotion-styled-base.development.esm.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>createStyled
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$babel$2f$runtime$2f$helpers$2f$esm$2f$extends$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@babel/runtime/helpers/esm/extends.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$react$2f$dist$2f$emotion$2d$element$2d$782f682d$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__w__as__withEmotionCache$3e$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/react/dist/emotion-element-782f682d.development.esm.js [app-ssr] (ecmascript) <export w as withEmotionCache>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$react$2f$dist$2f$emotion$2d$element$2d$782f682d$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__T__as__ThemeContext$3e$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/react/dist/emotion-element-782f682d.development.esm.js [app-ssr] (ecmascript) <export T as ThemeContext>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$serialize$2f$dist$2f$emotion$2d$serialize$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/serialize/dist/emotion-serialize.development.esm.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$use$2d$insertion$2d$effect$2d$with$2d$fallbacks$2f$dist$2f$emotion$2d$use$2d$insertion$2d$effect$2d$with$2d$fallbacks$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/use-insertion-effect-with-fallbacks/dist/emotion-use-insertion-effect-with-fallbacks.esm.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$utils$2f$dist$2f$emotion$2d$utils$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/utils/dist/emotion-utils.esm.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$is$2d$prop$2d$valid$2f$dist$2f$emotion$2d$is$2d$prop$2d$valid$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/is-prop-valid/dist/emotion-is-prop-valid.esm.js [app-ssr] (ecmascript)");
+;
+;
+;
+;
+;
+;
+;
+var isBrowser = typeof document !== 'undefined';
+var isDevelopment = true;
+var testOmitPropsOnStringTag = __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$is$2d$prop$2d$valid$2f$dist$2f$emotion$2d$is$2d$prop$2d$valid$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"];
+var testOmitPropsOnComponent = function testOmitPropsOnComponent(key) {
+    return key !== 'theme';
+};
+var getDefaultShouldForwardProp = function getDefaultShouldForwardProp(tag) {
+    return typeof tag === 'string' && // 96 is one less than the char code
+    // for "a" so this is checking that
+    // it's a lowercase character
+    tag.charCodeAt(0) > 96 ? testOmitPropsOnStringTag : testOmitPropsOnComponent;
+};
+var composeShouldForwardProps = function composeShouldForwardProps(tag, options, isReal) {
+    var shouldForwardProp;
+    if (options) {
+        var optionsShouldForwardProp = options.shouldForwardProp;
+        shouldForwardProp = tag.__emotion_forwardProp && optionsShouldForwardProp ? function(propName) {
+            return tag.__emotion_forwardProp(propName) && optionsShouldForwardProp(propName);
+        } : optionsShouldForwardProp;
+    }
+    if (typeof shouldForwardProp !== 'function' && isReal) {
+        shouldForwardProp = tag.__emotion_forwardProp;
+    }
+    return shouldForwardProp;
+};
+var ILLEGAL_ESCAPE_SEQUENCE_ERROR = "You have illegal escape sequence in your template literal, most likely inside content's property value.\nBecause you write your CSS inside a JavaScript string you actually have to do double escaping, so for example \"content: '\\00d7';\" should become \"content: '\\\\00d7';\".\nYou can read more about this here:\nhttps://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#ES2018_revision_of_illegal_escape_sequences";
+var Insertion = function Insertion(_ref) {
+    var cache = _ref.cache, serialized = _ref.serialized, isStringTag = _ref.isStringTag;
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$utils$2f$dist$2f$emotion$2d$utils$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["registerStyles"])(cache, serialized, isStringTag);
+    var rules = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$use$2d$insertion$2d$effect$2d$with$2d$fallbacks$2f$dist$2f$emotion$2d$use$2d$insertion$2d$effect$2d$with$2d$fallbacks$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useInsertionEffectAlwaysWithSyncFallback"])(function() {
+        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$utils$2f$dist$2f$emotion$2d$utils$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["insertStyles"])(cache, serialized, isStringTag);
+    });
+    if (!isBrowser && rules !== undefined) {
+        var _ref2;
+        var serializedNames = serialized.name;
+        var next = serialized.next;
+        while(next !== undefined){
+            serializedNames += ' ' + next.name;
+            next = next.next;
+        }
+        return /*#__PURE__*/ __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createElement"]("style", (_ref2 = {}, _ref2["data-emotion"] = cache.key + " " + serializedNames, _ref2.dangerouslySetInnerHTML = {
+            __html: rules
+        }, _ref2.nonce = cache.sheet.nonce, _ref2));
+    }
+    return null;
+};
+var createStyled = function createStyled(tag, options) {
+    {
+        if (tag === undefined) {
+            throw new Error('You are trying to create a styled element with an undefined component.\nYou may have forgotten to import it.');
+        }
+    }
+    var isReal = tag.__emotion_real === tag;
+    var baseTag = isReal && tag.__emotion_base || tag;
+    var identifierName;
+    var targetClassName;
+    if (options !== undefined) {
+        identifierName = options.label;
+        targetClassName = options.target;
+    }
+    var shouldForwardProp = composeShouldForwardProps(tag, options, isReal);
+    var defaultShouldForwardProp = shouldForwardProp || getDefaultShouldForwardProp(baseTag);
+    var shouldUseAs = !defaultShouldForwardProp('as');
+    return function() {
+        // eslint-disable-next-line prefer-rest-params
+        var args = arguments;
+        var styles = isReal && tag.__emotion_styles !== undefined ? tag.__emotion_styles.slice(0) : [];
+        if (identifierName !== undefined) {
+            styles.push("label:" + identifierName + ";");
+        }
+        if (args[0] == null || args[0].raw === undefined) {
+            // eslint-disable-next-line prefer-spread
+            styles.push.apply(styles, args);
+        } else {
+            var templateStringsArr = args[0];
+            if (templateStringsArr[0] === undefined) {
+                console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR);
+            }
+            styles.push(templateStringsArr[0]);
+            var len = args.length;
+            var i = 1;
+            for(; i < len; i++){
+                if (templateStringsArr[i] === undefined) {
+                    console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR);
+                }
+                styles.push(args[i], templateStringsArr[i]);
+            }
+        }
+        var Styled = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$react$2f$dist$2f$emotion$2d$element$2d$782f682d$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__w__as__withEmotionCache$3e$__["withEmotionCache"])(function(props, cache, ref) {
+            var FinalTag = shouldUseAs && props.as || baseTag;
+            var className = '';
+            var classInterpolations = [];
+            var mergedProps = props;
+            if (props.theme == null) {
+                mergedProps = {};
+                for(var key in props){
+                    mergedProps[key] = props[key];
+                }
+                mergedProps.theme = __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useContext"](__TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$react$2f$dist$2f$emotion$2d$element$2d$782f682d$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__T__as__ThemeContext$3e$__["ThemeContext"]);
+            }
+            if (typeof props.className === 'string') {
+                className = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$utils$2f$dist$2f$emotion$2d$utils$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getRegisteredStyles"])(cache.registered, classInterpolations, props.className);
+            } else if (props.className != null) {
+                className = props.className + " ";
+            }
+            var serialized = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$serialize$2f$dist$2f$emotion$2d$serialize$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["serializeStyles"])(styles.concat(classInterpolations), cache.registered, mergedProps);
+            className += cache.key + "-" + serialized.name;
+            if (targetClassName !== undefined) {
+                className += " " + targetClassName;
+            }
+            var finalShouldForwardProp = shouldUseAs && shouldForwardProp === undefined ? getDefaultShouldForwardProp(FinalTag) : defaultShouldForwardProp;
+            var newProps = {};
+            for(var _key in props){
+                if (shouldUseAs && _key === 'as') continue;
+                if (finalShouldForwardProp(_key)) {
+                    newProps[_key] = props[_key];
+                }
+            }
+            newProps.className = className;
+            if (ref) {
+                newProps.ref = ref;
+            }
+            return /*#__PURE__*/ __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createElement"](__TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], null, /*#__PURE__*/ __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createElement"](Insertion, {
+                cache: cache,
+                serialized: serialized,
+                isStringTag: typeof FinalTag === 'string'
+            }), /*#__PURE__*/ __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createElement"](FinalTag, newProps));
+        });
+        Styled.displayName = identifierName !== undefined ? identifierName : "Styled(" + (typeof baseTag === 'string' ? baseTag : baseTag.displayName || baseTag.name || 'Component') + ")";
+        Styled.defaultProps = tag.defaultProps;
+        Styled.__emotion_real = Styled;
+        Styled.__emotion_base = baseTag;
+        Styled.__emotion_styles = styles;
+        Styled.__emotion_forwardProp = shouldForwardProp;
+        Object.defineProperty(Styled, 'toString', {
+            value: function value() {
+                if (targetClassName === undefined && isDevelopment) {
+                    return 'NO_COMPONENT_SELECTOR';
+                }
+                return "." + targetClassName;
+            }
+        });
+        Styled.withComponent = function(nextTag, nextOptions) {
+            var newStyled = createStyled(nextTag, (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$babel$2f$runtime$2f$helpers$2f$esm$2f$extends$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])({}, options, nextOptions, {
+                shouldForwardProp: composeShouldForwardProps(Styled, nextOptions, true)
+            }));
+            return newStyled.apply(void 0, styles);
+        };
+        return Styled;
+    };
+};
+;
+}),
+"[project]/Image-Watermarker/node_modules/@emotion/styled/dist/emotion-styled.development.esm.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>styled
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$styled$2f$base$2f$dist$2f$emotion$2d$styled$2d$base$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/styled/base/dist/emotion-styled-base.development.esm.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$babel$2f$runtime$2f$helpers$2f$extends$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@babel/runtime/helpers/extends.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$serialize$2f$dist$2f$emotion$2d$serialize$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/serialize/dist/emotion-serialize.development.esm.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$use$2d$insertion$2d$effect$2d$with$2d$fallbacks$2f$dist$2f$emotion$2d$use$2d$insertion$2d$effect$2d$with$2d$fallbacks$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/use-insertion-effect-with-fallbacks/dist/emotion-use-insertion-effect-with-fallbacks.esm.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$utils$2f$dist$2f$emotion$2d$utils$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/utils/dist/emotion-utils.esm.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$is$2d$prop$2d$valid$2f$dist$2f$emotion$2d$is$2d$prop$2d$valid$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/is-prop-valid/dist/emotion-is-prop-valid.esm.js [app-ssr] (ecmascript)");
+;
+;
+;
+;
+;
+;
+;
+;
+var tags = [
+    'a',
+    'abbr',
+    'address',
+    'area',
+    'article',
+    'aside',
+    'audio',
+    'b',
+    'base',
+    'bdi',
+    'bdo',
+    'big',
+    'blockquote',
+    'body',
+    'br',
+    'button',
+    'canvas',
+    'caption',
+    'cite',
+    'code',
+    'col',
+    'colgroup',
+    'data',
+    'datalist',
+    'dd',
+    'del',
+    'details',
+    'dfn',
+    'dialog',
+    'div',
+    'dl',
+    'dt',
+    'em',
+    'embed',
+    'fieldset',
+    'figcaption',
+    'figure',
+    'footer',
+    'form',
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'head',
+    'header',
+    'hgroup',
+    'hr',
+    'html',
+    'i',
+    'iframe',
+    'img',
+    'input',
+    'ins',
+    'kbd',
+    'keygen',
+    'label',
+    'legend',
+    'li',
+    'link',
+    'main',
+    'map',
+    'mark',
+    'marquee',
+    'menu',
+    'menuitem',
+    'meta',
+    'meter',
+    'nav',
+    'noscript',
+    'object',
+    'ol',
+    'optgroup',
+    'option',
+    'output',
+    'p',
+    'param',
+    'picture',
+    'pre',
+    'progress',
+    'q',
+    'rp',
+    'rt',
+    'ruby',
+    's',
+    'samp',
+    'script',
+    'section',
+    'select',
+    'small',
+    'source',
+    'span',
+    'strong',
+    'style',
+    'sub',
+    'summary',
+    'sup',
+    'table',
+    'tbody',
+    'td',
+    'textarea',
+    'tfoot',
+    'th',
+    'thead',
+    'time',
+    'title',
+    'tr',
+    'track',
+    'u',
+    'ul',
+    'var',
+    'video',
+    'wbr',
+    'circle',
+    'clipPath',
+    'defs',
+    'ellipse',
+    'foreignObject',
+    'g',
+    'image',
+    'line',
+    'linearGradient',
+    'mask',
+    'path',
+    'pattern',
+    'polygon',
+    'polyline',
+    'radialGradient',
+    'rect',
+    'stop',
+    'svg',
+    'text',
+    'tspan'
+];
+// bind it to avoid mutating the original function
+var styled = __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$styled$2f$base$2f$dist$2f$emotion$2d$styled$2d$base$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].bind(null);
+tags.forEach(function(tagName) {
+    styled[tagName] = styled(tagName);
+});
+;
+}),
+"[project]/Image-Watermarker/node_modules/@mui/styled-engine/esm/index.js [app-ssr] (ecmascript) <locals>", ((__turbopack_context__) => {
+"use strict";
+
+/**
+ * @mui/styled-engine v7.3.2
+ *
+ * @license MIT
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */ __turbopack_context__.s([
+    "default",
+    ()=>styled,
+    "internal_mutateStyles",
+    ()=>internal_mutateStyles,
+    "internal_serializeStyles",
+    ()=>internal_serializeStyles
+]);
+/* eslint-disable no-underscore-dangle */ var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$styled$2f$dist$2f$emotion$2d$styled$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/styled/dist/emotion-styled.development.esm.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$serialize$2f$dist$2f$emotion$2d$serialize$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/serialize/dist/emotion-serialize.development.esm.js [app-ssr] (ecmascript)");
+'use client';
+;
+;
+function styled(tag, options) {
+    const stylesFactory = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$styled$2f$dist$2f$emotion$2d$styled$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(tag, options);
+    if ("TURBOPACK compile-time truthy", 1) {
+        return (...styles)=>{
+            const component = typeof tag === 'string' ? `"${tag}"` : 'component';
+            if (styles.length === 0) {
+                console.error([
+                    `MUI: Seems like you called \`styled(${component})()\` without a \`style\` argument.`,
+                    'You must provide a `styles` argument: `styled("div")(styleYouForgotToPass)`.'
+                ].join('\n'));
+            } else if (styles.some((style)=>style === undefined)) {
+                console.error(`MUI: the styled(${component})(...args) API requires all its args to be defined.`);
+            }
+            return stylesFactory(...styles);
+        };
+    }
+    //TURBOPACK unreachable
+    ;
+}
+function internal_mutateStyles(tag, processor) {
+    // Emotion attaches all the styles as `__emotion_styles`.
+    // Ref: https://github.com/emotion-js/emotion/blob/16d971d0da229596d6bcc39d282ba9753c9ee7cf/packages/styled/src/base.js#L186
+    if (Array.isArray(tag.__emotion_styles)) {
+        tag.__emotion_styles = processor(tag.__emotion_styles);
+    }
+}
+// Emotion only accepts an array, but we want to avoid allocations
+const wrapper = [];
+function internal_serializeStyles(styles) {
+    wrapper[0] = styles;
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$serialize$2f$dist$2f$emotion$2d$serialize$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["serializeStyles"])(wrapper);
+}
+;
+;
+;
+}),
+"[project]/Image-Watermarker/node_modules/@mui/styled-engine/esm/GlobalStyles/GlobalStyles.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>GlobalStyles
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$prop$2d$types$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/prop-types/index.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$react$2f$dist$2f$emotion$2d$react$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@emotion/react/dist/emotion-react.development.esm.js [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-runtime.js [app-ssr] (ecmascript)");
+'use client';
+;
+;
+;
+;
+function isEmpty(obj) {
+    return obj === undefined || obj === null || Object.keys(obj).length === 0;
+}
+function GlobalStyles(props) {
+    const { styles, defaultTheme = {} } = props;
+    const globalStyles = typeof styles === 'function' ? (themeInput)=>styles(isEmpty(themeInput) ? defaultTheme : themeInput) : styles;
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsx"])(__TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$emotion$2f$react$2f$dist$2f$emotion$2d$react$2e$development$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["Global"], {
+        styles: globalStyles
+    });
+}
+("TURBOPACK compile-time truthy", 1) ? GlobalStyles.propTypes = {
+    defaultTheme: __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$prop$2d$types$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].object,
+    styles: __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$prop$2d$types$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].oneOfType([
+        __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$prop$2d$types$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].array,
+        __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$prop$2d$types$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].string,
+        __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$prop$2d$types$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].object,
+        __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$prop$2d$types$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].func
+    ])
+} : "TURBOPACK unreachable";
+}),
+"[project]/Image-Watermarker/node_modules/@mui/styled-engine/esm/GlobalStyles/GlobalStyles.js [app-ssr] (ecmascript) <export default as GlobalStyles>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "GlobalStyles",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$mui$2f$styled$2d$engine$2f$esm$2f$GlobalStyles$2f$GlobalStyles$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"]
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$mui$2f$styled$2d$engine$2f$esm$2f$GlobalStyles$2f$GlobalStyles$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@mui/styled-engine/esm/GlobalStyles/GlobalStyles.js [app-ssr] (ecmascript)");
+}),
+"[project]/Image-Watermarker/node_modules/react-transition-group/esm/TransitionGroupContext.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+;
+const __TURBOPACK__default__export__ = __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createContext(null);
+}),
+"[project]/Image-Watermarker/node_modules/react-transition-group/esm/utils/ChildMapping.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "getChildMapping",
+    ()=>getChildMapping,
+    "getInitialChildMapping",
+    ()=>getInitialChildMapping,
+    "getNextChildMapping",
+    ()=>getNextChildMapping,
+    "mergeChildMappings",
+    ()=>mergeChildMappings
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+;
+function getChildMapping(children, mapFn) {
+    var mapper = function mapper(child) {
+        return mapFn && (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isValidElement"])(child) ? mapFn(child) : child;
+    };
+    var result = Object.create(null);
+    if (children) __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Children"].map(children, function(c) {
+        return c;
+    }).forEach(function(child) {
+        // run the map function here instead so that the key is the computed one
+        result[child.key] = mapper(child);
+    });
+    return result;
+}
+function mergeChildMappings(prev, next) {
+    prev = prev || {};
+    next = next || {};
+    function getValueForKey(key) {
+        return key in next ? next[key] : prev[key];
+    } // For each key of `next`, the list of keys to insert before that key in
+    // the combined list
+    var nextKeysPending = Object.create(null);
+    var pendingKeys = [];
+    for(var prevKey in prev){
+        if (prevKey in next) {
+            if (pendingKeys.length) {
+                nextKeysPending[prevKey] = pendingKeys;
+                pendingKeys = [];
+            }
+        } else {
+            pendingKeys.push(prevKey);
+        }
+    }
+    var i;
+    var childMapping = {};
+    for(var nextKey in next){
+        if (nextKeysPending[nextKey]) {
+            for(i = 0; i < nextKeysPending[nextKey].length; i++){
+                var pendingNextKey = nextKeysPending[nextKey][i];
+                childMapping[nextKeysPending[nextKey][i]] = getValueForKey(pendingNextKey);
+            }
+        }
+        childMapping[nextKey] = getValueForKey(nextKey);
+    } // Finally, add the keys which didn't appear before any key in `next`
+    for(i = 0; i < pendingKeys.length; i++){
+        childMapping[pendingKeys[i]] = getValueForKey(pendingKeys[i]);
+    }
+    return childMapping;
+}
+function getProp(child, prop, props) {
+    return props[prop] != null ? props[prop] : child.props[prop];
+}
+function getInitialChildMapping(props, onExited) {
+    return getChildMapping(props.children, function(child) {
+        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cloneElement"])(child, {
+            onExited: onExited.bind(null, child),
+            in: true,
+            appear: getProp(child, 'appear', props),
+            enter: getProp(child, 'enter', props),
+            exit: getProp(child, 'exit', props)
+        });
+    });
+}
+function getNextChildMapping(nextProps, prevChildMapping, onExited) {
+    var nextChildMapping = getChildMapping(nextProps.children);
+    var children = mergeChildMappings(prevChildMapping, nextChildMapping);
+    Object.keys(children).forEach(function(key) {
+        var child = children[key];
+        if (!(0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isValidElement"])(child)) return;
+        var hasPrev = key in prevChildMapping;
+        var hasNext = key in nextChildMapping;
+        var prevChild = prevChildMapping[key];
+        var isLeaving = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isValidElement"])(prevChild) && !prevChild.props.in; // item is new (entering)
+        if (hasNext && (!hasPrev || isLeaving)) {
+            // console.log('entering', key)
+            children[key] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cloneElement"])(child, {
+                onExited: onExited.bind(null, child),
+                in: true,
+                exit: getProp(child, 'exit', nextProps),
+                enter: getProp(child, 'enter', nextProps)
+            });
+        } else if (!hasNext && hasPrev && !isLeaving) {
+            // item is old (exiting)
+            // console.log('leaving', key)
+            children[key] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cloneElement"])(child, {
+                in: false
+            });
+        } else if (hasNext && hasPrev && (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isValidElement"])(prevChild)) {
+            // item hasn't changed transition states
+            // copy over the last transition props;
+            // console.log('unchanged', key)
+            children[key] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cloneElement"])(child, {
+                onExited: onExited.bind(null, child),
+                in: prevChild.props.in,
+                exit: getProp(child, 'exit', nextProps),
+                enter: getProp(child, 'enter', nextProps)
+            });
+        }
+    });
+    return children;
+}
+}),
+"[project]/Image-Watermarker/node_modules/react-transition-group/esm/TransitionGroup.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$babel$2f$runtime$2f$helpers$2f$esm$2f$objectWithoutPropertiesLoose$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$babel$2f$runtime$2f$helpers$2f$esm$2f$extends$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@babel/runtime/helpers/esm/extends.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$babel$2f$runtime$2f$helpers$2f$esm$2f$assertThisInitialized$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$babel$2f$runtime$2f$helpers$2f$esm$2f$inheritsLoose$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/@babel/runtime/helpers/esm/inheritsLoose.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$prop$2d$types$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/prop-types/index.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$react$2d$transition$2d$group$2f$esm$2f$TransitionGroupContext$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/react-transition-group/esm/TransitionGroupContext.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$react$2d$transition$2d$group$2f$esm$2f$utils$2f$ChildMapping$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/react-transition-group/esm/utils/ChildMapping.js [app-ssr] (ecmascript)");
+;
+;
+;
+;
+;
+;
+;
+;
+var values = Object.values || function(obj) {
+    return Object.keys(obj).map(function(k) {
+        return obj[k];
+    });
+};
+var defaultProps = {
+    component: 'div',
+    childFactory: function childFactory(child) {
+        return child;
+    }
+};
+/**
+ * The `<TransitionGroup>` component manages a set of transition components
+ * (`<Transition>` and `<CSSTransition>`) in a list. Like with the transition
+ * components, `<TransitionGroup>` is a state machine for managing the mounting
+ * and unmounting of components over time.
+ *
+ * Consider the example below. As items are removed or added to the TodoList the
+ * `in` prop is toggled automatically by the `<TransitionGroup>`.
+ *
+ * Note that `<TransitionGroup>`  does not define any animation behavior!
+ * Exactly _how_ a list item animates is up to the individual transition
+ * component. This means you can mix and match animations across different list
+ * items.
+ */ var TransitionGroup = /*#__PURE__*/ function(_React$Component) {
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$babel$2f$runtime$2f$helpers$2f$esm$2f$inheritsLoose$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(TransitionGroup, _React$Component);
+    function TransitionGroup(props, context) {
+        var _this;
+        _this = _React$Component.call(this, props, context) || this;
+        var handleExited = _this.handleExited.bind((0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$babel$2f$runtime$2f$helpers$2f$esm$2f$assertThisInitialized$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(_this)); // Initial children should all be entering, dependent on appear
+        _this.state = {
+            contextValue: {
+                isMounting: true
+            },
+            handleExited: handleExited,
+            firstRender: true
+        };
+        return _this;
+    }
+    var _proto = TransitionGroup.prototype;
+    _proto.componentDidMount = function componentDidMount() {
+        this.mounted = true;
+        this.setState({
+            contextValue: {
+                isMounting: false
+            }
+        });
+    };
+    _proto.componentWillUnmount = function componentWillUnmount() {
+        this.mounted = false;
+    };
+    TransitionGroup.getDerivedStateFromProps = function getDerivedStateFromProps(nextProps, _ref) {
+        var prevChildMapping = _ref.children, handleExited = _ref.handleExited, firstRender = _ref.firstRender;
+        return {
+            children: firstRender ? (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$react$2d$transition$2d$group$2f$esm$2f$utils$2f$ChildMapping$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getInitialChildMapping"])(nextProps, handleExited) : (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$react$2d$transition$2d$group$2f$esm$2f$utils$2f$ChildMapping$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getNextChildMapping"])(nextProps, prevChildMapping, handleExited),
+            firstRender: false
+        };
+    } // node is `undefined` when user provided `nodeRef` prop
+    ;
+    _proto.handleExited = function handleExited(child, node) {
+        var currentChildMapping = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$react$2d$transition$2d$group$2f$esm$2f$utils$2f$ChildMapping$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getChildMapping"])(this.props.children);
+        if (child.key in currentChildMapping) return;
+        if (child.props.onExited) {
+            child.props.onExited(node);
+        }
+        if (this.mounted) {
+            this.setState(function(state) {
+                var children = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$babel$2f$runtime$2f$helpers$2f$esm$2f$extends$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])({}, state.children);
+                delete children[child.key];
+                return {
+                    children: children
+                };
+            });
+        }
+    };
+    _proto.render = function render() {
+        var _this$props = this.props, Component = _this$props.component, childFactory = _this$props.childFactory, props = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f40$babel$2f$runtime$2f$helpers$2f$esm$2f$objectWithoutPropertiesLoose$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(_this$props, [
+            "component",
+            "childFactory"
+        ]);
+        var contextValue = this.state.contextValue;
+        var children = values(this.state.children).map(childFactory);
+        delete props.appear;
+        delete props.enter;
+        delete props.exit;
+        if (Component === null) {
+            return /*#__PURE__*/ __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$react$2d$transition$2d$group$2f$esm$2f$TransitionGroupContext$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Provider, {
+                value: contextValue
+            }, children);
+        }
+        return /*#__PURE__*/ __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$react$2d$transition$2d$group$2f$esm$2f$TransitionGroupContext$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Provider, {
+            value: contextValue
+        }, /*#__PURE__*/ __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(Component, props, children));
+    };
+    return TransitionGroup;
+}(__TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Component);
+TransitionGroup.propTypes = ("TURBOPACK compile-time truthy", 1) ? {
+    /**
+   * `<TransitionGroup>` renders a `<div>` by default. You can change this
+   * behavior by providing a `component` prop.
+   * If you use React v16+ and would like to avoid a wrapping `<div>` element
+   * you can pass in `component={null}`. This is useful if the wrapping div
+   * borks your css styles.
+   */ component: __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$prop$2d$types$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].any,
+    /**
+   * A set of `<Transition>` components, that are toggled `in` and out as they
+   * leave. the `<TransitionGroup>` will inject specific transition props, so
+   * remember to spread them through if you are wrapping the `<Transition>` as
+   * with our `<Fade>` example.
+   *
+   * While this component is meant for multiple `Transition` or `CSSTransition`
+   * children, sometimes you may want to have a single transition child with
+   * content that you want to be transitioned out and in when you change it
+   * (e.g. routes, images etc.) In that case you can change the `key` prop of
+   * the transition child as you change its content, this will cause
+   * `TransitionGroup` to transition the child out and back in.
+   */ children: __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$prop$2d$types$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].node,
+    /**
+   * A convenience prop that enables or disables appear animations
+   * for all children. Note that specifying this will override any defaults set
+   * on individual children Transitions.
+   */ appear: __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$prop$2d$types$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].bool,
+    /**
+   * A convenience prop that enables or disables enter animations
+   * for all children. Note that specifying this will override any defaults set
+   * on individual children Transitions.
+   */ enter: __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$prop$2d$types$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].bool,
+    /**
+   * A convenience prop that enables or disables exit animations
+   * for all children. Note that specifying this will override any defaults set
+   * on individual children Transitions.
+   */ exit: __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$prop$2d$types$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].bool,
+    /**
+   * You may need to apply reactive updates to a child as it is exiting.
+   * This is generally done by using `cloneElement` however in the case of an exiting
+   * child the element has already been removed and not accessible to the consumer.
+   *
+   * If you do need to update a child as it leaves you can provide a `childFactory`
+   * to wrap every child, even the ones that are leaving.
+   *
+   * @type Function(child: ReactElement) -> ReactElement
+   */ childFactory: __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$prop$2d$types$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].func
+} : "TURBOPACK unreachable";
+TransitionGroup.defaultProps = defaultProps;
+const __TURBOPACK__default__export__ = TransitionGroup;
+}),
+"[project]/Image-Watermarker/node_modules/react-transition-group/esm/TransitionGroup.js [app-ssr] (ecmascript) <export default as TransitionGroup>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "TransitionGroup",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$react$2d$transition$2d$group$2f$esm$2f$TransitionGroup$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"]
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$Image$2d$Watermarker$2f$node_modules$2f$react$2d$transition$2d$group$2f$esm$2f$TransitionGroup$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Image-Watermarker/node_modules/react-transition-group/esm/TransitionGroup.js [app-ssr] (ecmascript)");
+}),
+"[project]/Image-Watermarker/node_modules/process-nextick-args/index.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+if (typeof process === 'undefined' || !process.version || process.version.indexOf('v0.') === 0 || process.version.indexOf('v1.') === 0 && process.version.indexOf('v1.8.') !== 0) {
+    module.exports = {
+        nextTick: nextTick
+    };
+} else {
+    module.exports = process;
+}
+function nextTick(fn, arg1, arg2, arg3) {
+    if (typeof fn !== 'function') {
+        throw new TypeError('"callback" argument must be a function');
+    }
+    var len = arguments.length;
+    var args, i;
+    switch(len){
+        case 0:
+        case 1:
+            return process.nextTick(fn);
+        case 2:
+            return process.nextTick(function afterTickOne() {
+                fn.call(null, arg1);
+            });
+        case 3:
+            return process.nextTick(function afterTickTwo() {
+                fn.call(null, arg1, arg2);
+            });
+        case 4:
+            return process.nextTick(function afterTickThree() {
+                fn.call(null, arg1, arg2, arg3);
+            });
+        default:
+            args = new Array(len - 1);
+            i = 0;
+            while(i < args.length){
+                args[i++] = arguments[i];
+            }
+            return process.nextTick(function afterTick() {
+                fn.apply(null, args);
+            });
+    }
+}
+}),
+"[project]/Image-Watermarker/node_modules/isarray/index.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+
+var toString = {}.toString;
+module.exports = Array.isArray || function(arr) {
+    return toString.call(arr) == '[object Array]';
+};
+}),
+"[project]/Image-Watermarker/node_modules/readable-stream/lib/internal/streams/stream.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+
+module.exports = __turbopack_context__.r("[externals]/stream [external] (stream, cjs)");
+}),
+"[project]/Image-Watermarker/node_modules/readable-stream/lib/internal/streams/BufferList.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+        throw new TypeError("Cannot call a class as a function");
+    }
+}
+var Buffer = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/safe-buffer/index.js [app-ssr] (ecmascript)").Buffer;
+var util = __turbopack_context__.r("[externals]/util [external] (util, cjs)");
+function copyBuffer(src, target, offset) {
+    src.copy(target, offset);
+}
+module.exports = function() {
+    function BufferList() {
+        _classCallCheck(this, BufferList);
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
+    }
+    BufferList.prototype.push = function push(v) {
+        var entry = {
+            data: v,
+            next: null
+        };
+        if (this.length > 0) this.tail.next = entry;
+        else this.head = entry;
+        this.tail = entry;
+        ++this.length;
+    };
+    BufferList.prototype.unshift = function unshift(v) {
+        var entry = {
+            data: v,
+            next: this.head
+        };
+        if (this.length === 0) this.tail = entry;
+        this.head = entry;
+        ++this.length;
+    };
+    BufferList.prototype.shift = function shift() {
+        if (this.length === 0) return;
+        var ret = this.head.data;
+        if (this.length === 1) this.head = this.tail = null;
+        else this.head = this.head.next;
+        --this.length;
+        return ret;
+    };
+    BufferList.prototype.clear = function clear() {
+        this.head = this.tail = null;
+        this.length = 0;
+    };
+    BufferList.prototype.join = function join(s) {
+        if (this.length === 0) return '';
+        var p = this.head;
+        var ret = '' + p.data;
+        while(p = p.next){
+            ret += s + p.data;
+        }
+        return ret;
+    };
+    BufferList.prototype.concat = function concat(n) {
+        if (this.length === 0) return Buffer.alloc(0);
+        var ret = Buffer.allocUnsafe(n >>> 0);
+        var p = this.head;
+        var i = 0;
+        while(p){
+            copyBuffer(p.data, ret, i);
+            i += p.data.length;
+            p = p.next;
+        }
+        return ret;
+    };
+    return BufferList;
+}();
+if (util && util.inspect && util.inspect.custom) {
+    module.exports.prototype[util.inspect.custom] = function() {
+        var obj = util.inspect({
+            length: this.length
+        });
+        return this.constructor.name + ' ' + obj;
+    };
+}
+}),
+"[project]/Image-Watermarker/node_modules/readable-stream/lib/internal/streams/destroy.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+/*<replacement>*/ var pna = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/process-nextick-args/index.js [app-ssr] (ecmascript)");
+/*</replacement>*/ // undocumented cb() API, needed for core, not for public API
+function destroy(err, cb) {
+    var _this = this;
+    var readableDestroyed = this._readableState && this._readableState.destroyed;
+    var writableDestroyed = this._writableState && this._writableState.destroyed;
+    if (readableDestroyed || writableDestroyed) {
+        if (cb) {
+            cb(err);
+        } else if (err) {
+            if (!this._writableState) {
+                pna.nextTick(emitErrorNT, this, err);
+            } else if (!this._writableState.errorEmitted) {
+                this._writableState.errorEmitted = true;
+                pna.nextTick(emitErrorNT, this, err);
+            }
+        }
+        return this;
+    }
+    // we set destroyed to true before firing error callbacks in order
+    // to make it re-entrance safe in case destroy() is called within callbacks
+    if (this._readableState) {
+        this._readableState.destroyed = true;
+    }
+    // if this is a duplex stream mark the writable part as destroyed as well
+    if (this._writableState) {
+        this._writableState.destroyed = true;
+    }
+    this._destroy(err || null, function(err) {
+        if (!cb && err) {
+            if (!_this._writableState) {
+                pna.nextTick(emitErrorNT, _this, err);
+            } else if (!_this._writableState.errorEmitted) {
+                _this._writableState.errorEmitted = true;
+                pna.nextTick(emitErrorNT, _this, err);
+            }
+        } else if (cb) {
+            cb(err);
+        }
+    });
+    return this;
+}
+function undestroy() {
+    if (this._readableState) {
+        this._readableState.destroyed = false;
+        this._readableState.reading = false;
+        this._readableState.ended = false;
+        this._readableState.endEmitted = false;
+    }
+    if (this._writableState) {
+        this._writableState.destroyed = false;
+        this._writableState.ended = false;
+        this._writableState.ending = false;
+        this._writableState.finalCalled = false;
+        this._writableState.prefinished = false;
+        this._writableState.finished = false;
+        this._writableState.errorEmitted = false;
+    }
+}
+function emitErrorNT(self, err) {
+    self.emit('error', err);
+}
+module.exports = {
+    destroy: destroy,
+    undestroy: undestroy
+};
+}),
+"[project]/Image-Watermarker/node_modules/readable-stream/lib/_stream_writable.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+// A bit simpler than readable streams.
+// Implement an async ._write(chunk, encoding, cb), and it'll handle all
+// the drain event emission and buffering.
+/*<replacement>*/ var pna = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/process-nextick-args/index.js [app-ssr] (ecmascript)");
+/*</replacement>*/ module.exports = Writable;
+/* <replacement> */ function WriteReq(chunk, encoding, cb) {
+    this.chunk = chunk;
+    this.encoding = encoding;
+    this.callback = cb;
+    this.next = null;
+}
+// It seems a linked list but it is not
+// there will be only 2 of these for each stream
+function CorkedRequest(state) {
+    var _this = this;
+    this.next = null;
+    this.entry = null;
+    this.finish = function() {
+        onCorkedFinish(_this, state);
+    };
+}
+/* </replacement> */ /*<replacement>*/ var asyncWrite = !("TURBOPACK compile-time value", false) && [
+    'v0.10',
+    'v0.9.'
+].indexOf(process.version.slice(0, 5)) > -1 ? setImmediate : pna.nextTick;
+/*</replacement>*/ /*<replacement>*/ var Duplex;
+/*</replacement>*/ Writable.WritableState = WritableState;
+/*<replacement>*/ var util = Object.create(__turbopack_context__.r("[project]/Image-Watermarker/node_modules/core-util-is/lib/util.js [app-ssr] (ecmascript)"));
+util.inherits = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/inherits/inherits.js [app-ssr] (ecmascript)");
+/*</replacement>*/ /*<replacement>*/ var internalUtil = {
+    deprecate: __turbopack_context__.r("[project]/Image-Watermarker/node_modules/util-deprecate/node.js [app-ssr] (ecmascript)")
+};
+/*</replacement>*/ /*<replacement>*/ var Stream = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/readable-stream/lib/internal/streams/stream.js [app-ssr] (ecmascript)");
+/*</replacement>*/ /*<replacement>*/ var Buffer = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/safe-buffer/index.js [app-ssr] (ecmascript)").Buffer;
+var OurUint8Array = (("TURBOPACK compile-time truthy", 1) ? /*TURBOPACK member replacement*/ __turbopack_context__.g : "TURBOPACK unreachable").Uint8Array || function() {};
+function _uint8ArrayToBuffer(chunk) {
+    return Buffer.from(chunk);
+}
+function _isUint8Array(obj) {
+    return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
+}
+/*</replacement>*/ var destroyImpl = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/readable-stream/lib/internal/streams/destroy.js [app-ssr] (ecmascript)");
+util.inherits(Writable, Stream);
+function nop() {}
+function WritableState(options, stream) {
+    Duplex = Duplex || __turbopack_context__.r("[project]/Image-Watermarker/node_modules/readable-stream/lib/_stream_duplex.js [app-ssr] (ecmascript)");
+    options = options || {};
+    // Duplex streams are both readable and writable, but share
+    // the same options object.
+    // However, some cases require setting options to different
+    // values for the readable and the writable sides of the duplex stream.
+    // These options can be provided separately as readableXXX and writableXXX.
+    var isDuplex = stream instanceof Duplex;
+    // object stream flag to indicate whether or not this stream
+    // contains buffers or objects.
+    this.objectMode = !!options.objectMode;
+    if (isDuplex) this.objectMode = this.objectMode || !!options.writableObjectMode;
+    // the point at which write() starts returning false
+    // Note: 0 is a valid value, means that we always return false if
+    // the entire buffer is not flushed immediately on write()
+    var hwm = options.highWaterMark;
+    var writableHwm = options.writableHighWaterMark;
+    var defaultHwm = this.objectMode ? 16 : 16 * 1024;
+    if (hwm || hwm === 0) this.highWaterMark = hwm;
+    else if (isDuplex && (writableHwm || writableHwm === 0)) this.highWaterMark = writableHwm;
+    else this.highWaterMark = defaultHwm;
+    // cast to ints.
+    this.highWaterMark = Math.floor(this.highWaterMark);
+    // if _final has been called
+    this.finalCalled = false;
+    // drain event flag.
+    this.needDrain = false;
+    // at the start of calling end()
+    this.ending = false;
+    // when end() has been called, and returned
+    this.ended = false;
+    // when 'finish' is emitted
+    this.finished = false;
+    // has it been destroyed
+    this.destroyed = false;
+    // should we decode strings into buffers before passing to _write?
+    // this is here so that some node-core streams can optimize string
+    // handling at a lower level.
+    var noDecode = options.decodeStrings === false;
+    this.decodeStrings = !noDecode;
+    // Crypto is kind of old and crusty.  Historically, its default string
+    // encoding is 'binary' so we have to make this configurable.
+    // Everything else in the universe uses 'utf8', though.
+    this.defaultEncoding = options.defaultEncoding || 'utf8';
+    // not an actual buffer we keep track of, but a measurement
+    // of how much we're waiting to get pushed to some underlying
+    // socket or file.
+    this.length = 0;
+    // a flag to see when we're in the middle of a write.
+    this.writing = false;
+    // when true all writes will be buffered until .uncork() call
+    this.corked = 0;
+    // a flag to be able to tell if the onwrite cb is called immediately,
+    // or on a later tick.  We set this to true at first, because any
+    // actions that shouldn't happen until "later" should generally also
+    // not happen before the first write call.
+    this.sync = true;
+    // a flag to know if we're processing previously buffered items, which
+    // may call the _write() callback in the same tick, so that we don't
+    // end up in an overlapped onwrite situation.
+    this.bufferProcessing = false;
+    // the callback that's passed to _write(chunk,cb)
+    this.onwrite = function(er) {
+        onwrite(stream, er);
+    };
+    // the callback that the user supplies to write(chunk,encoding,cb)
+    this.writecb = null;
+    // the amount that is being written when _write is called.
+    this.writelen = 0;
+    this.bufferedRequest = null;
+    this.lastBufferedRequest = null;
+    // number of pending user-supplied write callbacks
+    // this must be 0 before 'finish' can be emitted
+    this.pendingcb = 0;
+    // emit prefinish if the only thing we're waiting for is _write cbs
+    // This is relevant for synchronous Transform streams
+    this.prefinished = false;
+    // True if the error was already emitted and should not be thrown again
+    this.errorEmitted = false;
+    // count buffered requests
+    this.bufferedRequestCount = 0;
+    // allocate the first CorkedRequest, there is always
+    // one allocated and free to use, and we maintain at most two
+    this.corkedRequestsFree = new CorkedRequest(this);
+}
+WritableState.prototype.getBuffer = function getBuffer() {
+    var current = this.bufferedRequest;
+    var out = [];
+    while(current){
+        out.push(current);
+        current = current.next;
+    }
+    return out;
+};
+(function() {
+    try {
+        Object.defineProperty(WritableState.prototype, 'buffer', {
+            get: internalUtil.deprecate(function() {
+                return this.getBuffer();
+            }, '_writableState.buffer is deprecated. Use _writableState.getBuffer ' + 'instead.', 'DEP0003')
+        });
+    } catch (_) {}
+})();
+// Test _writableState for inheritance to account for Duplex streams,
+// whose prototype chain only points to Readable.
+var realHasInstance;
+if (typeof Symbol === 'function' && Symbol.hasInstance && typeof Function.prototype[Symbol.hasInstance] === 'function') {
+    realHasInstance = Function.prototype[Symbol.hasInstance];
+    Object.defineProperty(Writable, Symbol.hasInstance, {
+        value: function(object) {
+            if (realHasInstance.call(this, object)) return true;
+            if (this !== Writable) return false;
+            return object && object._writableState instanceof WritableState;
+        }
+    });
+} else {
+    realHasInstance = function(object) {
+        return object instanceof this;
+    };
+}
+function Writable(options) {
+    Duplex = Duplex || __turbopack_context__.r("[project]/Image-Watermarker/node_modules/readable-stream/lib/_stream_duplex.js [app-ssr] (ecmascript)");
+    // Writable ctor is applied to Duplexes, too.
+    // `realHasInstance` is necessary because using plain `instanceof`
+    // would return false, as no `_writableState` property is attached.
+    // Trying to use the custom `instanceof` for Writable here will also break the
+    // Node.js LazyTransform implementation, which has a non-trivial getter for
+    // `_writableState` that would lead to infinite recursion.
+    if (!realHasInstance.call(Writable, this) && !(this instanceof Duplex)) {
+        return new Writable(options);
+    }
+    this._writableState = new WritableState(options, this);
+    // legacy.
+    this.writable = true;
+    if (options) {
+        if (typeof options.write === 'function') this._write = options.write;
+        if (typeof options.writev === 'function') this._writev = options.writev;
+        if (typeof options.destroy === 'function') this._destroy = options.destroy;
+        if (typeof options.final === 'function') this._final = options.final;
+    }
+    Stream.call(this);
+}
+// Otherwise people can pipe Writable streams, which is just wrong.
+Writable.prototype.pipe = function() {
+    this.emit('error', new Error('Cannot pipe, not readable'));
+};
+function writeAfterEnd(stream, cb) {
+    var er = new Error('write after end');
+    // TODO: defer error events consistently everywhere, not just the cb
+    stream.emit('error', er);
+    pna.nextTick(cb, er);
+}
+// Checks that a user-supplied chunk is valid, especially for the particular
+// mode the stream is in. Currently this means that `null` is never accepted
+// and undefined/non-string values are only allowed in object mode.
+function validChunk(stream, state, chunk, cb) {
+    var valid = true;
+    var er = false;
+    if (chunk === null) {
+        er = new TypeError('May not write null values to stream');
+    } else if (typeof chunk !== 'string' && chunk !== undefined && !state.objectMode) {
+        er = new TypeError('Invalid non-string/buffer chunk');
+    }
+    if (er) {
+        stream.emit('error', er);
+        pna.nextTick(cb, er);
+        valid = false;
+    }
+    return valid;
+}
+Writable.prototype.write = function(chunk, encoding, cb) {
+    var state = this._writableState;
+    var ret = false;
+    var isBuf = !state.objectMode && _isUint8Array(chunk);
+    if (isBuf && !Buffer.isBuffer(chunk)) {
+        chunk = _uint8ArrayToBuffer(chunk);
+    }
+    if (typeof encoding === 'function') {
+        cb = encoding;
+        encoding = null;
+    }
+    if (isBuf) encoding = 'buffer';
+    else if (!encoding) encoding = state.defaultEncoding;
+    if (typeof cb !== 'function') cb = nop;
+    if (state.ended) writeAfterEnd(this, cb);
+    else if (isBuf || validChunk(this, state, chunk, cb)) {
+        state.pendingcb++;
+        ret = writeOrBuffer(this, state, isBuf, chunk, encoding, cb);
+    }
+    return ret;
+};
+Writable.prototype.cork = function() {
+    var state = this._writableState;
+    state.corked++;
+};
+Writable.prototype.uncork = function() {
+    var state = this._writableState;
+    if (state.corked) {
+        state.corked--;
+        if (!state.writing && !state.corked && !state.bufferProcessing && state.bufferedRequest) clearBuffer(this, state);
+    }
+};
+Writable.prototype.setDefaultEncoding = function setDefaultEncoding(encoding) {
+    // node::ParseEncoding() requires lower case.
+    if (typeof encoding === 'string') encoding = encoding.toLowerCase();
+    if (!([
+        'hex',
+        'utf8',
+        'utf-8',
+        'ascii',
+        'binary',
+        'base64',
+        'ucs2',
+        'ucs-2',
+        'utf16le',
+        'utf-16le',
+        'raw'
+    ].indexOf((encoding + '').toLowerCase()) > -1)) throw new TypeError('Unknown encoding: ' + encoding);
+    this._writableState.defaultEncoding = encoding;
+    return this;
+};
+function decodeChunk(state, chunk, encoding) {
+    if (!state.objectMode && state.decodeStrings !== false && typeof chunk === 'string') {
+        chunk = Buffer.from(chunk, encoding);
+    }
+    return chunk;
+}
+Object.defineProperty(Writable.prototype, 'writableHighWaterMark', {
+    // making it explicit this property is not enumerable
+    // because otherwise some prototype manipulation in
+    // userland will fail
+    enumerable: false,
+    get: function() {
+        return this._writableState.highWaterMark;
+    }
+});
+// if we're already writing something, then just put this
+// in the queue, and wait our turn.  Otherwise, call _write
+// If we return false, then we need a drain event, so set that flag.
+function writeOrBuffer(stream, state, isBuf, chunk, encoding, cb) {
+    if (!isBuf) {
+        var newChunk = decodeChunk(state, chunk, encoding);
+        if (chunk !== newChunk) {
+            isBuf = true;
+            encoding = 'buffer';
+            chunk = newChunk;
+        }
+    }
+    var len = state.objectMode ? 1 : chunk.length;
+    state.length += len;
+    var ret = state.length < state.highWaterMark;
+    // we must ensure that previous needDrain will not be reset to false.
+    if (!ret) state.needDrain = true;
+    if (state.writing || state.corked) {
+        var last = state.lastBufferedRequest;
+        state.lastBufferedRequest = {
+            chunk: chunk,
+            encoding: encoding,
+            isBuf: isBuf,
+            callback: cb,
+            next: null
+        };
+        if (last) {
+            last.next = state.lastBufferedRequest;
+        } else {
+            state.bufferedRequest = state.lastBufferedRequest;
+        }
+        state.bufferedRequestCount += 1;
+    } else {
+        doWrite(stream, state, false, len, chunk, encoding, cb);
+    }
+    return ret;
+}
+function doWrite(stream, state, writev, len, chunk, encoding, cb) {
+    state.writelen = len;
+    state.writecb = cb;
+    state.writing = true;
+    state.sync = true;
+    if (writev) stream._writev(chunk, state.onwrite);
+    else stream._write(chunk, encoding, state.onwrite);
+    state.sync = false;
+}
+function onwriteError(stream, state, sync, er, cb) {
+    --state.pendingcb;
+    if (sync) {
+        // defer the callback if we are being called synchronously
+        // to avoid piling up things on the stack
+        pna.nextTick(cb, er);
+        // this can emit finish, and it will always happen
+        // after error
+        pna.nextTick(finishMaybe, stream, state);
+        stream._writableState.errorEmitted = true;
+        stream.emit('error', er);
+    } else {
+        // the caller expect this to happen before if
+        // it is async
+        cb(er);
+        stream._writableState.errorEmitted = true;
+        stream.emit('error', er);
+        // this can emit finish, but finish must
+        // always follow error
+        finishMaybe(stream, state);
+    }
+}
+function onwriteStateUpdate(state) {
+    state.writing = false;
+    state.writecb = null;
+    state.length -= state.writelen;
+    state.writelen = 0;
+}
+function onwrite(stream, er) {
+    var state = stream._writableState;
+    var sync = state.sync;
+    var cb = state.writecb;
+    onwriteStateUpdate(state);
+    if (er) onwriteError(stream, state, sync, er, cb);
+    else {
+        // Check if we're actually ready to finish, but don't emit yet
+        var finished = needFinish(state);
+        if (!finished && !state.corked && !state.bufferProcessing && state.bufferedRequest) {
+            clearBuffer(stream, state);
+        }
+        if (sync) {
+            /*<replacement>*/ asyncWrite(afterWrite, stream, state, finished, cb);
+        /*</replacement>*/ } else {
+            afterWrite(stream, state, finished, cb);
+        }
+    }
+}
+function afterWrite(stream, state, finished, cb) {
+    if (!finished) onwriteDrain(stream, state);
+    state.pendingcb--;
+    cb();
+    finishMaybe(stream, state);
+}
+// Must force callback to be called on nextTick, so that we don't
+// emit 'drain' before the write() consumer gets the 'false' return
+// value, and has a chance to attach a 'drain' listener.
+function onwriteDrain(stream, state) {
+    if (state.length === 0 && state.needDrain) {
+        state.needDrain = false;
+        stream.emit('drain');
+    }
+}
+// if there's something in the buffer waiting, then process it
+function clearBuffer(stream, state) {
+    state.bufferProcessing = true;
+    var entry = state.bufferedRequest;
+    if (stream._writev && entry && entry.next) {
+        // Fast case, write everything using _writev()
+        var l = state.bufferedRequestCount;
+        var buffer = new Array(l);
+        var holder = state.corkedRequestsFree;
+        holder.entry = entry;
+        var count = 0;
+        var allBuffers = true;
+        while(entry){
+            buffer[count] = entry;
+            if (!entry.isBuf) allBuffers = false;
+            entry = entry.next;
+            count += 1;
+        }
+        buffer.allBuffers = allBuffers;
+        doWrite(stream, state, true, state.length, buffer, '', holder.finish);
+        // doWrite is almost always async, defer these to save a bit of time
+        // as the hot path ends with doWrite
+        state.pendingcb++;
+        state.lastBufferedRequest = null;
+        if (holder.next) {
+            state.corkedRequestsFree = holder.next;
+            holder.next = null;
+        } else {
+            state.corkedRequestsFree = new CorkedRequest(state);
+        }
+        state.bufferedRequestCount = 0;
+    } else {
+        // Slow case, write chunks one-by-one
+        while(entry){
+            var chunk = entry.chunk;
+            var encoding = entry.encoding;
+            var cb = entry.callback;
+            var len = state.objectMode ? 1 : chunk.length;
+            doWrite(stream, state, false, len, chunk, encoding, cb);
+            entry = entry.next;
+            state.bufferedRequestCount--;
+            // if we didn't call the onwrite immediately, then
+            // it means that we need to wait until it does.
+            // also, that means that the chunk and cb are currently
+            // being processed, so move the buffer counter past them.
+            if (state.writing) {
+                break;
+            }
+        }
+        if (entry === null) state.lastBufferedRequest = null;
+    }
+    state.bufferedRequest = entry;
+    state.bufferProcessing = false;
+}
+Writable.prototype._write = function(chunk, encoding, cb) {
+    cb(new Error('_write() is not implemented'));
+};
+Writable.prototype._writev = null;
+Writable.prototype.end = function(chunk, encoding, cb) {
+    var state = this._writableState;
+    if (typeof chunk === 'function') {
+        cb = chunk;
+        chunk = null;
+        encoding = null;
+    } else if (typeof encoding === 'function') {
+        cb = encoding;
+        encoding = null;
+    }
+    if (chunk !== null && chunk !== undefined) this.write(chunk, encoding);
+    // .end() fully uncorks
+    if (state.corked) {
+        state.corked = 1;
+        this.uncork();
+    }
+    // ignore unnecessary end() calls.
+    if (!state.ending) endWritable(this, state, cb);
+};
+function needFinish(state) {
+    return state.ending && state.length === 0 && state.bufferedRequest === null && !state.finished && !state.writing;
+}
+function callFinal(stream, state) {
+    stream._final(function(err) {
+        state.pendingcb--;
+        if (err) {
+            stream.emit('error', err);
+        }
+        state.prefinished = true;
+        stream.emit('prefinish');
+        finishMaybe(stream, state);
+    });
+}
+function prefinish(stream, state) {
+    if (!state.prefinished && !state.finalCalled) {
+        if (typeof stream._final === 'function') {
+            state.pendingcb++;
+            state.finalCalled = true;
+            pna.nextTick(callFinal, stream, state);
+        } else {
+            state.prefinished = true;
+            stream.emit('prefinish');
+        }
+    }
+}
+function finishMaybe(stream, state) {
+    var need = needFinish(state);
+    if (need) {
+        prefinish(stream, state);
+        if (state.pendingcb === 0) {
+            state.finished = true;
+            stream.emit('finish');
+        }
+    }
+    return need;
+}
+function endWritable(stream, state, cb) {
+    state.ending = true;
+    finishMaybe(stream, state);
+    if (cb) {
+        if (state.finished) pna.nextTick(cb);
+        else stream.once('finish', cb);
+    }
+    state.ended = true;
+    stream.writable = false;
+}
+function onCorkedFinish(corkReq, state, err) {
+    var entry = corkReq.entry;
+    corkReq.entry = null;
+    while(entry){
+        var cb = entry.callback;
+        state.pendingcb--;
+        cb(err);
+        entry = entry.next;
+    }
+    // reuse the free corkReq.
+    state.corkedRequestsFree.next = corkReq;
+}
+Object.defineProperty(Writable.prototype, 'destroyed', {
+    get: function() {
+        if (this._writableState === undefined) {
+            return false;
+        }
+        return this._writableState.destroyed;
+    },
+    set: function(value) {
+        // we ignore the value if the stream
+        // has not been initialized yet
+        if (!this._writableState) {
+            return;
+        }
+        // backward compatibility, the user is explicitly
+        // managing destroyed
+        this._writableState.destroyed = value;
+    }
+});
+Writable.prototype.destroy = destroyImpl.destroy;
+Writable.prototype._undestroy = destroyImpl.undestroy;
+Writable.prototype._destroy = function(err, cb) {
+    this.end();
+    cb(err);
+};
+}),
+"[project]/Image-Watermarker/node_modules/readable-stream/lib/_stream_duplex.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+// a duplex stream is just a stream that is both readable and writable.
+// Since JS doesn't have multiple prototypal inheritance, this class
+// prototypally inherits from Readable, and then parasitically from
+// Writable.
+/*<replacement>*/ var pna = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/process-nextick-args/index.js [app-ssr] (ecmascript)");
+/*</replacement>*/ /*<replacement>*/ var objectKeys = Object.keys || function(obj) {
+    var keys = [];
+    for(var key in obj){
+        keys.push(key);
+    }
+    return keys;
+};
+/*</replacement>*/ module.exports = Duplex;
+/*<replacement>*/ var util = Object.create(__turbopack_context__.r("[project]/Image-Watermarker/node_modules/core-util-is/lib/util.js [app-ssr] (ecmascript)"));
+util.inherits = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/inherits/inherits.js [app-ssr] (ecmascript)");
+/*</replacement>*/ var Readable = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/readable-stream/lib/_stream_readable.js [app-ssr] (ecmascript)");
+var Writable = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/readable-stream/lib/_stream_writable.js [app-ssr] (ecmascript)");
+util.inherits(Duplex, Readable);
+{
+    // avoid scope creep, the keys array can then be collected
+    var keys = objectKeys(Writable.prototype);
+    for(var v = 0; v < keys.length; v++){
+        var method = keys[v];
+        if (!Duplex.prototype[method]) Duplex.prototype[method] = Writable.prototype[method];
+    }
+}function Duplex(options) {
+    if (!(this instanceof Duplex)) return new Duplex(options);
+    Readable.call(this, options);
+    Writable.call(this, options);
+    if (options && options.readable === false) this.readable = false;
+    if (options && options.writable === false) this.writable = false;
+    this.allowHalfOpen = true;
+    if (options && options.allowHalfOpen === false) this.allowHalfOpen = false;
+    this.once('end', onend);
+}
+Object.defineProperty(Duplex.prototype, 'writableHighWaterMark', {
+    // making it explicit this property is not enumerable
+    // because otherwise some prototype manipulation in
+    // userland will fail
+    enumerable: false,
+    get: function() {
+        return this._writableState.highWaterMark;
+    }
+});
+// the no-half-open enforcer
+function onend() {
+    // if we allow half-open state, or if the writable side ended,
+    // then we're ok.
+    if (this.allowHalfOpen || this._writableState.ended) return;
+    // no more data can be written.
+    // But allow more writes to happen in this tick.
+    pna.nextTick(onEndNT, this);
+}
+function onEndNT(self) {
+    self.end();
+}
+Object.defineProperty(Duplex.prototype, 'destroyed', {
+    get: function() {
+        if (this._readableState === undefined || this._writableState === undefined) {
+            return false;
+        }
+        return this._readableState.destroyed && this._writableState.destroyed;
+    },
+    set: function(value) {
+        // we ignore the value if the stream
+        // has not been initialized yet
+        if (this._readableState === undefined || this._writableState === undefined) {
+            return;
+        }
+        // backward compatibility, the user is explicitly
+        // managing destroyed
+        this._readableState.destroyed = value;
+        this._writableState.destroyed = value;
+    }
+});
+Duplex.prototype._destroy = function(err, cb) {
+    this.push(null);
+    this.end();
+    pna.nextTick(cb, err);
+};
+}),
+"[project]/Image-Watermarker/node_modules/readable-stream/lib/_stream_readable.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+/*<replacement>*/ var pna = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/process-nextick-args/index.js [app-ssr] (ecmascript)");
+/*</replacement>*/ module.exports = Readable;
+/*<replacement>*/ var isArray = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/isarray/index.js [app-ssr] (ecmascript)");
+/*</replacement>*/ /*<replacement>*/ var Duplex;
+/*</replacement>*/ Readable.ReadableState = ReadableState;
+/*<replacement>*/ var EE = __turbopack_context__.r("[externals]/events [external] (events, cjs)").EventEmitter;
+var EElistenerCount = function(emitter, type) {
+    return emitter.listeners(type).length;
+};
+/*</replacement>*/ /*<replacement>*/ var Stream = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/readable-stream/lib/internal/streams/stream.js [app-ssr] (ecmascript)");
+/*</replacement>*/ /*<replacement>*/ var Buffer = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/safe-buffer/index.js [app-ssr] (ecmascript)").Buffer;
+var OurUint8Array = (("TURBOPACK compile-time truthy", 1) ? /*TURBOPACK member replacement*/ __turbopack_context__.g : "TURBOPACK unreachable").Uint8Array || function() {};
+function _uint8ArrayToBuffer(chunk) {
+    return Buffer.from(chunk);
+}
+function _isUint8Array(obj) {
+    return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
+}
+/*</replacement>*/ /*<replacement>*/ var util = Object.create(__turbopack_context__.r("[project]/Image-Watermarker/node_modules/core-util-is/lib/util.js [app-ssr] (ecmascript)"));
+util.inherits = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/inherits/inherits.js [app-ssr] (ecmascript)");
+/*</replacement>*/ /*<replacement>*/ var debugUtil = __turbopack_context__.r("[externals]/util [external] (util, cjs)");
+var debug = void 0;
+if (debugUtil && debugUtil.debuglog) {
+    debug = debugUtil.debuglog('stream');
+} else {
+    debug = function() {};
+}
+/*</replacement>*/ var BufferList = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/readable-stream/lib/internal/streams/BufferList.js [app-ssr] (ecmascript)");
+var destroyImpl = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/readable-stream/lib/internal/streams/destroy.js [app-ssr] (ecmascript)");
+var StringDecoder;
+util.inherits(Readable, Stream);
+var kProxyEvents = [
+    'error',
+    'close',
+    'destroy',
+    'pause',
+    'resume'
+];
+function prependListener(emitter, event, fn) {
+    // Sadly this is not cacheable as some libraries bundle their own
+    // event emitter implementation with them.
+    if (typeof emitter.prependListener === 'function') return emitter.prependListener(event, fn);
+    // This is a hack to make sure that our error handler is attached before any
+    // userland ones.  NEVER DO THIS. This is here only because this code needs
+    // to continue to work with older versions of Node.js that do not include
+    // the prependListener() method. The goal is to eventually remove this hack.
+    if (!emitter._events || !emitter._events[event]) emitter.on(event, fn);
+    else if (isArray(emitter._events[event])) emitter._events[event].unshift(fn);
+    else emitter._events[event] = [
+        fn,
+        emitter._events[event]
+    ];
+}
+function ReadableState(options, stream) {
+    Duplex = Duplex || __turbopack_context__.r("[project]/Image-Watermarker/node_modules/readable-stream/lib/_stream_duplex.js [app-ssr] (ecmascript)");
+    options = options || {};
+    // Duplex streams are both readable and writable, but share
+    // the same options object.
+    // However, some cases require setting options to different
+    // values for the readable and the writable sides of the duplex stream.
+    // These options can be provided separately as readableXXX and writableXXX.
+    var isDuplex = stream instanceof Duplex;
+    // object stream flag. Used to make read(n) ignore n and to
+    // make all the buffer merging and length checks go away
+    this.objectMode = !!options.objectMode;
+    if (isDuplex) this.objectMode = this.objectMode || !!options.readableObjectMode;
+    // the point at which it stops calling _read() to fill the buffer
+    // Note: 0 is a valid value, means "don't call _read preemptively ever"
+    var hwm = options.highWaterMark;
+    var readableHwm = options.readableHighWaterMark;
+    var defaultHwm = this.objectMode ? 16 : 16 * 1024;
+    if (hwm || hwm === 0) this.highWaterMark = hwm;
+    else if (isDuplex && (readableHwm || readableHwm === 0)) this.highWaterMark = readableHwm;
+    else this.highWaterMark = defaultHwm;
+    // cast to ints.
+    this.highWaterMark = Math.floor(this.highWaterMark);
+    // A linked list is used to store data chunks instead of an array because the
+    // linked list can remove elements from the beginning faster than
+    // array.shift()
+    this.buffer = new BufferList();
+    this.length = 0;
+    this.pipes = null;
+    this.pipesCount = 0;
+    this.flowing = null;
+    this.ended = false;
+    this.endEmitted = false;
+    this.reading = false;
+    // a flag to be able to tell if the event 'readable'/'data' is emitted
+    // immediately, or on a later tick.  We set this to true at first, because
+    // any actions that shouldn't happen until "later" should generally also
+    // not happen before the first read call.
+    this.sync = true;
+    // whenever we return null, then we set a flag to say
+    // that we're awaiting a 'readable' event emission.
+    this.needReadable = false;
+    this.emittedReadable = false;
+    this.readableListening = false;
+    this.resumeScheduled = false;
+    // has it been destroyed
+    this.destroyed = false;
+    // Crypto is kind of old and crusty.  Historically, its default string
+    // encoding is 'binary' so we have to make this configurable.
+    // Everything else in the universe uses 'utf8', though.
+    this.defaultEncoding = options.defaultEncoding || 'utf8';
+    // the number of writers that are awaiting a drain event in .pipe()s
+    this.awaitDrain = 0;
+    // if true, a maybeReadMore has been scheduled
+    this.readingMore = false;
+    this.decoder = null;
+    this.encoding = null;
+    if (options.encoding) {
+        if (!StringDecoder) StringDecoder = __turbopack_context__.f({
+            "string_decoder": {
+                id: ()=>"[project]/Image-Watermarker/node_modules/string_decoder/lib/string_decoder.js [app-ssr] (ecmascript)",
+                module: ()=>__turbopack_context__.r("[project]/Image-Watermarker/node_modules/string_decoder/lib/string_decoder.js [app-ssr] (ecmascript)")
+            },
+            "string_decoder/": {
+                id: ()=>"[project]/Image-Watermarker/node_modules/string_decoder/lib/string_decoder.js [app-ssr] (ecmascript)",
+                module: ()=>__turbopack_context__.r("[project]/Image-Watermarker/node_modules/string_decoder/lib/string_decoder.js [app-ssr] (ecmascript)")
+            }
+        })('string_decoder/').StringDecoder;
+        this.decoder = new StringDecoder(options.encoding);
+        this.encoding = options.encoding;
+    }
+}
+function Readable(options) {
+    Duplex = Duplex || __turbopack_context__.r("[project]/Image-Watermarker/node_modules/readable-stream/lib/_stream_duplex.js [app-ssr] (ecmascript)");
+    if (!(this instanceof Readable)) return new Readable(options);
+    this._readableState = new ReadableState(options, this);
+    // legacy
+    this.readable = true;
+    if (options) {
+        if (typeof options.read === 'function') this._read = options.read;
+        if (typeof options.destroy === 'function') this._destroy = options.destroy;
+    }
+    Stream.call(this);
+}
+Object.defineProperty(Readable.prototype, 'destroyed', {
+    get: function() {
+        if (this._readableState === undefined) {
+            return false;
+        }
+        return this._readableState.destroyed;
+    },
+    set: function(value) {
+        // we ignore the value if the stream
+        // has not been initialized yet
+        if (!this._readableState) {
+            return;
+        }
+        // backward compatibility, the user is explicitly
+        // managing destroyed
+        this._readableState.destroyed = value;
+    }
+});
+Readable.prototype.destroy = destroyImpl.destroy;
+Readable.prototype._undestroy = destroyImpl.undestroy;
+Readable.prototype._destroy = function(err, cb) {
+    this.push(null);
+    cb(err);
+};
+// Manually shove something into the read() buffer.
+// This returns true if the highWaterMark has not been hit yet,
+// similar to how Writable.write() returns true if you should
+// write() some more.
+Readable.prototype.push = function(chunk, encoding) {
+    var state = this._readableState;
+    var skipChunkCheck;
+    if (!state.objectMode) {
+        if (typeof chunk === 'string') {
+            encoding = encoding || state.defaultEncoding;
+            if (encoding !== state.encoding) {
+                chunk = Buffer.from(chunk, encoding);
+                encoding = '';
+            }
+            skipChunkCheck = true;
+        }
+    } else {
+        skipChunkCheck = true;
+    }
+    return readableAddChunk(this, chunk, encoding, false, skipChunkCheck);
+};
+// Unshift should *always* be something directly out of read()
+Readable.prototype.unshift = function(chunk) {
+    return readableAddChunk(this, chunk, null, true, false);
+};
+function readableAddChunk(stream, chunk, encoding, addToFront, skipChunkCheck) {
+    var state = stream._readableState;
+    if (chunk === null) {
+        state.reading = false;
+        onEofChunk(stream, state);
+    } else {
+        var er;
+        if (!skipChunkCheck) er = chunkInvalid(state, chunk);
+        if (er) {
+            stream.emit('error', er);
+        } else if (state.objectMode || chunk && chunk.length > 0) {
+            if (typeof chunk !== 'string' && !state.objectMode && Object.getPrototypeOf(chunk) !== Buffer.prototype) {
+                chunk = _uint8ArrayToBuffer(chunk);
+            }
+            if (addToFront) {
+                if (state.endEmitted) stream.emit('error', new Error('stream.unshift() after end event'));
+                else addChunk(stream, state, chunk, true);
+            } else if (state.ended) {
+                stream.emit('error', new Error('stream.push() after EOF'));
+            } else {
+                state.reading = false;
+                if (state.decoder && !encoding) {
+                    chunk = state.decoder.write(chunk);
+                    if (state.objectMode || chunk.length !== 0) addChunk(stream, state, chunk, false);
+                    else maybeReadMore(stream, state);
+                } else {
+                    addChunk(stream, state, chunk, false);
+                }
+            }
+        } else if (!addToFront) {
+            state.reading = false;
+        }
+    }
+    return needMoreData(state);
+}
+function addChunk(stream, state, chunk, addToFront) {
+    if (state.flowing && state.length === 0 && !state.sync) {
+        stream.emit('data', chunk);
+        stream.read(0);
+    } else {
+        // update the buffer info.
+        state.length += state.objectMode ? 1 : chunk.length;
+        if (addToFront) state.buffer.unshift(chunk);
+        else state.buffer.push(chunk);
+        if (state.needReadable) emitReadable(stream);
+    }
+    maybeReadMore(stream, state);
+}
+function chunkInvalid(state, chunk) {
+    var er;
+    if (!_isUint8Array(chunk) && typeof chunk !== 'string' && chunk !== undefined && !state.objectMode) {
+        er = new TypeError('Invalid non-string/buffer chunk');
+    }
+    return er;
+}
+// if it's past the high water mark, we can push in some more.
+// Also, if we have no data yet, we can stand some
+// more bytes.  This is to work around cases where hwm=0,
+// such as the repl.  Also, if the push() triggered a
+// readable event, and the user called read(largeNumber) such that
+// needReadable was set, then we ought to push more, so that another
+// 'readable' event will be triggered.
+function needMoreData(state) {
+    return !state.ended && (state.needReadable || state.length < state.highWaterMark || state.length === 0);
+}
+Readable.prototype.isPaused = function() {
+    return this._readableState.flowing === false;
+};
+// backwards compatibility.
+Readable.prototype.setEncoding = function(enc) {
+    if (!StringDecoder) StringDecoder = __turbopack_context__.f({
+        "string_decoder": {
+            id: ()=>"[project]/Image-Watermarker/node_modules/string_decoder/lib/string_decoder.js [app-ssr] (ecmascript)",
+            module: ()=>__turbopack_context__.r("[project]/Image-Watermarker/node_modules/string_decoder/lib/string_decoder.js [app-ssr] (ecmascript)")
+        },
+        "string_decoder/": {
+            id: ()=>"[project]/Image-Watermarker/node_modules/string_decoder/lib/string_decoder.js [app-ssr] (ecmascript)",
+            module: ()=>__turbopack_context__.r("[project]/Image-Watermarker/node_modules/string_decoder/lib/string_decoder.js [app-ssr] (ecmascript)")
+        }
+    })('string_decoder/').StringDecoder;
+    this._readableState.decoder = new StringDecoder(enc);
+    this._readableState.encoding = enc;
+    return this;
+};
+// Don't raise the hwm > 8MB
+var MAX_HWM = 0x800000;
+function computeNewHighWaterMark(n) {
+    if (n >= MAX_HWM) {
+        n = MAX_HWM;
+    } else {
+        // Get the next highest power of 2 to prevent increasing hwm excessively in
+        // tiny amounts
+        n--;
+        n |= n >>> 1;
+        n |= n >>> 2;
+        n |= n >>> 4;
+        n |= n >>> 8;
+        n |= n >>> 16;
+        n++;
+    }
+    return n;
+}
+// This function is designed to be inlinable, so please take care when making
+// changes to the function body.
+function howMuchToRead(n, state) {
+    if (n <= 0 || state.length === 0 && state.ended) return 0;
+    if (state.objectMode) return 1;
+    if (n !== n) {
+        // Only flow one buffer at a time
+        if (state.flowing && state.length) return state.buffer.head.data.length;
+        else return state.length;
+    }
+    // If we're asking for more than the current hwm, then raise the hwm.
+    if (n > state.highWaterMark) state.highWaterMark = computeNewHighWaterMark(n);
+    if (n <= state.length) return n;
+    // Don't have enough
+    if (!state.ended) {
+        state.needReadable = true;
+        return 0;
+    }
+    return state.length;
+}
+// you can override either this method, or the async _read(n) below.
+Readable.prototype.read = function(n) {
+    debug('read', n);
+    n = parseInt(n, 10);
+    var state = this._readableState;
+    var nOrig = n;
+    if (n !== 0) state.emittedReadable = false;
+    // if we're doing read(0) to trigger a readable event, but we
+    // already have a bunch of data in the buffer, then just trigger
+    // the 'readable' event and move on.
+    if (n === 0 && state.needReadable && (state.length >= state.highWaterMark || state.ended)) {
+        debug('read: emitReadable', state.length, state.ended);
+        if (state.length === 0 && state.ended) endReadable(this);
+        else emitReadable(this);
+        return null;
+    }
+    n = howMuchToRead(n, state);
+    // if we've ended, and we're now clear, then finish it up.
+    if (n === 0 && state.ended) {
+        if (state.length === 0) endReadable(this);
+        return null;
+    }
+    // All the actual chunk generation logic needs to be
+    // *below* the call to _read.  The reason is that in certain
+    // synthetic stream cases, such as passthrough streams, _read
+    // may be a completely synchronous operation which may change
+    // the state of the read buffer, providing enough data when
+    // before there was *not* enough.
+    //
+    // So, the steps are:
+    // 1. Figure out what the state of things will be after we do
+    // a read from the buffer.
+    //
+    // 2. If that resulting state will trigger a _read, then call _read.
+    // Note that this may be asynchronous, or synchronous.  Yes, it is
+    // deeply ugly to write APIs this way, but that still doesn't mean
+    // that the Readable class should behave improperly, as streams are
+    // designed to be sync/async agnostic.
+    // Take note if the _read call is sync or async (ie, if the read call
+    // has returned yet), so that we know whether or not it's safe to emit
+    // 'readable' etc.
+    //
+    // 3. Actually pull the requested chunks out of the buffer and return.
+    // if we need a readable event, then we need to do some reading.
+    var doRead = state.needReadable;
+    debug('need readable', doRead);
+    // if we currently have less than the highWaterMark, then also read some
+    if (state.length === 0 || state.length - n < state.highWaterMark) {
+        doRead = true;
+        debug('length less than watermark', doRead);
+    }
+    // however, if we've ended, then there's no point, and if we're already
+    // reading, then it's unnecessary.
+    if (state.ended || state.reading) {
+        doRead = false;
+        debug('reading or ended', doRead);
+    } else if (doRead) {
+        debug('do read');
+        state.reading = true;
+        state.sync = true;
+        // if the length is currently zero, then we *need* a readable event.
+        if (state.length === 0) state.needReadable = true;
+        // call internal read method
+        this._read(state.highWaterMark);
+        state.sync = false;
+        // If _read pushed data synchronously, then `reading` will be false,
+        // and we need to re-evaluate how much data we can return to the user.
+        if (!state.reading) n = howMuchToRead(nOrig, state);
+    }
+    var ret;
+    if (n > 0) ret = fromList(n, state);
+    else ret = null;
+    if (ret === null) {
+        state.needReadable = true;
+        n = 0;
+    } else {
+        state.length -= n;
+    }
+    if (state.length === 0) {
+        // If we have nothing in the buffer, then we want to know
+        // as soon as we *do* get something into the buffer.
+        if (!state.ended) state.needReadable = true;
+        // If we tried to read() past the EOF, then emit end on the next tick.
+        if (nOrig !== n && state.ended) endReadable(this);
+    }
+    if (ret !== null) this.emit('data', ret);
+    return ret;
+};
+function onEofChunk(stream, state) {
+    if (state.ended) return;
+    if (state.decoder) {
+        var chunk = state.decoder.end();
+        if (chunk && chunk.length) {
+            state.buffer.push(chunk);
+            state.length += state.objectMode ? 1 : chunk.length;
+        }
+    }
+    state.ended = true;
+    // emit 'readable' now to make sure it gets picked up.
+    emitReadable(stream);
+}
+// Don't emit readable right away in sync mode, because this can trigger
+// another read() call => stack overflow.  This way, it might trigger
+// a nextTick recursion warning, but that's not so bad.
+function emitReadable(stream) {
+    var state = stream._readableState;
+    state.needReadable = false;
+    if (!state.emittedReadable) {
+        debug('emitReadable', state.flowing);
+        state.emittedReadable = true;
+        if (state.sync) pna.nextTick(emitReadable_, stream);
+        else emitReadable_(stream);
+    }
+}
+function emitReadable_(stream) {
+    debug('emit readable');
+    stream.emit('readable');
+    flow(stream);
+}
+// at this point, the user has presumably seen the 'readable' event,
+// and called read() to consume some data.  that may have triggered
+// in turn another _read(n) call, in which case reading = true if
+// it's in progress.
+// However, if we're not ended, or reading, and the length < hwm,
+// then go ahead and try to read some more preemptively.
+function maybeReadMore(stream, state) {
+    if (!state.readingMore) {
+        state.readingMore = true;
+        pna.nextTick(maybeReadMore_, stream, state);
+    }
+}
+function maybeReadMore_(stream, state) {
+    var len = state.length;
+    while(!state.reading && !state.flowing && !state.ended && state.length < state.highWaterMark){
+        debug('maybeReadMore read 0');
+        stream.read(0);
+        if (len === state.length) break;
+        else len = state.length;
+    }
+    state.readingMore = false;
+}
+// abstract method.  to be overridden in specific implementation classes.
+// call cb(er, data) where data is <= n in length.
+// for virtual (non-string, non-buffer) streams, "length" is somewhat
+// arbitrary, and perhaps not very meaningful.
+Readable.prototype._read = function(n) {
+    this.emit('error', new Error('_read() is not implemented'));
+};
+Readable.prototype.pipe = function(dest, pipeOpts) {
+    var src = this;
+    var state = this._readableState;
+    switch(state.pipesCount){
+        case 0:
+            state.pipes = dest;
+            break;
+        case 1:
+            state.pipes = [
+                state.pipes,
+                dest
+            ];
+            break;
+        default:
+            state.pipes.push(dest);
+            break;
+    }
+    state.pipesCount += 1;
+    debug('pipe count=%d opts=%j', state.pipesCount, pipeOpts);
+    var doEnd = (!pipeOpts || pipeOpts.end !== false) && dest !== process.stdout && dest !== process.stderr;
+    var endFn = doEnd ? onend : unpipe;
+    if (state.endEmitted) pna.nextTick(endFn);
+    else src.once('end', endFn);
+    dest.on('unpipe', onunpipe);
+    function onunpipe(readable, unpipeInfo) {
+        debug('onunpipe');
+        if (readable === src) {
+            if (unpipeInfo && unpipeInfo.hasUnpiped === false) {
+                unpipeInfo.hasUnpiped = true;
+                cleanup();
+            }
+        }
+    }
+    function onend() {
+        debug('onend');
+        dest.end();
+    }
+    // when the dest drains, it reduces the awaitDrain counter
+    // on the source.  This would be more elegant with a .once()
+    // handler in flow(), but adding and removing repeatedly is
+    // too slow.
+    var ondrain = pipeOnDrain(src);
+    dest.on('drain', ondrain);
+    var cleanedUp = false;
+    function cleanup() {
+        debug('cleanup');
+        // cleanup event handlers once the pipe is broken
+        dest.removeListener('close', onclose);
+        dest.removeListener('finish', onfinish);
+        dest.removeListener('drain', ondrain);
+        dest.removeListener('error', onerror);
+        dest.removeListener('unpipe', onunpipe);
+        src.removeListener('end', onend);
+        src.removeListener('end', unpipe);
+        src.removeListener('data', ondata);
+        cleanedUp = true;
+        // if the reader is waiting for a drain event from this
+        // specific writer, then it would cause it to never start
+        // flowing again.
+        // So, if this is awaiting a drain, then we just call it now.
+        // If we don't know, then assume that we are waiting for one.
+        if (state.awaitDrain && (!dest._writableState || dest._writableState.needDrain)) ondrain();
+    }
+    // If the user pushes more data while we're writing to dest then we'll end up
+    // in ondata again. However, we only want to increase awaitDrain once because
+    // dest will only emit one 'drain' event for the multiple writes.
+    // => Introduce a guard on increasing awaitDrain.
+    var increasedAwaitDrain = false;
+    src.on('data', ondata);
+    function ondata(chunk) {
+        debug('ondata');
+        increasedAwaitDrain = false;
+        var ret = dest.write(chunk);
+        if (false === ret && !increasedAwaitDrain) {
+            // If the user unpiped during `dest.write()`, it is possible
+            // to get stuck in a permanently paused state if that write
+            // also returned false.
+            // => Check whether `dest` is still a piping destination.
+            if ((state.pipesCount === 1 && state.pipes === dest || state.pipesCount > 1 && indexOf(state.pipes, dest) !== -1) && !cleanedUp) {
+                debug('false write response, pause', state.awaitDrain);
+                state.awaitDrain++;
+                increasedAwaitDrain = true;
+            }
+            src.pause();
+        }
+    }
+    // if the dest has an error, then stop piping into it.
+    // however, don't suppress the throwing behavior for this.
+    function onerror(er) {
+        debug('onerror', er);
+        unpipe();
+        dest.removeListener('error', onerror);
+        if (EElistenerCount(dest, 'error') === 0) dest.emit('error', er);
+    }
+    // Make sure our error handler is attached before userland ones.
+    prependListener(dest, 'error', onerror);
+    // Both close and finish should trigger unpipe, but only once.
+    function onclose() {
+        dest.removeListener('finish', onfinish);
+        unpipe();
+    }
+    dest.once('close', onclose);
+    function onfinish() {
+        debug('onfinish');
+        dest.removeListener('close', onclose);
+        unpipe();
+    }
+    dest.once('finish', onfinish);
+    function unpipe() {
+        debug('unpipe');
+        src.unpipe(dest);
+    }
+    // tell the dest that it's being piped to
+    dest.emit('pipe', src);
+    // start the flow if it hasn't been started already.
+    if (!state.flowing) {
+        debug('pipe resume');
+        src.resume();
+    }
+    return dest;
+};
+function pipeOnDrain(src) {
+    return function() {
+        var state = src._readableState;
+        debug('pipeOnDrain', state.awaitDrain);
+        if (state.awaitDrain) state.awaitDrain--;
+        if (state.awaitDrain === 0 && EElistenerCount(src, 'data')) {
+            state.flowing = true;
+            flow(src);
+        }
+    };
+}
+Readable.prototype.unpipe = function(dest) {
+    var state = this._readableState;
+    var unpipeInfo = {
+        hasUnpiped: false
+    };
+    // if we're not piping anywhere, then do nothing.
+    if (state.pipesCount === 0) return this;
+    // just one destination.  most common case.
+    if (state.pipesCount === 1) {
+        // passed in one, but it's not the right one.
+        if (dest && dest !== state.pipes) return this;
+        if (!dest) dest = state.pipes;
+        // got a match.
+        state.pipes = null;
+        state.pipesCount = 0;
+        state.flowing = false;
+        if (dest) dest.emit('unpipe', this, unpipeInfo);
+        return this;
+    }
+    // slow case. multiple pipe destinations.
+    if (!dest) {
+        // remove all.
+        var dests = state.pipes;
+        var len = state.pipesCount;
+        state.pipes = null;
+        state.pipesCount = 0;
+        state.flowing = false;
+        for(var i = 0; i < len; i++){
+            dests[i].emit('unpipe', this, {
+                hasUnpiped: false
+            });
+        }
+        return this;
+    }
+    // try to find the right one.
+    var index = indexOf(state.pipes, dest);
+    if (index === -1) return this;
+    state.pipes.splice(index, 1);
+    state.pipesCount -= 1;
+    if (state.pipesCount === 1) state.pipes = state.pipes[0];
+    dest.emit('unpipe', this, unpipeInfo);
+    return this;
+};
+// set up data events if they are asked for
+// Ensure readable listeners eventually get something
+Readable.prototype.on = function(ev, fn) {
+    var res = Stream.prototype.on.call(this, ev, fn);
+    if (ev === 'data') {
+        // Start flowing on next tick if stream isn't explicitly paused
+        if (this._readableState.flowing !== false) this.resume();
+    } else if (ev === 'readable') {
+        var state = this._readableState;
+        if (!state.endEmitted && !state.readableListening) {
+            state.readableListening = state.needReadable = true;
+            state.emittedReadable = false;
+            if (!state.reading) {
+                pna.nextTick(nReadingNextTick, this);
+            } else if (state.length) {
+                emitReadable(this);
+            }
+        }
+    }
+    return res;
+};
+Readable.prototype.addListener = Readable.prototype.on;
+function nReadingNextTick(self) {
+    debug('readable nexttick read 0');
+    self.read(0);
+}
+// pause() and resume() are remnants of the legacy readable stream API
+// If the user uses them, then switch into old mode.
+Readable.prototype.resume = function() {
+    var state = this._readableState;
+    if (!state.flowing) {
+        debug('resume');
+        state.flowing = true;
+        resume(this, state);
+    }
+    return this;
+};
+function resume(stream, state) {
+    if (!state.resumeScheduled) {
+        state.resumeScheduled = true;
+        pna.nextTick(resume_, stream, state);
+    }
+}
+function resume_(stream, state) {
+    if (!state.reading) {
+        debug('resume read 0');
+        stream.read(0);
+    }
+    state.resumeScheduled = false;
+    state.awaitDrain = 0;
+    stream.emit('resume');
+    flow(stream);
+    if (state.flowing && !state.reading) stream.read(0);
+}
+Readable.prototype.pause = function() {
+    debug('call pause flowing=%j', this._readableState.flowing);
+    if (false !== this._readableState.flowing) {
+        debug('pause');
+        this._readableState.flowing = false;
+        this.emit('pause');
+    }
+    return this;
+};
+function flow(stream) {
+    var state = stream._readableState;
+    debug('flow', state.flowing);
+    while(state.flowing && stream.read() !== null){}
+}
+// wrap an old-style stream as the async data source.
+// This is *not* part of the readable stream interface.
+// It is an ugly unfortunate mess of history.
+Readable.prototype.wrap = function(stream) {
+    var _this = this;
+    var state = this._readableState;
+    var paused = false;
+    stream.on('end', function() {
+        debug('wrapped end');
+        if (state.decoder && !state.ended) {
+            var chunk = state.decoder.end();
+            if (chunk && chunk.length) _this.push(chunk);
+        }
+        _this.push(null);
+    });
+    stream.on('data', function(chunk) {
+        debug('wrapped data');
+        if (state.decoder) chunk = state.decoder.write(chunk);
+        // don't skip over falsy values in objectMode
+        if (state.objectMode && (chunk === null || chunk === undefined)) return;
+        else if (!state.objectMode && (!chunk || !chunk.length)) return;
+        var ret = _this.push(chunk);
+        if (!ret) {
+            paused = true;
+            stream.pause();
+        }
+    });
+    // proxy all the other methods.
+    // important when wrapping filters and duplexes.
+    for(var i in stream){
+        if (this[i] === undefined && typeof stream[i] === 'function') {
+            this[i] = function(method) {
+                return function() {
+                    return stream[method].apply(stream, arguments);
+                };
+            }(i);
+        }
+    }
+    // proxy certain important events.
+    for(var n = 0; n < kProxyEvents.length; n++){
+        stream.on(kProxyEvents[n], this.emit.bind(this, kProxyEvents[n]));
+    }
+    // when we try to consume some more bytes, simply unpause the
+    // underlying stream.
+    this._read = function(n) {
+        debug('wrapped _read', n);
+        if (paused) {
+            paused = false;
+            stream.resume();
+        }
+    };
+    return this;
+};
+Object.defineProperty(Readable.prototype, 'readableHighWaterMark', {
+    // making it explicit this property is not enumerable
+    // because otherwise some prototype manipulation in
+    // userland will fail
+    enumerable: false,
+    get: function() {
+        return this._readableState.highWaterMark;
+    }
+});
+// exposed for testing purposes only.
+Readable._fromList = fromList;
+// Pluck off n bytes from an array of buffers.
+// Length is the combined lengths of all the buffers in the list.
+// This function is designed to be inlinable, so please take care when making
+// changes to the function body.
+function fromList(n, state) {
+    // nothing buffered
+    if (state.length === 0) return null;
+    var ret;
+    if (state.objectMode) ret = state.buffer.shift();
+    else if (!n || n >= state.length) {
+        // read it all, truncate the list
+        if (state.decoder) ret = state.buffer.join('');
+        else if (state.buffer.length === 1) ret = state.buffer.head.data;
+        else ret = state.buffer.concat(state.length);
+        state.buffer.clear();
+    } else {
+        // read part of list
+        ret = fromListPartial(n, state.buffer, state.decoder);
+    }
+    return ret;
+}
+// Extracts only enough buffered data to satisfy the amount requested.
+// This function is designed to be inlinable, so please take care when making
+// changes to the function body.
+function fromListPartial(n, list, hasStrings) {
+    var ret;
+    if (n < list.head.data.length) {
+        // slice is the same for buffers and strings
+        ret = list.head.data.slice(0, n);
+        list.head.data = list.head.data.slice(n);
+    } else if (n === list.head.data.length) {
+        // first chunk is a perfect match
+        ret = list.shift();
+    } else {
+        // result spans more than one buffer
+        ret = hasStrings ? copyFromBufferString(n, list) : copyFromBuffer(n, list);
+    }
+    return ret;
+}
+// Copies a specified amount of characters from the list of buffered data
+// chunks.
+// This function is designed to be inlinable, so please take care when making
+// changes to the function body.
+function copyFromBufferString(n, list) {
+    var p = list.head;
+    var c = 1;
+    var ret = p.data;
+    n -= ret.length;
+    while(p = p.next){
+        var str = p.data;
+        var nb = n > str.length ? str.length : n;
+        if (nb === str.length) ret += str;
+        else ret += str.slice(0, n);
+        n -= nb;
+        if (n === 0) {
+            if (nb === str.length) {
+                ++c;
+                if (p.next) list.head = p.next;
+                else list.head = list.tail = null;
+            } else {
+                list.head = p;
+                p.data = str.slice(nb);
+            }
+            break;
+        }
+        ++c;
+    }
+    list.length -= c;
+    return ret;
+}
+// Copies a specified amount of bytes from the list of buffered data chunks.
+// This function is designed to be inlinable, so please take care when making
+// changes to the function body.
+function copyFromBuffer(n, list) {
+    var ret = Buffer.allocUnsafe(n);
+    var p = list.head;
+    var c = 1;
+    p.data.copy(ret);
+    n -= p.data.length;
+    while(p = p.next){
+        var buf = p.data;
+        var nb = n > buf.length ? buf.length : n;
+        buf.copy(ret, ret.length - n, 0, nb);
+        n -= nb;
+        if (n === 0) {
+            if (nb === buf.length) {
+                ++c;
+                if (p.next) list.head = p.next;
+                else list.head = list.tail = null;
+            } else {
+                list.head = p;
+                p.data = buf.slice(nb);
+            }
+            break;
+        }
+        ++c;
+    }
+    list.length -= c;
+    return ret;
+}
+function endReadable(stream) {
+    var state = stream._readableState;
+    // If we get here before consuming all the bytes, then that is a
+    // bug in node.  Should never happen.
+    if (state.length > 0) throw new Error('"endReadable()" called on non-empty stream');
+    if (!state.endEmitted) {
+        state.ended = true;
+        pna.nextTick(endReadableNT, state, stream);
+    }
+}
+function endReadableNT(state, stream) {
+    // Check that we didn't get one last unshift.
+    if (!state.endEmitted && state.length === 0) {
+        state.endEmitted = true;
+        stream.readable = false;
+        stream.emit('end');
+    }
+}
+function indexOf(xs, x) {
+    for(var i = 0, l = xs.length; i < l; i++){
+        if (xs[i] === x) return i;
+    }
+    return -1;
+}
+}),
+"[project]/Image-Watermarker/node_modules/readable-stream/lib/_stream_transform.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+// a transform stream is a readable/writable stream where you do
+// something with the data.  Sometimes it's called a "filter",
+// but that's not a great name for it, since that implies a thing where
+// some bits pass through, and others are simply ignored.  (That would
+// be a valid example of a transform, of course.)
+//
+// While the output is causally related to the input, it's not a
+// necessarily symmetric or synchronous transformation.  For example,
+// a zlib stream might take multiple plain-text writes(), and then
+// emit a single compressed chunk some time in the future.
+//
+// Here's how this works:
+//
+// The Transform stream has all the aspects of the readable and writable
+// stream classes.  When you write(chunk), that calls _write(chunk,cb)
+// internally, and returns false if there's a lot of pending writes
+// buffered up.  When you call read(), that calls _read(n) until
+// there's enough pending readable data buffered up.
+//
+// In a transform stream, the written data is placed in a buffer.  When
+// _read(n) is called, it transforms the queued up data, calling the
+// buffered _write cb's as it consumes chunks.  If consuming a single
+// written chunk would result in multiple output chunks, then the first
+// outputted bit calls the readcb, and subsequent chunks just go into
+// the read buffer, and will cause it to emit 'readable' if necessary.
+//
+// This way, back-pressure is actually determined by the reading side,
+// since _read has to be called to start processing a new chunk.  However,
+// a pathological inflate type of transform can cause excessive buffering
+// here.  For example, imagine a stream where every byte of input is
+// interpreted as an integer from 0-255, and then results in that many
+// bytes of output.  Writing the 4 bytes {ff,ff,ff,ff} would result in
+// 1kb of data being output.  In this case, you could write a very small
+// amount of input, and end up with a very large amount of output.  In
+// such a pathological inflating mechanism, there'd be no way to tell
+// the system to stop doing the transform.  A single 4MB write could
+// cause the system to run out of memory.
+//
+// However, even in such a pathological case, only a single written chunk
+// would be consumed, and then the rest would wait (un-transformed) until
+// the results of the previous transformed chunk were consumed.
+module.exports = Transform;
+var Duplex = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/readable-stream/lib/_stream_duplex.js [app-ssr] (ecmascript)");
+/*<replacement>*/ var util = Object.create(__turbopack_context__.r("[project]/Image-Watermarker/node_modules/core-util-is/lib/util.js [app-ssr] (ecmascript)"));
+util.inherits = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/inherits/inherits.js [app-ssr] (ecmascript)");
+/*</replacement>*/ util.inherits(Transform, Duplex);
+function afterTransform(er, data) {
+    var ts = this._transformState;
+    ts.transforming = false;
+    var cb = ts.writecb;
+    if (!cb) {
+        return this.emit('error', new Error('write callback called multiple times'));
+    }
+    ts.writechunk = null;
+    ts.writecb = null;
+    if (data != null) this.push(data);
+    cb(er);
+    var rs = this._readableState;
+    rs.reading = false;
+    if (rs.needReadable || rs.length < rs.highWaterMark) {
+        this._read(rs.highWaterMark);
+    }
+}
+function Transform(options) {
+    if (!(this instanceof Transform)) return new Transform(options);
+    Duplex.call(this, options);
+    this._transformState = {
+        afterTransform: afterTransform.bind(this),
+        needTransform: false,
+        transforming: false,
+        writecb: null,
+        writechunk: null,
+        writeencoding: null
+    };
+    // start out asking for a readable event once data is transformed.
+    this._readableState.needReadable = true;
+    // we have implemented the _read method, and done the other things
+    // that Readable wants before the first _read call, so unset the
+    // sync guard flag.
+    this._readableState.sync = false;
+    if (options) {
+        if (typeof options.transform === 'function') this._transform = options.transform;
+        if (typeof options.flush === 'function') this._flush = options.flush;
+    }
+    // When the writable side finishes, then flush out anything remaining.
+    this.on('prefinish', prefinish);
+}
+function prefinish() {
+    var _this = this;
+    if (typeof this._flush === 'function') {
+        this._flush(function(er, data) {
+            done(_this, er, data);
+        });
+    } else {
+        done(this, null, null);
+    }
+}
+Transform.prototype.push = function(chunk, encoding) {
+    this._transformState.needTransform = false;
+    return Duplex.prototype.push.call(this, chunk, encoding);
+};
+// This is the part where you do stuff!
+// override this function in implementation classes.
+// 'chunk' is an input chunk.
+//
+// Call `push(newChunk)` to pass along transformed output
+// to the readable side.  You may call 'push' zero or more times.
+//
+// Call `cb(err)` when you are done with this chunk.  If you pass
+// an error, then that'll put the hurt on the whole operation.  If you
+// never call cb(), then you'll never get another chunk.
+Transform.prototype._transform = function(chunk, encoding, cb) {
+    throw new Error('_transform() is not implemented');
+};
+Transform.prototype._write = function(chunk, encoding, cb) {
+    var ts = this._transformState;
+    ts.writecb = cb;
+    ts.writechunk = chunk;
+    ts.writeencoding = encoding;
+    if (!ts.transforming) {
+        var rs = this._readableState;
+        if (ts.needTransform || rs.needReadable || rs.length < rs.highWaterMark) this._read(rs.highWaterMark);
+    }
+};
+// Doesn't matter what the args are here.
+// _transform does all the work.
+// That we got here means that the readable side wants more data.
+Transform.prototype._read = function(n) {
+    var ts = this._transformState;
+    if (ts.writechunk !== null && ts.writecb && !ts.transforming) {
+        ts.transforming = true;
+        this._transform(ts.writechunk, ts.writeencoding, ts.afterTransform);
+    } else {
+        // mark that we need a transform, so that any data that comes in
+        // will get processed, now that we've asked for it.
+        ts.needTransform = true;
+    }
+};
+Transform.prototype._destroy = function(err, cb) {
+    var _this2 = this;
+    Duplex.prototype._destroy.call(this, err, function(err2) {
+        cb(err2);
+        _this2.emit('close');
+    });
+};
+function done(stream, er, data) {
+    if (er) return stream.emit('error', er);
+    if (data != null) stream.push(data);
+    // if there's nothing in the write buffer, then that means
+    // that nothing more will ever be provided
+    if (stream._writableState.length) throw new Error('Calling transform done when ws.length != 0');
+    if (stream._transformState.transforming) throw new Error('Calling transform done when still transforming');
+    return stream.push(null);
+}
+}),
+"[project]/Image-Watermarker/node_modules/readable-stream/lib/_stream_passthrough.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+// a passthrough stream.
+// basically just the most minimal sort of Transform stream.
+// Every written chunk gets output as-is.
+module.exports = PassThrough;
+var Transform = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/readable-stream/lib/_stream_transform.js [app-ssr] (ecmascript)");
+/*<replacement>*/ var util = Object.create(__turbopack_context__.r("[project]/Image-Watermarker/node_modules/core-util-is/lib/util.js [app-ssr] (ecmascript)"));
+util.inherits = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/inherits/inherits.js [app-ssr] (ecmascript)");
+/*</replacement>*/ util.inherits(PassThrough, Transform);
+function PassThrough(options) {
+    if (!(this instanceof PassThrough)) return new PassThrough(options);
+    Transform.call(this, options);
+}
+PassThrough.prototype._transform = function(chunk, encoding, cb) {
+    cb(null, chunk);
+};
+}),
+"[project]/Image-Watermarker/node_modules/readable-stream/readable.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+
+var Stream = __turbopack_context__.r("[externals]/stream [external] (stream, cjs)");
+if (process.env.READABLE_STREAM === 'disable' && Stream) {
+    module.exports = Stream;
+    exports = module.exports = Stream.Readable;
+    exports.Readable = Stream.Readable;
+    exports.Writable = Stream.Writable;
+    exports.Duplex = Stream.Duplex;
+    exports.Transform = Stream.Transform;
+    exports.PassThrough = Stream.PassThrough;
+    exports.Stream = Stream;
+} else {
+    exports = module.exports = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/readable-stream/lib/_stream_readable.js [app-ssr] (ecmascript)");
+    exports.Stream = Stream || exports;
+    exports.Readable = exports;
+    exports.Writable = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/readable-stream/lib/_stream_writable.js [app-ssr] (ecmascript)");
+    exports.Duplex = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/readable-stream/lib/_stream_duplex.js [app-ssr] (ecmascript)");
+    exports.Transform = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/readable-stream/lib/_stream_transform.js [app-ssr] (ecmascript)");
+    exports.PassThrough = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/readable-stream/lib/_stream_passthrough.js [app-ssr] (ecmascript)");
+}
+}),
+"[project]/Image-Watermarker/node_modules/safe-buffer/index.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+
+/* eslint-disable node/no-deprecated-api */ var buffer = __turbopack_context__.r("[externals]/buffer [external] (buffer, cjs)");
+var Buffer = buffer.Buffer;
+// alternative to using Object.keys for old browsers
+function copyProps(src, dst) {
+    for(var key in src){
+        dst[key] = src[key];
+    }
+}
+if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
+    module.exports = buffer;
+} else {
+    // Copy properties from require('buffer')
+    copyProps(buffer, exports);
+    exports.Buffer = SafeBuffer;
+}
+function SafeBuffer(arg, encodingOrOffset, length) {
+    return Buffer(arg, encodingOrOffset, length);
+}
+// Copy static methods from Buffer
+copyProps(Buffer, SafeBuffer);
+SafeBuffer.from = function(arg, encodingOrOffset, length) {
+    if (typeof arg === 'number') {
+        throw new TypeError('Argument must not be a number');
+    }
+    return Buffer(arg, encodingOrOffset, length);
+};
+SafeBuffer.alloc = function(size, fill, encoding) {
+    if (typeof size !== 'number') {
+        throw new TypeError('Argument must be a number');
+    }
+    var buf = Buffer(size);
+    if (fill !== undefined) {
+        if (typeof encoding === 'string') {
+            buf.fill(fill, encoding);
+        } else {
+            buf.fill(fill);
+        }
+    } else {
+        buf.fill(0);
+    }
+    return buf;
+};
+SafeBuffer.allocUnsafe = function(size) {
+    if (typeof size !== 'number') {
+        throw new TypeError('Argument must be a number');
+    }
+    return Buffer(size);
+};
+SafeBuffer.allocUnsafeSlow = function(size) {
+    if (typeof size !== 'number') {
+        throw new TypeError('Argument must be a number');
+    }
+    return buffer.SlowBuffer(size);
+};
+}),
+"[project]/Image-Watermarker/node_modules/core-util-is/lib/util.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+// NOTE: These type checking functions intentionally don't use `instanceof`
+// because it is fragile and can be easily faked with `Object.create()`.
+function isArray(arg) {
+    if (Array.isArray) {
+        return Array.isArray(arg);
+    }
+    return objectToString(arg) === '[object Array]';
+}
+exports.isArray = isArray;
+function isBoolean(arg) {
+    return typeof arg === 'boolean';
+}
+exports.isBoolean = isBoolean;
+function isNull(arg) {
+    return arg === null;
+}
+exports.isNull = isNull;
+function isNullOrUndefined(arg) {
+    return arg == null;
+}
+exports.isNullOrUndefined = isNullOrUndefined;
+function isNumber(arg) {
+    return typeof arg === 'number';
+}
+exports.isNumber = isNumber;
+function isString(arg) {
+    return typeof arg === 'string';
+}
+exports.isString = isString;
+function isSymbol(arg) {
+    return typeof arg === 'symbol';
+}
+exports.isSymbol = isSymbol;
+function isUndefined(arg) {
+    return arg === void 0;
+}
+exports.isUndefined = isUndefined;
+function isRegExp(re) {
+    return objectToString(re) === '[object RegExp]';
+}
+exports.isRegExp = isRegExp;
+function isObject(arg) {
+    return typeof arg === 'object' && arg !== null;
+}
+exports.isObject = isObject;
+function isDate(d) {
+    return objectToString(d) === '[object Date]';
+}
+exports.isDate = isDate;
+function isError(e) {
+    return objectToString(e) === '[object Error]' || e instanceof Error;
+}
+exports.isError = isError;
+function isFunction(arg) {
+    return typeof arg === 'function';
+}
+exports.isFunction = isFunction;
+function isPrimitive(arg) {
+    return arg === null || typeof arg === 'boolean' || typeof arg === 'number' || typeof arg === 'string' || typeof arg === 'symbol' || // ES6 symbol
+    typeof arg === 'undefined';
+}
+exports.isPrimitive = isPrimitive;
+exports.isBuffer = __turbopack_context__.r("[externals]/buffer [external] (buffer, cjs)").Buffer.isBuffer;
+function objectToString(o) {
+    return Object.prototype.toString.call(o);
+}
+}),
+"[project]/Image-Watermarker/node_modules/inherits/inherits_browser.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+
+if (typeof Object.create === 'function') {
+    // implementation from standard node.js 'util' module
+    module.exports = function inherits(ctor, superCtor) {
+        if (superCtor) {
+            ctor.super_ = superCtor;
+            ctor.prototype = Object.create(superCtor.prototype, {
+                constructor: {
+                    value: ctor,
+                    enumerable: false,
+                    writable: true,
+                    configurable: true
+                }
+            });
+        }
+    };
+} else {
+    // old school shim for old browsers
+    module.exports = function inherits(ctor, superCtor) {
+        if (superCtor) {
+            ctor.super_ = superCtor;
+            var TempCtor = function() {};
+            TempCtor.prototype = superCtor.prototype;
+            ctor.prototype = new TempCtor();
+            ctor.prototype.constructor = ctor;
+        }
+    };
+}
+}),
+"[project]/Image-Watermarker/node_modules/inherits/inherits.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+
+try {
+    var util = __turbopack_context__.r("[externals]/util [external] (util, cjs)");
+    /* istanbul ignore next */ if (typeof util.inherits !== 'function') throw '';
+    module.exports = util.inherits;
+} catch (e) {
+    /* istanbul ignore next */ module.exports = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/inherits/inherits_browser.js [app-ssr] (ecmascript)");
+}
+}),
+"[project]/Image-Watermarker/node_modules/util-deprecate/node.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+
+/**
+ * For Node.js, simply re-export the core `util.deprecate` function.
+ */ module.exports = __turbopack_context__.r("[externals]/util [external] (util, cjs)").deprecate;
+}),
+"[project]/Image-Watermarker/node_modules/string_decoder/lib/string_decoder.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+/*<replacement>*/ var Buffer = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/safe-buffer/index.js [app-ssr] (ecmascript)").Buffer;
+/*</replacement>*/ var isEncoding = Buffer.isEncoding || function(encoding) {
+    encoding = '' + encoding;
+    switch(encoding && encoding.toLowerCase()){
+        case 'hex':
+        case 'utf8':
+        case 'utf-8':
+        case 'ascii':
+        case 'binary':
+        case 'base64':
+        case 'ucs2':
+        case 'ucs-2':
+        case 'utf16le':
+        case 'utf-16le':
+        case 'raw':
+            return true;
+        default:
+            return false;
+    }
+};
+function _normalizeEncoding(enc) {
+    if (!enc) return 'utf8';
+    var retried;
+    while(true){
+        switch(enc){
+            case 'utf8':
+            case 'utf-8':
+                return 'utf8';
+            case 'ucs2':
+            case 'ucs-2':
+            case 'utf16le':
+            case 'utf-16le':
+                return 'utf16le';
+            case 'latin1':
+            case 'binary':
+                return 'latin1';
+            case 'base64':
+            case 'ascii':
+            case 'hex':
+                return enc;
+            default:
+                if (retried) return; // undefined
+                enc = ('' + enc).toLowerCase();
+                retried = true;
+        }
+    }
+}
+;
+// Do not cache `Buffer.isEncoding` when checking encoding names as some
+// modules monkey-patch it to support additional encodings
+function normalizeEncoding(enc) {
+    var nenc = _normalizeEncoding(enc);
+    if (typeof nenc !== 'string' && (Buffer.isEncoding === isEncoding || !isEncoding(enc))) throw new Error('Unknown encoding: ' + enc);
+    return nenc || enc;
+}
+// StringDecoder provides an interface for efficiently splitting a series of
+// buffers into a series of JS strings without breaking apart multi-byte
+// characters.
+exports.StringDecoder = StringDecoder;
+function StringDecoder(encoding) {
+    this.encoding = normalizeEncoding(encoding);
+    var nb;
+    switch(this.encoding){
+        case 'utf16le':
+            this.text = utf16Text;
+            this.end = utf16End;
+            nb = 4;
+            break;
+        case 'utf8':
+            this.fillLast = utf8FillLast;
+            nb = 4;
+            break;
+        case 'base64':
+            this.text = base64Text;
+            this.end = base64End;
+            nb = 3;
+            break;
+        default:
+            this.write = simpleWrite;
+            this.end = simpleEnd;
+            return;
+    }
+    this.lastNeed = 0;
+    this.lastTotal = 0;
+    this.lastChar = Buffer.allocUnsafe(nb);
+}
+StringDecoder.prototype.write = function(buf) {
+    if (buf.length === 0) return '';
+    var r;
+    var i;
+    if (this.lastNeed) {
+        r = this.fillLast(buf);
+        if (r === undefined) return '';
+        i = this.lastNeed;
+        this.lastNeed = 0;
+    } else {
+        i = 0;
+    }
+    if (i < buf.length) return r ? r + this.text(buf, i) : this.text(buf, i);
+    return r || '';
+};
+StringDecoder.prototype.end = utf8End;
+// Returns only complete characters in a Buffer
+StringDecoder.prototype.text = utf8Text;
+// Attempts to complete a partial non-UTF-8 character using bytes from a Buffer
+StringDecoder.prototype.fillLast = function(buf) {
+    if (this.lastNeed <= buf.length) {
+        buf.copy(this.lastChar, this.lastTotal - this.lastNeed, 0, this.lastNeed);
+        return this.lastChar.toString(this.encoding, 0, this.lastTotal);
+    }
+    buf.copy(this.lastChar, this.lastTotal - this.lastNeed, 0, buf.length);
+    this.lastNeed -= buf.length;
+};
+// Checks the type of a UTF-8 byte, whether it's ASCII, a leading byte, or a
+// continuation byte. If an invalid byte is detected, -2 is returned.
+function utf8CheckByte(byte) {
+    if (byte <= 0x7F) return 0;
+    else if (byte >> 5 === 0x06) return 2;
+    else if (byte >> 4 === 0x0E) return 3;
+    else if (byte >> 3 === 0x1E) return 4;
+    return byte >> 6 === 0x02 ? -1 : -2;
+}
+// Checks at most 3 bytes at the end of a Buffer in order to detect an
+// incomplete multi-byte UTF-8 character. The total number of bytes (2, 3, or 4)
+// needed to complete the UTF-8 character (if applicable) are returned.
+function utf8CheckIncomplete(self, buf, i) {
+    var j = buf.length - 1;
+    if (j < i) return 0;
+    var nb = utf8CheckByte(buf[j]);
+    if (nb >= 0) {
+        if (nb > 0) self.lastNeed = nb - 1;
+        return nb;
+    }
+    if (--j < i || nb === -2) return 0;
+    nb = utf8CheckByte(buf[j]);
+    if (nb >= 0) {
+        if (nb > 0) self.lastNeed = nb - 2;
+        return nb;
+    }
+    if (--j < i || nb === -2) return 0;
+    nb = utf8CheckByte(buf[j]);
+    if (nb >= 0) {
+        if (nb > 0) {
+            if (nb === 2) nb = 0;
+            else self.lastNeed = nb - 3;
+        }
+        return nb;
+    }
+    return 0;
+}
+// Validates as many continuation bytes for a multi-byte UTF-8 character as
+// needed or are available. If we see a non-continuation byte where we expect
+// one, we "replace" the validated continuation bytes we've seen so far with
+// a single UTF-8 replacement character ('\ufffd'), to match v8's UTF-8 decoding
+// behavior. The continuation byte check is included three times in the case
+// where all of the continuation bytes for a character exist in the same buffer.
+// It is also done this way as a slight performance increase instead of using a
+// loop.
+function utf8CheckExtraBytes(self, buf, p) {
+    if ((buf[0] & 0xC0) !== 0x80) {
+        self.lastNeed = 0;
+        return '\ufffd';
+    }
+    if (self.lastNeed > 1 && buf.length > 1) {
+        if ((buf[1] & 0xC0) !== 0x80) {
+            self.lastNeed = 1;
+            return '\ufffd';
+        }
+        if (self.lastNeed > 2 && buf.length > 2) {
+            if ((buf[2] & 0xC0) !== 0x80) {
+                self.lastNeed = 2;
+                return '\ufffd';
+            }
+        }
+    }
+}
+// Attempts to complete a multi-byte UTF-8 character using bytes from a Buffer.
+function utf8FillLast(buf) {
+    var p = this.lastTotal - this.lastNeed;
+    var r = utf8CheckExtraBytes(this, buf, p);
+    if (r !== undefined) return r;
+    if (this.lastNeed <= buf.length) {
+        buf.copy(this.lastChar, p, 0, this.lastNeed);
+        return this.lastChar.toString(this.encoding, 0, this.lastTotal);
+    }
+    buf.copy(this.lastChar, p, 0, buf.length);
+    this.lastNeed -= buf.length;
+}
+// Returns all complete UTF-8 characters in a Buffer. If the Buffer ended on a
+// partial character, the character's bytes are buffered until the required
+// number of bytes are available.
+function utf8Text(buf, i) {
+    var total = utf8CheckIncomplete(this, buf, i);
+    if (!this.lastNeed) return buf.toString('utf8', i);
+    this.lastTotal = total;
+    var end = buf.length - (total - this.lastNeed);
+    buf.copy(this.lastChar, 0, end);
+    return buf.toString('utf8', i, end);
+}
+// For UTF-8, a replacement character is added when ending on a partial
+// character.
+function utf8End(buf) {
+    var r = buf && buf.length ? this.write(buf) : '';
+    if (this.lastNeed) return r + '\ufffd';
+    return r;
+}
+// UTF-16LE typically needs two bytes per character, but even if we have an even
+// number of bytes available, we need to check if we end on a leading/high
+// surrogate. In that case, we need to wait for the next two bytes in order to
+// decode the last character properly.
+function utf16Text(buf, i) {
+    if ((buf.length - i) % 2 === 0) {
+        var r = buf.toString('utf16le', i);
+        if (r) {
+            var c = r.charCodeAt(r.length - 1);
+            if (c >= 0xD800 && c <= 0xDBFF) {
+                this.lastNeed = 2;
+                this.lastTotal = 4;
+                this.lastChar[0] = buf[buf.length - 2];
+                this.lastChar[1] = buf[buf.length - 1];
+                return r.slice(0, -1);
+            }
+        }
+        return r;
+    }
+    this.lastNeed = 1;
+    this.lastTotal = 2;
+    this.lastChar[0] = buf[buf.length - 1];
+    return buf.toString('utf16le', i, buf.length - 1);
+}
+// For UTF-16LE we do not explicitly append special replacement characters if we
+// end on a partial character, we simply let v8 handle that.
+function utf16End(buf) {
+    var r = buf && buf.length ? this.write(buf) : '';
+    if (this.lastNeed) {
+        var end = this.lastTotal - this.lastNeed;
+        return r + this.lastChar.toString('utf16le', 0, end);
+    }
+    return r;
+}
+function base64Text(buf, i) {
+    var n = (buf.length - i) % 3;
+    if (n === 0) return buf.toString('base64', i);
+    this.lastNeed = 3 - n;
+    this.lastTotal = 3;
+    if (n === 1) {
+        this.lastChar[0] = buf[buf.length - 1];
+    } else {
+        this.lastChar[0] = buf[buf.length - 2];
+        this.lastChar[1] = buf[buf.length - 1];
+    }
+    return buf.toString('base64', i, buf.length - n);
+}
+function base64End(buf) {
+    var r = buf && buf.length ? this.write(buf) : '';
+    if (this.lastNeed) return r + this.lastChar.toString('base64', 0, 3 - this.lastNeed);
+    return r;
+}
+// Pass bytes on through for single-byte encodings (e.g. ascii, latin1, hex)
+function simpleWrite(buf) {
+    return buf.toString(this.encoding);
+}
+function simpleEnd(buf) {
+    return buf && buf.length ? this.write(buf) : '';
+}
+}),
+"[project]/Image-Watermarker/node_modules/immediate/lib/index.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+var Mutation = /*TURBOPACK member replacement*/ __turbopack_context__.g.MutationObserver || /*TURBOPACK member replacement*/ __turbopack_context__.g.WebKitMutationObserver;
+var scheduleDrain;
+if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+{
+    var called;
+    var observer;
+    var element;
+    var channel;
+} else {
+    scheduleDrain = function() {
+        process.nextTick(nextTick);
+    };
+}
+var draining;
+var queue = [];
+//named nextTick for less confusing stack traces
+function nextTick() {
+    draining = true;
+    var i, oldQueue;
+    var len = queue.length;
+    while(len){
+        oldQueue = queue;
+        queue = [];
+        i = -1;
+        while(++i < len){
+            oldQueue[i]();
+        }
+        len = queue.length;
+    }
+    draining = false;
+}
+module.exports = immediate;
+function immediate(task) {
+    if (queue.push(task) === 1 && !draining) {
+        scheduleDrain();
+    }
+}
+}),
+"[project]/Image-Watermarker/node_modules/lie/lib/index.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+var immediate = __turbopack_context__.r("[project]/Image-Watermarker/node_modules/immediate/lib/index.js [app-ssr] (ecmascript)");
+/* istanbul ignore next */ function INTERNAL() {}
+var handlers = {};
+var REJECTED = [
+    'REJECTED'
+];
+var FULFILLED = [
+    'FULFILLED'
+];
+var PENDING = [
+    'PENDING'
+];
+/* istanbul ignore else */ if (!("TURBOPACK compile-time value", false)) {
+    // in which we actually take advantage of JS scoping
+    var UNHANDLED = [
+        'UNHANDLED'
+    ];
+}
+module.exports = Promise;
+function Promise(resolver) {
+    if (typeof resolver !== 'function') {
+        throw new TypeError('resolver must be a function');
+    }
+    this.state = PENDING;
+    this.queue = [];
+    this.outcome = void 0;
+    /* istanbul ignore else */ if ("TURBOPACK compile-time truthy", 1) {
+        this.handled = UNHANDLED;
+    }
+    if (resolver !== INTERNAL) {
+        safelyResolveThenable(this, resolver);
+    }
+}
+Promise.prototype.finally = function(callback) {
+    if (typeof callback !== 'function') {
+        return this;
+    }
+    var p = this.constructor;
+    return this.then(resolve, reject);
+    //TURBOPACK unreachable
+    ;
+    function resolve(value) {
+        function yes() {
+            return value;
+        }
+        return p.resolve(callback()).then(yes);
+    }
+    function reject(reason) {
+        function no() {
+            throw reason;
+        }
+        return p.resolve(callback()).then(no);
+    }
+};
+Promise.prototype.catch = function(onRejected) {
+    return this.then(null, onRejected);
+};
+Promise.prototype.then = function(onFulfilled, onRejected) {
+    if (typeof onFulfilled !== 'function' && this.state === FULFILLED || typeof onRejected !== 'function' && this.state === REJECTED) {
+        return this;
+    }
+    var promise = new this.constructor(INTERNAL);
+    /* istanbul ignore else */ if ("TURBOPACK compile-time truthy", 1) {
+        if (this.handled === UNHANDLED) {
+            this.handled = null;
+        }
+    }
+    if (this.state !== PENDING) {
+        var resolver = this.state === FULFILLED ? onFulfilled : onRejected;
+        unwrap(promise, resolver, this.outcome);
+    } else {
+        this.queue.push(new QueueItem(promise, onFulfilled, onRejected));
+    }
+    return promise;
+};
+function QueueItem(promise, onFulfilled, onRejected) {
+    this.promise = promise;
+    if (typeof onFulfilled === 'function') {
+        this.onFulfilled = onFulfilled;
+        this.callFulfilled = this.otherCallFulfilled;
+    }
+    if (typeof onRejected === 'function') {
+        this.onRejected = onRejected;
+        this.callRejected = this.otherCallRejected;
+    }
+}
+QueueItem.prototype.callFulfilled = function(value) {
+    handlers.resolve(this.promise, value);
+};
+QueueItem.prototype.otherCallFulfilled = function(value) {
+    unwrap(this.promise, this.onFulfilled, value);
+};
+QueueItem.prototype.callRejected = function(value) {
+    handlers.reject(this.promise, value);
+};
+QueueItem.prototype.otherCallRejected = function(value) {
+    unwrap(this.promise, this.onRejected, value);
+};
+function unwrap(promise, func, value) {
+    immediate(function() {
+        var returnValue;
+        try {
+            returnValue = func(value);
+        } catch (e) {
+            return handlers.reject(promise, e);
+        }
+        if (returnValue === promise) {
+            handlers.reject(promise, new TypeError('Cannot resolve promise with itself'));
+        } else {
+            handlers.resolve(promise, returnValue);
+        }
+    });
+}
+handlers.resolve = function(self, value) {
+    var result = tryCatch(getThen, value);
+    if (result.status === 'error') {
+        return handlers.reject(self, result.value);
+    }
+    var thenable = result.value;
+    if (thenable) {
+        safelyResolveThenable(self, thenable);
+    } else {
+        self.state = FULFILLED;
+        self.outcome = value;
+        var i = -1;
+        var len = self.queue.length;
+        while(++i < len){
+            self.queue[i].callFulfilled(value);
+        }
+    }
+    return self;
+};
+handlers.reject = function(self, error) {
+    self.state = REJECTED;
+    self.outcome = error;
+    /* istanbul ignore else */ if ("TURBOPACK compile-time truthy", 1) {
+        if (self.handled === UNHANDLED) {
+            immediate(function() {
+                if (self.handled === UNHANDLED) {
+                    process.emit('unhandledRejection', error, self);
+                }
+            });
+        }
+    }
+    var i = -1;
+    var len = self.queue.length;
+    while(++i < len){
+        self.queue[i].callRejected(error);
+    }
+    return self;
+};
+function getThen(obj) {
+    // Make sure we only access the accessor once as required by the spec
+    var then = obj && obj.then;
+    if (obj && (typeof obj === 'object' || typeof obj === 'function') && typeof then === 'function') {
+        return function appyThen() {
+            then.apply(obj, arguments);
+        };
+    }
+}
+function safelyResolveThenable(self, thenable) {
+    // Either fulfill, reject or reject with error
+    var called = false;
+    function onError(value) {
+        if (called) {
+            return;
+        }
+        called = true;
+        handlers.reject(self, value);
+    }
+    function onSuccess(value) {
+        if (called) {
+            return;
+        }
+        called = true;
+        handlers.resolve(self, value);
+    }
+    function tryToUnwrap() {
+        thenable(onSuccess, onError);
+    }
+    var result = tryCatch(tryToUnwrap);
+    if (result.status === 'error') {
+        onError(result.value);
+    }
+}
+function tryCatch(func, value) {
+    var out = {};
+    try {
+        out.value = func(value);
+        out.status = 'success';
+    } catch (e) {
+        out.status = 'error';
+        out.value = e;
+    }
+    return out;
+}
+Promise.resolve = resolve;
+function resolve(value) {
+    if (value instanceof this) {
+        return value;
+    }
+    return handlers.resolve(new this(INTERNAL), value);
+}
+Promise.reject = reject;
+function reject(reason) {
+    var promise = new this(INTERNAL);
+    return handlers.reject(promise, reason);
+}
+Promise.all = all;
+function all(iterable) {
+    var self = this;
+    if (Object.prototype.toString.call(iterable) !== '[object Array]') {
+        return this.reject(new TypeError('must be an array'));
+    }
+    var len = iterable.length;
+    var called = false;
+    if (!len) {
+        return this.resolve([]);
+    }
+    var values = new Array(len);
+    var resolved = 0;
+    var i = -1;
+    var promise = new this(INTERNAL);
+    while(++i < len){
+        allResolver(iterable[i], i);
+    }
+    return promise;
+    //TURBOPACK unreachable
+    ;
+    function allResolver(value, i) {
+        self.resolve(value).then(resolveFromAll, function(error) {
+            if (!called) {
+                called = true;
+                handlers.reject(promise, error);
+            }
+        });
+        function resolveFromAll(outValue) {
+            values[i] = outValue;
+            if (++resolved === len && !called) {
+                called = true;
+                handlers.resolve(promise, values);
+            }
+        }
+    }
+}
+Promise.race = race;
+function race(iterable) {
+    var self = this;
+    if (Object.prototype.toString.call(iterable) !== '[object Array]') {
+        return this.reject(new TypeError('must be an array'));
+    }
+    var len = iterable.length;
+    var called = false;
+    if (!len) {
+        return this.resolve([]);
+    }
+    var i = -1;
+    var promise = new this(INTERNAL);
+    while(++i < len){
+        resolver(iterable[i]);
+    }
+    return promise;
+    //TURBOPACK unreachable
+    ;
+    function resolver(value) {
+        self.resolve(value).then(function(response) {
+            if (!called) {
+                called = true;
+                handlers.resolve(promise, response);
+            }
+        }, function(error) {
+            if (!called) {
+                called = true;
+                handlers.reject(promise, error);
+            }
+        });
+    }
+}
+}),
+"[project]/Image-Watermarker/node_modules/file-saver/dist/FileSaver.min.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+
+(function(a, b) {
+    if ("function" == typeof define && define.amd) ((r)=>r !== undefined && __turbopack_context__.v(r))(b());
+    else if ("TURBOPACK compile-time truthy", 1) b();
+    else //TURBOPACK unreachable
+    ;
+})(/*TURBOPACK member replacement*/ __turbopack_context__.e, function() {
+    "use strict";
+    function b(a, b) {
+        return "undefined" == typeof b ? b = {
+            autoBom: !1
+        } : "object" != typeof b && (console.warn("Deprecated: Expected third argument to be a object"), b = {
+            autoBom: !b
+        }), b.autoBom && /^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(a.type) ? new Blob([
+            "\uFEFF",
+            a
+        ], {
+            type: a.type
+        }) : a;
+    }
+    function c(a, b, c) {
+        var d = new XMLHttpRequest;
+        d.open("GET", a), d.responseType = "blob", d.onload = function() {
+            g(d.response, b, c);
+        }, d.onerror = function() {
+            console.error("could not download file");
+        }, d.send();
+    }
+    function d(a) {
+        var b = new XMLHttpRequest;
+        b.open("HEAD", a, !1);
+        try {
+            b.send();
+        } catch (a) {}
+        return 200 <= b.status && 299 >= b.status;
+    }
+    function e(a) {
+        try {
+            a.dispatchEvent(new MouseEvent("click"));
+        } catch (c) {
+            var b = document.createEvent("MouseEvents");
+            b.initMouseEvent("click", !0, !0, window, 0, 0, 0, 80, 20, !1, !1, !1, !1, 0, null), a.dispatchEvent(b);
+        }
+    }
+    var f = ("TURBOPACK compile-time falsy", 0) ? "TURBOPACK unreachable" : "object" == typeof self && self.self === self ? self : "object" == ("TURBOPACK compile-time value", "object") && /*TURBOPACK member replacement*/ __turbopack_context__.g.global === /*TURBOPACK member replacement*/ __turbopack_context__.g ? /*TURBOPACK member replacement*/ __turbopack_context__.g : void 0, a = f.navigator && /Macintosh/.test(navigator.userAgent) && /AppleWebKit/.test(navigator.userAgent) && !/Safari/.test(navigator.userAgent), g = f.saveAs || (("TURBOPACK compile-time truthy", 1) ? function() {} : "TURBOPACK unreachable");
+    f.saveAs = g.saveAs = g, "undefined" != ("TURBOPACK compile-time value", "object") && (module.exports = g);
+}); //# sourceMappingURL=FileSaver.min.js.map
+}),
+];
+
+//# sourceMappingURL=d5605_52f4cbd5._.js.map

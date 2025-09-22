@@ -1,0 +1,28 @@
+{
+  "pages": {
+    "/page": [
+      "static/chunks/d5605_next_dist_040a61d2._.js",
+      "static/chunks/Image-Watermarker_src_app_favicon_ico_mjs_a77e7fdf._.js",
+      "static/chunks/[root-of-the-server]__b6ffe12e._.css",
+      "static/chunks/Image-Watermarker_src_app_layout_tsx_6bd3f927._.js",
+      "static/chunks/d5605_next_dist_client_components_builtin_global-error_e6c7c66a.js",
+      "static/chunks/d5605_next_dist_fb6a5e17._.js",
+      "static/chunks/d5605_@mui_material_esm_84882dbb._.js",
+      "static/chunks/d5605_@mui_system_esm_21f5295c._.js",
+      "static/chunks/d5605_jszip_lib_08e03cdd._.js",
+      "static/chunks/d5605_pako_385e70d2._.js",
+      "static/chunks/d5605_c9fd379d._.js",
+      "static/chunks/Image-Watermarker_src_app_page_tsx_4f964f49._.js",
+      "static/chunks/Image-Watermarker_src_app_page_tsx_e6c7c66a._.js",
+      "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_5c11a540._.js",
+      "static/chunks/d5605_next_dist_compiled_react-dom_9eb95d8e._.js",
+      "static/chunks/d5605_next_dist_compiled_next-devtools_index_315ce8f7.js",
+      "static/chunks/d5605_next_dist_compiled_1ea7c910._.js",
+      "static/chunks/d5605_next_dist_client_a07a0f95._.js",
+      "static/chunks/d5605_next_dist_b160a2ac._.js",
+      "static/chunks/d5605_@swc_helpers_cjs_6e1b78f5._.js",
+      "static/chunks/Image-Watermarker_a0ff3932._.js",
+      "static/chunks/turbopack-Image-Watermarker_9ffa40c3._.js"
+    ]
+  }
+}
